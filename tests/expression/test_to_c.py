@@ -1,6 +1,6 @@
 from nose.tools import *
 
-from expression.expression_tree import *
+from expression.components import *
 
 def test_const():
     c = Const(5)
@@ -70,24 +70,24 @@ def test_neg_op():
     expr = NegOp(v)
     assert_equal(expr.to_c(), '(-b)')
 
-def test_pow_op():
+def test_pow_func():
     c = Const(2)
     v = Var('b')
 
-    expr = PowOp(c, v)
+    expr = PowFunc(c, v)
     assert_equal(expr.to_c(), 'pow(2, b)')
 
-    expr = PowOp(v, c)
+    expr = PowFunc(v, c)
     assert_equal(expr.to_c(), 'pow(b, 2)')
 
-def test_sqrt_op():
+def test_sqrt_func():
     c = Const(2)
     v = Var('b')
 
-    expr = SqrtOp(c)
+    expr = SqrtFunc(c)
     assert_equal(expr.to_c(), 'sqrt(2)')
 
-    expr = SqrtOp(v)
+    expr = SqrtFunc(v)
     assert_equal(expr.to_c(), 'sqrt(b)')
 
 def test_deep():
@@ -99,7 +99,7 @@ def test_deep():
     v3 = Var('d')
     v4 = Var('e')
 
-    expr = AddOp(SubOp(c1,DivOp(v1,NegOp(c2))), MulOp(ModOp(PowOp(v2,c3),v3),SqrtOp(v4)))
+    expr = AddOp(SubOp(c1,DivOp(v1,NegOp(c2))), MulOp(ModOp(PowFunc(v2,c3),v3),SqrtFunc(v4)))
     assert_equal(expr.to_c(), '((2 - (b / (-3))) + ((pow(c, 4) % d) * sqrt(e)))')
 
 

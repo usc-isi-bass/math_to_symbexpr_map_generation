@@ -1,6 +1,6 @@
 from nose.tools import *
 
-from expression.expression_tree import *
+from expression.components import *
 
 def test_const():
     assert_equal(Const.num_children, 0)
@@ -48,13 +48,13 @@ def test_neg_op():
 
 def test_pow_op():
     v = Var(1)
-    assert_equal(PowOp.num_children, 2)
-    e = PowOp(v, v)
-    assert_equal(len(e.children), PowOp.num_children)
+    assert_equal(PowFunc.num_children, 2)
+    e = PowFunc(v, v)
+    assert_equal(len(e.children), PowFunc.num_children)
 
 def test_sqrt_op():
     v = Var(1)
-    assert_equal(SqrtOp.num_children, 1)
-    e = SqrtOp(v)
-    assert_equal(len(e.children), SqrtOp.num_children)
+    assert_equal(SqrtFunc.num_children, 1)
+    e = SqrtFunc(v)
+    assert_equal(len(e.children), SqrtFunc.num_children)
 

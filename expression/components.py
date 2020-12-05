@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 
 #######################################
-# Lists of Operators & Math Function
+# Lists of Operators & Math Functions
 #   Format: (class name, math symbol/function name)
 #######################################
 
 # Unary Operators
-UNARY_OPERATORS = [("MinusOp", "-")]
+UNARY_OPERATORS = [("NegOp", "-")]
 
 # Binary Operators
 BINARY_OPERATORS = [("AddOp", "+"),
@@ -62,6 +62,9 @@ class Node(ABC):
     def __init__(self, *children):
         self.children = children
         self.num_children = len(children)
+
+    def to_c(self):
+        return str(self)
     
     @abstractmethod
     def __str__(self):
@@ -70,6 +73,9 @@ class Node(ABC):
 
 class Leaf(Node):
     num_children = 0
+    def __init__(self, *children):
+        self.num_children = 0
+        self.children = []
 
 
 class Operator(Node):
@@ -88,18 +94,21 @@ class Function(Node):
 
 
 class UnaryFunction(Function):
+    num_children = 1
     def __init__(self, op, child):
         super().__init__(op, child)
         self.num_children = 1
 
 
 class BinaryFunction(Function):
+    num_children = 2
     def __init__(self, op, arg1, arg2):
         super().__init__(op, arg1, arg2)
         self.num_children = 2
 
 
 class UnaryOperator(Operator):
+    num_children = 1
     def __init__(self, op, arg):
         super().__init__(op, arg)
         self.arg = arg
@@ -109,6 +118,7 @@ class UnaryOperator(Operator):
 
 
 class BinaryOperator(Operator):
+    num_children = 2
     def __init__(self, op, left, right):
         super().__init__(op, left, right)
         self.left = left
@@ -119,6 +129,7 @@ class BinaryOperator(Operator):
 
 
 class TernaryOperator(Operator):
+    num_children = 3
     def __init__(self, op, left, mid, right):
         super().__init__(op, left, mid, right)
         self.left = left
@@ -163,11 +174,11 @@ for (name, op) in BINARY_OPERATORS:
 for (name, op) in BINARY_BIT_OPERATORS:
     make_classes(name, op, "BinaryOperator")
 
-for (name, op) in UNARY_FUNCTIONS:
-    make_classes(name, op, "UnaryFunction")
+for (name, func_name) in UNARY_FUNCTIONS:
+    make_classes(name, func_name, "UnaryFunction")
 
-for (name, op) in BINARY_FUNCTIONS:
-    make_classes(name, op, "BinaryFunction")
+for (name, func_name) in BINARY_FUNCTIONS:
+    make_classes(name, func_name, "BinaryFunction")
 
 
 
