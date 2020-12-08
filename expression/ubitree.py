@@ -79,7 +79,10 @@ class UbiTreeGenerator():
             if cnt < num_var:
                 leaves.append("a_%s" % cnt)
                 continue
-            leaf_type = rng.choice(2, p=dup_var_prob)
+            if num_var != 0:
+                leaf_type = rng.choice(2, p=dup_var_prob)
+            else:
+                leaf_type = 1
             if leaf_type == 0:
                 idx = rng.choice(num_var)
                 leaves.append("a_%s" % idx)
@@ -141,6 +144,7 @@ class UbiTreeGenerator():
             pos = [i for i, v in enumerate(stack) if v is None][l_leaves]
             stack = stack[:pos] + [(op, num_children)] + [None for _ in range(num_children)] + stack[pos + 1:]
 
+        print(stack)
         # sanity check
         assert len([1 for v in stack if v is not None and v[0] in self.all_ops]) == self.max_ops
         assert len([1 for v in stack if v is None]) == t_leaves
