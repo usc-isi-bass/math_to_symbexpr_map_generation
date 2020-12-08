@@ -6,7 +6,7 @@ from expression.ubitree import *
 def main():
 
     # Create a generator. Refer to expression/ubitree.py for parameters
-    generator = UbiTreeGenerator(5, 5, 10)
+    generator = UbiTreeGenerator(max_ops=5, num_leaves=5, max_int=10)
 
     # Generate a stack of random expression prefix tree
     #   parameter: number of symbolic values
@@ -27,6 +27,13 @@ def main():
     obj2 = prefix_stack_to_expression(prefix_stack2)
     print(obj2)
 
+    print("")
+    print("--- Integer only:")
+    # Create an integer-only generator
+    generator = UbiTreeGenerator(max_ops=5, num_leaves=5, max_int=10, int_only=True)
+    prefix_stack = generator.generate_ubitree_stack(3)
+    obj = prefix_stack_to_expression(prefix_stack)
+    print(obj)
 
 
 if __name__ == '__main__':
