@@ -54,3 +54,16 @@ def test_simple_operator():
 
         obj = prefix_stack_to_expression(stack)
         assert_equal(isinstance(obj, Operator), True)
+
+def test_integer_only():
+    generator = UbiTreeGenerator(max_ops=5, num_leaves=5, max_int=10, int_only=True)
+    int_only_ops = ["NegOp", "AddOp", "SubOp", "MulOp", "DivOp", "ModOp", "OrOp", "XorOp", "LshiftOp", "RshiftOp", "AbsFunc"]
+    # Check the content of this generator
+    for op in generator.all_ops:
+        assert(op in int_only_ops)
+
+    # Check if this option functions well
+    # Assertions are implemented inside the class already. So if it doesn't raise exception, it should be fine.
+    for i in range(5):
+        stack = generator.generate_ubitree_stack(2)
+        obj = prefix_stack_to_expression(stack)

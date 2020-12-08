@@ -20,22 +20,27 @@ import numpy as np
 #   +-     max_ops:  Create a tree with # operators/functions.
 #   +-  num_leaves:  Number of leaves in tree (Ideally)
 #   +-     max_int:  Maximum value of generated constant
-#   +-  use_bit_op:  To include C bit operators or not (optional)
+#   +-    int_only:  To include integer-only operators/functions  (Default: false)
+#   +-  use_bit_op:  To include C bit operators or not (Default: false)
 #
 # List of operators/functions defined in components.py
 #
 #######################################
 class UbiTreeGenerator():
-    def __init__(self, max_ops, num_leaves, max_int, use_bit_op=False):
+    def __init__(self, max_ops, num_leaves, max_int, int_only=False, use_bit_op=False):
         unas = UNARY_OPERATORS + UNARY_FUNCTIONS
         if use_bit_op:
             bins = BINARY_OPERATORS + BINARY_BIT_OPERATORS + BINARY_FUNCTIONS
         else:
             bins = BINARY_OPERATORS + BINARY_FUNCTIONS
-        ops = unas + bins
-        self.all_ops = [o for o, _ in ops]
-        self.una_ops = [o for o, _ in unas]
-        self.bin_ops = [o for o, _ in bins]
+        if int_only:
+            self.una_ops = [o for o,_,(arg,ret) in unas if (arg is None and ret is None) or (ret == "int")]
+            self.bin_ops = [o for o,_,(arg,ret) in bins if (arg is None and ret is None) or (ret == "int")]
+            self.all_ops = self.una_ops + self.bin_ops
+        else:
+            self.una_ops = [o for o,_,_ in unas]
+            self.bin_ops = [o for o,_,_ in bins]
+            self.all_ops = self.una_ops + self.bin_ops
 
         # generation parameters
         self.nl = num_leaves

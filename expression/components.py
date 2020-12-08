@@ -2,56 +2,58 @@ from abc import ABC, abstractmethod
 
 #######################################
 # Lists of Operators & Math Functions
-#   Format: (class name, math symbol/function name)
+#   Format: (class name, math symbol/function name, (arg_type, return_type))
+#     |+ arg_type: requirement type for this operator/function
+#     |+ return_type: return type for this operator/function
+#        None stands for any given type
 #######################################
 
 # Unary Operators
-UNARY_OPERATORS = [("NegOp", "-")]
+UNARY_OPERATORS = [("NegOp", "-", (None, None))]
 
 # Binary Operators
-BINARY_OPERATORS = [("AddOp", "+"),
-       ("SubOp", "-"),
-       ("MulOp", "*"),
-       ("DivOp", "/"),
-       ("ModOp", "%")]
+BINARY_OPERATORS = [("AddOp", "+", (None, None)),
+       ("SubOp", "-", (None, None)),
+       ("MulOp", "*", (None, None)),
+       ("DivOp", "/", (None, None)),
+       ("ModOp", "%", ("int", "int"))]
 
-BINARY_BIT_OPERATORS = [("AndOp", "&"),
-       ("OrOp", "|"),
-       ("XorOp", "^"),
-       ("LshiftOp", "<<"),
-       ("RshiftOp", ">>")]
+BINARY_BIT_OPERATORS = [("AndOp", "&", ("int", "int")),
+       ("OrOp", "|", ("int", "int")),
+       ("XorOp", "^", ("int", "int")),
+       ("LshiftOp", "<<", ("int", "int")),
+       ("RshiftOp", ">>", ("int", "int"))]
 
 # Unary Functions
 # https://en.wikibooks.org/wiki/C_Programming/math.h
-UNARY_FUNCTIONS = [("AbsFunc", "abs"),
-       ("LabsFunc", "labs"),
-       ("AcosFunc", "acos"),
-       ("AsinFunc", "asin"),
-       ("AtanFunc", "atan"),
-       ("CeilFunc", "ceil"),
-       ("CosFunc", "cos"),
-       ("CoshFunc", "cosh"),
-       ("CbrtFunc", "cbrt"),
-       ("ExpFunc", "exp"),
-       ("FabsFunc", "fabs"),
-       ("FloorFunc", "floor"),
-       ("LogFunc", "log"),
-       ("Log10Func", "log10"),
-       ("SinFunc", "sin"),
-       ("SinhFunc", "sinh"),
-       ("SqrtFunc", "sqrt"),
-       ("TanFunc", "tan"),
-       ("TanhFunc", "tanh"),
-       ("AcoshFunc", "acosh"),
-       ("AsinhFunc", "asinh"),
-       ("AtanhFunc", "atanh"),
-       ("AtanhFunc", "atanh"),
-       ("Exp2Func", "exp2"),
-       ("Log2Func", "log2"),
-       ("TgammaFunc", "tgamma")]
+UNARY_FUNCTIONS = [("AbsFunc", "abs", (None, None)),
+       ("AcosFunc", "acos", (None, "double")),
+       ("AsinFunc", "asin", (None, "double")),
+       ("AtanFunc", "atan", (None, "double")),
+       ("CeilFunc", "ceil", (None, "double")),
+       ("CosFunc", "cos", (None, "double")),
+       ("CoshFunc", "cosh", (None, "double")),
+       ("CbrtFunc", "cbrt", (None, "double")),
+       ("ExpFunc", "exp", (None, "double")),
+       ("FabsFunc", "fabs", (None, "double")),
+       ("FloorFunc", "floor", (None, "double")),
+       ("LogFunc", "log", (None, "double")),
+       ("Log10Func", "log10", (None, "double")),
+       ("SinFunc", "sin", (None, "double")),
+       ("SinhFunc", "sinh", (None, "double")),
+       ("SqrtFunc", "sqrt", (None, "double")),
+       ("TanFunc", "tan", (None, "double")),
+       ("TanhFunc", "tanh", (None, "double")),
+       ("AcoshFunc", "acosh", (None, "double")),
+       ("AsinhFunc", "asinh", (None, "double")),
+       ("AtanhFunc", "atanh", (None, "double")),
+       ("AtanhFunc", "atanh", (None, "double")),
+       ("Exp2Func", "exp2", (None, "double")),
+       ("Log2Func", "log2", (None, "double")),
+       ("TgammaFunc", "tgamma", (None, "double"))]
 
 # Binary Functions
-BINARY_FUNCTIONS = [("PowFunc", "pow")]
+BINARY_FUNCTIONS = [("PowFunc", "pow", (None, "double"))]
 
 # Ignore TernaryOperator for now since there seems to be only a few of them
 
@@ -179,19 +181,19 @@ def make_classes(method, op, classname):
     exec(code, globals(), locals_dict)
     globals()[method] = locals_dict[method]
 
-for (name, op) in UNARY_OPERATORS:
+for (name, op, _) in UNARY_OPERATORS:
     make_classes(name, op, "UnaryOperator")
 
-for (name, op) in BINARY_OPERATORS:
+for (name, op, _) in BINARY_OPERATORS:
     make_classes(name, op, "BinaryOperator")
 
-for (name, op) in BINARY_BIT_OPERATORS:
+for (name, op, _) in BINARY_BIT_OPERATORS:
     make_classes(name, op, "BinaryOperator")
 
-for (name, func_name) in UNARY_FUNCTIONS:
+for (name, func_name, _) in UNARY_FUNCTIONS:
     make_classes(name, func_name, "UnaryFunction")
 
-for (name, func_name) in BINARY_FUNCTIONS:
+for (name, func_name, _) in BINARY_FUNCTIONS:
     make_classes(name, func_name, "BinaryFunction")
 
 
