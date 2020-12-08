@@ -62,6 +62,21 @@ class Node(ABC):
     def __init__(self, *children):
         self.children = children
         self.num_children = len(children)
+        self.leaves = None
+
+    def get_leaves(self):
+        if self.leaves is None:
+            self.leaves = []
+            Node._get_leaves(self, self.leaves)
+        return self.leaves
+
+    def _get_leaves(node, leaves):
+        if isinstance(node, Leaf):
+            leaves.append(node)
+            return
+
+        for child in node.children:
+            Node._get_leaves(child, leaves)
 
     def to_c(self):
         return str(self)
@@ -74,8 +89,7 @@ class Node(ABC):
 class Leaf(Node):
     num_children = 0
     def __init__(self, *children):
-        self.num_children = 0
-        self.children = []
+        super().__init__()
 
 
 class Operator(Node):
