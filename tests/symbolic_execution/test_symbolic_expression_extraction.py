@@ -100,9 +100,3 @@ def run_elf_file(elf_file_name, *args):
     outs = p.stdout.read()
 
     return outs
-
-def main():
-    test_extract()
-
-if __name__ == "__main__":
-    main()
