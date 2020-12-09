@@ -1,3 +1,5 @@
+from collections.abc import Iterable
+
 from expression.components import *
 from code_generation.code_templates import C_CODE_TEMPLATE
 
@@ -19,6 +21,7 @@ class CCodeGenerator:
         self.template = C_CODE_TEMPLATE
         self.expression = expression
         self.vars = list(self._get_vars())
+        self.var_names = [var.name for var in self.vars]
         self.num_vars = len(self.vars)
 
 
@@ -43,7 +46,7 @@ class CCodeGenerator:
         c_code = self.template.format(**template_args)
         wrapper_func = template_args['f_sig_name']
 
-        generated_c_code = GeneratedCCode(wrapper_func, self.expression, c_code)
+        generated_c_code = GeneratedCCode(wrapper_func, self.expression, self.var_names, c_code)
 
 
 
@@ -63,7 +66,7 @@ class CCodeGenerator:
 
     def _gen_f_sig_args(self):
         # The arguments of the wrapper function's signature.
-        return ', '.join("int {}".format(var.name) for var in self.vars)
+        return ', '.join("int {}".format(var_name) for var_name in self.var_names)
 
     def _gen_f_expr(self):
         # The C representation of the signature to wrap in the code.
@@ -92,7 +95,8 @@ class GeneratedCCode:
     #
     #######################################
 
-    def __init__(self, wrapper_func: str, expr: Node, code: str):
+    def __init__(self, wrapper_func: str, expr: Node, expr_var_names: Iterable, code: str):
         self.wrapper_func = wrapper_func
         self.expr = expr
+        self.expr_var_names = expr_var_names
         self.code = code
