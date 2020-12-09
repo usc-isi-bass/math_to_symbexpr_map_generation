@@ -20,7 +20,7 @@ class CCodeGenerator:
     def __init__(self, expression: Node):
         self.template = C_CODE_TEMPLATE
         self.expression = expression
-        self.vars = list(self._get_vars())
+        self.vars = list(set(self._get_vars()))
         self.var_names = [var.name for var in self.vars]
         self.num_vars = len(self.vars)
 
@@ -53,7 +53,14 @@ class CCodeGenerator:
         return generated_c_code
 
     def _get_vars(self):
-        return filter(lambda l: isinstance(l, Var), self.expression.get_leaves())
+        vars_l  = []
+        vars_s = set()
+        # Find unique variables in the leaves, and keep the order from left to right.
+        for var in filter(lambda l: isinstance(l, Var), self.expression.get_leaves()):
+            if var not in vars_s:
+                vars_s.add(var)
+                vars_l.append(var)
+        return vars_l
 
 
     def _gen_f_sig_ret(self):

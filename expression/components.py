@@ -169,6 +169,12 @@ class Var(Leaf):
     def __str__(self):
         return str(self.name)
 
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __hash__(self):
+        return hash(self.name)
+
 
 #######################################
 # Generate Operators & Functions class
