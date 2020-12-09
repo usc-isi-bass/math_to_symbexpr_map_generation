@@ -1,11 +1,12 @@
 from nose.tools import *
 import os
-import hashlib
 import tempfile
 import subprocess
+import uuid
 
 from expression.components import *
 from code_generation.c_code_generation import CCodeGenerator
+from code_generation.bin_code_generation import CFile
 
 
 def test_generate_code_01():
@@ -71,27 +72,21 @@ def eval_expr(expr, *args):
 
 
 def eval_c_code(c_code, *args):
-    c_file_name = write_c_file(c_code)
-    elf_file_name = compile_c_file(c_file_name)
+    c_file_name = tmp_c_file_name()
+    c_file = CFile(c_file_name, c_code)
+    elf_file_name = c_file.compile()
 
     output = run_elf_file(elf_file_name, *args)
+
+    # Clean up
+    os.remove(c_file_name)
+    os.remove(elf_file_name)
 
     return output
     
 
-def write_c_file(c_code):
-    with tempfile.NamedTemporaryFile(prefix='c_code_generation', suffix='.c', delete=False) as tmp_file:
-        tmp_file.write(c_code.encode('ascii'))
-        return tmp_file.name
-
-def compile_c_file(c_file_name):
-    elf_file_name = os.path.splitext(c_file_name)[0]
-    p = subprocess.Popen(['gcc', '-o', elf_file_name, c_file_name, '-lm'])
-    p.wait()
-    retcode = p.returncode
-    assert retcode == 0, "Compilation failed: return code: {}".format(retcode)
-
-    return elf_file_name
+def tmp_c_file_name():
+    return os.path.join(tempfile.gettempdir(), '{}_{}.c'.format('test_code_generation', uuid.uuid4().hex))
 
 def run_elf_file(elf_file_name, *args):
     p = subprocess.Popen([elf_file_name] + list(args), stdout=subprocess.PIPE)
@@ -100,14 +95,3 @@ def run_elf_file(elf_file_name, *args):
     outs = p.stdout.read()
 
     return outs
-
-
-
-
-    
-
-def md5_str(string):
-    m = hashlib.md5()
-    m.update(string)
-    string_md5 = m.digest()
-    return string_md5
