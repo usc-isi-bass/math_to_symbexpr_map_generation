@@ -8,6 +8,9 @@ from abc import ABC, abstractmethod
 #        None stands for any given type
 #######################################
 
+# Commutable Operators
+COMMUTABLE_OPERATORS = ["+", "*"]
+
 # Unary Operators
 UNARY_OPERATORS = [("NegOp", "-", (None, None))]
 

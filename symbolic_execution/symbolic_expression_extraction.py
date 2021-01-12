@@ -1,8 +1,13 @@
 import angr
 import claripy
+import re
 from collections.abc import Iterable
 
+
 from code_generation.c_code_generation import GeneratedCCode
+
+def s32(value):
+    return -(value & 0x80000000) | (value & 0x7fffffff)
 
 #######################################
 #
@@ -77,3 +82,37 @@ class ExtractedSymExpr:
     def __init__(self, symex_expr, symvars):
         self.symex_expr = symex_expr
         self.symvars = symvars
+
+    def symex_to_seq(self):
+        symex_expr = str(self.symex_expr).replace("(", "( ").replace(")", " )")
+        expr = symex_expr.replace("<BV64 ", "")[:-1]
+        tokens = expr.split()
+        seq = []
+
+        for token in tokens:
+            # First handle hex numbers
+            if token == "0x0":
+                # Probably padding 0, keep it
+                seq.append(token)
+
+            elif re.match(r"0xf\w{7}", token):
+                # 0xfff*, probably negative number, transfer to decimal
+                number = s32(int(token, 16))
+                seq.append(str(number))
+
+            elif re.match(r"0x\w{2}f{6}", token):
+                # FIXME
+                # 0x*ffffff, probably -1 after shifting
+                seq.append("-1")
+
+            elif re.match(r"0x\w{1,8}", token):
+                seq.append(str(int(token, 16)))
+
+            # Variable bit extraction
+            elif re.match(r"\w+\[\d{1,2}:\d{1,2}\]", token):
+                seq.append(token.split("[")[0])
+
+            else:
+                seq.append(token)
+        return seq
+

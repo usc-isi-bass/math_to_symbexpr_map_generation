@@ -191,3 +191,34 @@ def prefix_stack_to_expression(stack):
     """
     expr, r = _prefix_to_infix(stack)
     return expr
+
+def _expression_to_prefix(expr):
+    prefix_list = []
+    if isinstance(expr, Operator):
+        name = expr.op
+    elif isinstance(expr, Function):
+        name = expr.func_name
+    else:
+        name = str(expr)
+
+    if expr.num_children == 2:
+        lhs = _expression_to_prefix(expr.children[0])
+        rhs = _expression_to_prefix(expr.children[1])
+        if name in COMMUTABLE_OPERATORS:
+            if len(lhs) >= len(rhs):
+                return [name] + lhs + rhs
+            else:
+                return [name] + rhs + lhs
+        else:
+            return [name] + lhs + rhs
+    elif expr.num_children == 1:
+        return [name] + _expression_to_prefix(expr.children[0])
+    else:
+        return [name]
+
+def expression_to_prefix(expr):
+    prefix_list = _expression_to_prefix(expr)
+    return prefix_list
+
+def expression_to_seq(expr):
+    return str(expr).replace("(", "( ").replace(")", " )").split()
