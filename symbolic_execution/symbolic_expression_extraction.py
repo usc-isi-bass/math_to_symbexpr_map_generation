@@ -10,6 +10,39 @@ from code_generation.c_code_generation import GeneratedCCode
 def s32(value):
     return -(value & 0x80000000) | (value & 0x7fffffff)
 
+def process_token(token):
+    # First handle hex numbers
+    if token == "0x0":
+        # Probably padding 0, keep it
+        return token
+
+    elif re.match(r"0xf\w{7}", token):
+        # 0xfff*, probably negative number, transfer to decimal
+        number = s32(int(token, 16))
+        return str(number)
+
+    elif re.match(r"0x\w{2}f{6}", token):
+        # FIXME
+        # 0x*ffffff, probably -1 after shifting
+        return "-1"
+
+    elif re.match(r"0x\w{1,8}", token):
+        return str(int(token, 16))
+
+    # Variable bit extraction
+    elif re.match(r"\w+\[\d{1,2}:\d{1,2}\]", token):
+        return token.split("[")[0]
+
+    elif token == "__add__":
+        return "+"
+
+    elif token == "__mul__":
+        return "*"
+
+    else:
+        return token
+
+
 #######################################
 #
 # Perform symbolic execution on functions in a binary executable and extract the AST of the return value.
@@ -91,31 +124,9 @@ class ExtractedSymExpr:
         seq = []
 
         for token in tokens:
-            # First handle hex numbers
-            if token == "0x0":
-                # Probably padding 0, keep it
-                seq.append(token)
-
-            elif re.match(r"0xf\w{7}", token):
-                # 0xfff*, probably negative number, transfer to decimal
-                number = s32(int(token, 16))
-                seq.append(str(number))
-
-            elif re.match(r"0x\w{2}f{6}", token):
-                # FIXME
-                # 0x*ffffff, probably -1 after shifting
-                seq.append("-1")
-
-            elif re.match(r"0x\w{1,8}", token):
-                seq.append(str(int(token, 16)))
-
-            # Variable bit extraction
-            elif re.match(r"\w+\[\d{1,2}:\d{1,2}\]", token):
-                seq.append(token.split("[")[0])
-
-            else:
-                seq.append(token)
+            seq.append(process_token(token))
         return seq
+
 
     def _try_merge_same_variable_concat(self, args):
         # Try to match the form
@@ -196,9 +207,9 @@ class ExtractedSymExpr:
             return prefix_queue
 
 
-
     def symex_to_prefix(self):
         symex_expr = self.symex_expr
-        return self._symex_to_prefix(symex_expr)
+        prefix = self._symex_to_prefix(symex_expr)
+        return [process_token(elem) for elem in prefix]
 
 
