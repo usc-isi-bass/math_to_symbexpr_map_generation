@@ -1,8 +1,33 @@
 import angr
+from angr.sim_options import LAZY_SOLVES,\
+    SIMPLIFY_EXPRS,\
+    SIMPLIFY_MEMORY_READS,\
+    SIMPLIFY_MEMORY_WRITES,\
+    SIMPLIFY_REGISTER_READS,\
+    SIMPLIFY_REGISTER_WRITES,\
+    SIMPLIFY_RETS,\
+    SIMPLIFY_EXIT_STATE,\
+    SIMPLIFY_EXIT_TARGET,\
+    SIMPLIFY_EXIT_GUARD,\
+    SIMPLIFY_CONSTRAINTS
 import claripy
 from collections.abc import Iterable
 
 from code_generation.c_code_generation import GeneratedCCode
+
+simplification_options = [
+    LAZY_SOLVES,
+    SIMPLIFY_EXPRS,
+    SIMPLIFY_MEMORY_READS,
+    SIMPLIFY_MEMORY_WRITES,
+    SIMPLIFY_REGISTER_READS,
+    SIMPLIFY_REGISTER_WRITES,
+    SIMPLIFY_RETS,
+    SIMPLIFY_EXIT_STATE,
+    SIMPLIFY_EXIT_TARGET,
+    SIMPLIFY_EXIT_GUARD,
+    SIMPLIFY_CONSTRAINTS
+]
 
 #######################################
 #
@@ -44,8 +69,7 @@ class SymbolicExpressionExtractor:
         if num_params_cc != num_symvars:
             raise Exception("Function calling convention indicates {} args required, but {} supplied.".format(num_params_cc, num_symvars))
         func_symvar_args = [claripy.BVS(symvar_name, size=arg.size * 8, explicit_name=True) for symvar_name, arg in zip(symvar_names, func_args)]
-        #start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, add_options=[angr.sim_options.LAZY_SOLVES])
-        start_state = self.proj.factory.call_state(func_addr, *func_symvar_args)
+        start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, add_options=[LAZY_SOLVES], remove_options=simplification_options)
 
         simgr = self.proj.factory.simulation_manager(start_state)
         simgr.run()
