@@ -78,10 +78,10 @@ def test_generate_float_type():
     v2 = Var('b', "float")
     expr = AddOp(v1, PowFunc(c, v2))
     out = eval_expr(expr, "float", '2', '2')
-    assert_equal(out, '27.000000')
+    assert_almost_equal(float(out), 27)
 
     out = eval_expr(expr, "float", '4', '3')
-    assert_equal(out, '129.000000')
+    assert_almost_equal(float(out), 129)
 
 def test_generate_double_type():
     c = Const(5)
@@ -90,9 +90,10 @@ def test_generate_double_type():
     expr = AddOp(v1, PowFunc(c, v2))
     out = eval_expr(expr, "double", '2', '2')
     assert_equal(out, '27.000000')
+    assert_almost_equal(float(out), 27)
 
     out = eval_expr(expr, "float", '4', '3')
-    assert_equal(out, '129.000000')
+    assert_almost_equal(float(out), 129)
 
 def test_generate_mix_type():
     c = Const(5)

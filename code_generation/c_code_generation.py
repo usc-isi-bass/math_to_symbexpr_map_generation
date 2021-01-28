@@ -71,10 +71,14 @@ class CCodeGenerator:
 
     def _gen_f_sig_print(self):
         # The return value type of the wrapper function.
-        if self.ret_type == "int" or self.ret_type == "unsigned int":
+        if self.ret_type == "int":
             return '%d'
-        elif self.ret_type == "long" or self.ret_type == "unsigned long":
+        elif self.ret_type == "unsigned int":
+            return '%u'
+        elif self.ret_type == "long":
             return '%ld'
+        elif self.ret_type == "unsigned long":
+            return '%lu'
         else:
             return '%f'
 

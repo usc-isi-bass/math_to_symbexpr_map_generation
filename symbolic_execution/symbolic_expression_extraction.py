@@ -96,11 +96,15 @@ class SymbolicExpressionExtractor:
         Extract the AST of the return value of a target function.
             target_func_name: The name of the function to perform symbolic execution on.
             symvar_names:     The names of the symbolic variables to pass this function as parameters.
+            symvar_types:     The types of the symbolic variables to pass this function as parameters.
+            ret_type:         The type of the return value of this function
+            simplified:       To simplify the symbolic expression or not
         '''
         target_func = self.cfg.functions.function(name=target_func_name)
         assert target_func is not None, "Could not find a function by name: {}".format(target_func_name)
         func_addr = target_func.addr
 
+        # Create BVS for integer/long arguments, and FPS for float/double
         num_symvars = len(symvar_names)
         func_symvar_args = []
         is_fp_args = []
@@ -119,7 +123,10 @@ class SymbolicExpressionExtractor:
         else:
             ret_fp = True
 
+        # Create a new symbolic calling convention based on the original target function 
+        # With correct types of arguments and return type
         sym_cc = target_func.calling_convention.from_arg_kinds(self.proj.arch, fp_args=is_fp_args, ret_fp=ret_fp)
+
         if simplified:
             start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
         else:
