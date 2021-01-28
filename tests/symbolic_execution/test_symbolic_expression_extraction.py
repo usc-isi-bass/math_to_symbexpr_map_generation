@@ -18,6 +18,9 @@ logging.getLogger('angr').propagate = False
 logging.getLogger('cle').disabled = True
 logging.getLogger('cle').propagate = False
 
+def s32(value):
+    return -(value & 0x80000000) | (value & 0x7fffffff)
+
 def test_extract_01():
     c = Const(1)
     eval_int_expr(c)
@@ -44,6 +47,13 @@ def test_extract_05():
     v3 = Var('c')
     expr = MulOp(AddOp(v1, v2), v3)
     eval_int_expr(expr, 1, 2, 3)
+
+def test_extract_06():
+    v1 = Var('a')
+    v2 = Var('b')
+    c1 = Const('5')
+    expr = MulOp(SubOp(v1, v2), c1)
+    eval_int_expr(expr, 1, 2, -5)
 
 def test_mix_type():
     v1 = Var('a', "long")
@@ -97,7 +107,19 @@ def eval_int_expr(expr, *args):
     ast_eval = solver.eval(ast, 1, extra_constraints=[symvar == arg for symvar, arg in zip(symvars, args)])[0]
 
     # If the extracted symbolic expression is equal to the given expression, they should be equal
-    assert_equal(str(ast_eval), output)
+    assert_equal(str(s32(ast_eval)), str(int(output)))
+
+
+    # Test non-simplified extract
+    extracted_symexpr = see.extract(target_func, var_names, var_ctypes, "int", False)
+    symvars = extracted_symexpr.symvars
+    ast = extracted_symexpr.symex_expr
+
+    solver = claripy.Solver()
+    ast_eval = solver.eval(ast, 1, extra_constraints=[symvar == arg for symvar, arg in zip(symvars, args)])[0]
+
+    assert_equal(str(s32(ast_eval)), str(int(output)))
+    assert(not ("fff") in str(ast))
 
 
 

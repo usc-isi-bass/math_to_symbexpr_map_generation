@@ -91,7 +91,7 @@ class SymbolicExpressionExtractor:
 
 
 
-    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=False):
+    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True):
         '''
         Extract the AST of the return value of a target function.
             target_func_name: The name of the function to perform symbolic execution on.
@@ -121,9 +121,9 @@ class SymbolicExpressionExtractor:
 
         sym_cc = target_func.calling_convention.from_arg_kinds(self.proj.arch, fp_args=is_fp_args, ret_fp=ret_fp)
         if simplified:
-            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, add_options=[LAZY_SOLVES], remove_options=simplification_options)
-        else:
             start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
+        else:
+            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, add_options=[LAZY_SOLVES], remove_options=simplification_options)
 
         simgr = self.proj.factory.simulation_manager(start_state)
         simgr.run()

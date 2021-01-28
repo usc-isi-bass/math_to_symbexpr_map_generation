@@ -18,7 +18,7 @@ def main():
     v1 = Var('a', "int")
     v2 = Var('b', "int")
     expr = MulOp(c, SubOp(v1, v2))
-    do_expr(expr, "int", False)
+    do_expr(expr, "int")
 
     print()
     print("------------------------------")
@@ -27,7 +27,7 @@ def main():
     v1 = Var('a', "int")
     v2 = Var('b', "int")
     expr = MulOp(c, SubOp(v1, v2))
-    do_expr(expr, "int", True)
+    do_expr(expr, "int", False)
 
     print()
     print("------------------------------")
@@ -36,10 +36,10 @@ def main():
     v1 = Var('a', "float")
     v2 = Var('b', "int")
     expr = AddOp(c, MulOp(v1, v2))
-    do_expr(expr, "float", False)
+    do_expr(expr, "float")
 
 
-def do_expr(expr, ret_type, simplified):
+def do_expr(expr, ret_type, simplified=True):
     print("Natural Expression:")
     print(expr)
     ccg = CCodeGenerator(expr, ret_type=ret_type)
