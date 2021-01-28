@@ -1,4 +1,15 @@
 import angr
+from angr.sim_options import LAZY_SOLVES,\
+    SIMPLIFY_EXPRS,\
+    SIMPLIFY_MEMORY_READS,\
+    SIMPLIFY_MEMORY_WRITES,\
+    SIMPLIFY_REGISTER_READS,\
+    SIMPLIFY_REGISTER_WRITES,\
+    SIMPLIFY_RETS,\
+    SIMPLIFY_EXIT_STATE,\
+    SIMPLIFY_EXIT_TARGET,\
+    SIMPLIFY_EXIT_GUARD,\
+    SIMPLIFY_CONSTRAINTS
 import claripy
 import re
 from collections.abc import Iterable
@@ -7,6 +18,20 @@ from collections import deque
 
 from expression.components import *
 from code_generation.c_code_generation import GeneratedCCode
+
+simplification_options = [
+    LAZY_SOLVES,
+    SIMPLIFY_EXPRS,
+    SIMPLIFY_MEMORY_READS,
+    SIMPLIFY_MEMORY_WRITES,
+    SIMPLIFY_REGISTER_READS,
+    SIMPLIFY_REGISTER_WRITES,
+    SIMPLIFY_RETS,
+    SIMPLIFY_EXIT_STATE,
+    SIMPLIFY_EXIT_TARGET,
+    SIMPLIFY_EXIT_GUARD,
+    SIMPLIFY_CONSTRAINTS
+]
 
 def s32(value):
     return -(value & 0x80000000) | (value & 0x7fffffff)
@@ -43,7 +68,6 @@ def process_token(token):
     else:
         return token
 
-
 #######################################
 #
 # Perform symbolic execution on functions in a binary executable and extract the AST of the return value.
@@ -67,7 +91,7 @@ class SymbolicExpressionExtractor:
 
 
 
-    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str):
+    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=False):
         '''
         Extract the AST of the return value of a target function.
             target_func_name: The name of the function to perform symbolic execution on.
@@ -96,7 +120,10 @@ class SymbolicExpressionExtractor:
             ret_fp = True
 
         sym_cc = target_func.calling_convention.from_arg_kinds(self.proj.arch, fp_args=is_fp_args, ret_fp=ret_fp)
-        start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
+        if simplified:
+            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, add_options=[LAZY_SOLVES], remove_options=simplification_options)
+        else:
+            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
 
         simgr = self.proj.factory.simulation_manager(start_state)
         simgr.run()
