@@ -17,11 +17,16 @@ class CCodeGenerator:
     #
     #######################################
 
-    def __init__(self, expression: Node):
+    def __init__(self, expression: Node, ret_type="int"):
+        if ret_type not in C_TYPES:
+            print("Wrong return type for generating C code")
+            return None
+        self.ret_type = ret_type
         self.template = C_CODE_TEMPLATE
         self.expression = expression
-        self.vars = list(set(self._get_vars()))
+        self.vars = self._get_vars()
         self.var_names = [var.name for var in self.vars]
+        self.var_ctypes = [var.c_type for var in self.vars]
         self.num_vars = len(self.vars)
 
 
@@ -35,6 +40,7 @@ class CCodeGenerator:
         # Generate code for each of the tags required by C_CODE_TEMPLATE
         template_args = {
             'f_sig_ret': self._gen_f_sig_ret(),
+            'f_sig_print': self._gen_f_sig_print(),
             'f_sig_name': self._gen_f_sig_name(),
             'f_sig_args': self._gen_f_sig_args(),
             'f_expr': self._gen_f_expr(),
@@ -46,7 +52,7 @@ class CCodeGenerator:
         c_code = self.template.format(**template_args)
         wrapper_func = template_args['f_sig_name']
 
-        generated_c_code = GeneratedCCode(wrapper_func, self.expression, self.var_names, c_code)
+        generated_c_code = GeneratedCCode(wrapper_func, self.expression, self.var_names, self.var_ctypes, c_code)
 
 
 
@@ -63,9 +69,18 @@ class CCodeGenerator:
         return vars_l
 
 
+    def _gen_f_sig_print(self):
+        # The return value type of the wrapper function.
+        if self.ret_type == "int" or self.ret_type == "unsigned int":
+            return '%d'
+        elif self.ret_type == "long" or self.ret_type == "unsigned long":
+            return '%ld'
+        else:
+            return '%f'
+
     def _gen_f_sig_ret(self):
         # The return value type of the wrapper function.
-        return 'int'
+        return self.ret_type
 
     def _gen_f_sig_name(self):
         # The name of the wrapper function
@@ -73,7 +88,10 @@ class CCodeGenerator:
 
     def _gen_f_sig_args(self):
         # The arguments of the wrapper function's signature.
-        return ', '.join("int {}".format(var_name) for var_name in self.var_names)
+        ret_str = ""
+        for arg in self.vars:
+            ret_str += "{} {}, ".format(arg.c_type, arg.name)
+        return ret_str[0:-2]
 
     def _gen_f_expr(self):
         # The C representation of the signature to wrap in the code.
@@ -89,7 +107,14 @@ class CCodeGenerator:
 
     def _gen_f_call_args(self):
         # The arguments to pass the wrapper function.
-        return ', '.join('atoi(argv[{}])'.format(i) for i in range(1, self.num_vars + 1))
+        ret_str = ""
+        args = self.vars
+        for i in range(1, self.num_vars + 1):
+            if args[i-1].c_type in C_TYPES_INT:
+                ret_str += "atoi(argv[{}]), ".format(i)
+            else:
+                ret_str += "atof(argv[{}]), ".format(i)
+        return ret_str[0:-2]
 
 class GeneratedCCode:
     #######################################
@@ -102,8 +127,9 @@ class GeneratedCCode:
     #
     #######################################
 
-    def __init__(self, wrapper_func: str, expr: Node, expr_var_names: Iterable, code: str):
+    def __init__(self, wrapper_func: str, expr: Node, expr_var_names: Iterable, expr_var_ctypes: Iterable, code: str):
         self.wrapper_func = wrapper_func
         self.expr = expr
         self.expr_var_names = expr_var_names
+        self.expr_var_ctypes = expr_var_ctypes
         self.code = code

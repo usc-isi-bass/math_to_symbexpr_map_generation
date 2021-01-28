@@ -20,32 +20,57 @@ logging.getLogger('cle').propagate = False
 
 def test_extract_01():
     c = Const(1)
-    eval_expr(c)
+    eval_int_expr(c)
 
 def test_extract_02():
     v = Var('a')
-    eval_expr(v, 1)
+    eval_int_expr(v, 1)
 
 def test_extract_03():
     v = Var('a')
     c = Const(1)
     expr = AddOp(v, c)
-    eval_expr(v, 2)
+    eval_int_expr(v, 2)
 
 def test_extract_04():
     v1 = Var('a')
     v2 = Var('b')
     expr = AddOp(v1, v2)
-    eval_expr(expr, 1, 2)
+    eval_int_expr(expr, 1, 2)
 
 def test_extract_05():
     v1 = Var('a')
     v2 = Var('b')
     v3 = Var('c')
     expr = MulOp(AddOp(v1, v2), v3)
-    eval_expr(expr, 1, 2, 3)
+    eval_int_expr(expr, 1, 2, 3)
 
-def eval_expr(expr, *args):
+def test_mix_type():
+    v1 = Var('a', "long")
+    v2 = Var('b', "int")
+    v3 = Var('c', "double")
+    v4 = Var('d', "float")
+    expr = DivOp(AddOp(v2, MulOp(v1, v3)), v4)
+
+    ccg = CCodeGenerator(expr, ret_type="float")
+    generated_c_code = ccg.generate_code()
+    code = generated_c_code.code
+    target_func = generated_c_code.wrapper_func
+    var_names = generated_c_code.expr_var_names
+    var_ctypes = generated_c_code.expr_var_ctypes
+    c_file_name = 'example_c.c'
+    cfile = CFile(c_file_name, code)
+    bin_file_name = cfile.compile()
+    see = SymbolicExpressionExtractor(bin_file_name)
+    symexpr = see.extract(target_func, var_names, var_ctypes, "float")
+
+    output = "<BV128 (0x0 .. fpToIEEEBV(fpDiv(RM.RM_NearestTiesEven, fpAdd(RM.RM_NearestTiesEven, fpMul(RM.RM_NearestTiesEven, fpToFP(RM.RM_NearestTiesEven, a, DOUBLE), FPS(c, DOUBLE)), fpToFP(RM.RM_NearestTiesEven, b[31:0], DOUBLE)), fpToFP(RM.RM_NearestTiesEven, fpToFP(fpToIEEEBV(FPS(d, DOUBLE))[31:0], FLOAT), DOUBLE))))[127:32] .. fpToIEEEBV(fpToFP(RM.RM_NearestTiesEven, fpDiv(RM.RM_NearestTiesEven, fpAdd(RM.RM_NearestTiesEven, fpMul(RM.RM_NearestTiesEven, fpToFP(RM.RM_NearestTiesEven, a, DOUBLE), FPS(c, DOUBLE)), fpToFP(RM.RM_NearestTiesEven, b[31:0], DOUBLE)), fpToFP(RM.RM_NearestTiesEven, fpToFP(fpToIEEEBV(FPS(d, DOUBLE))[31:0], FLOAT), DOUBLE)), FLOAT))>"
+
+    print(str(symexpr.symex_expr))
+    assert_equal(str(symexpr.symex_expr), output)
+
+
+def eval_int_expr(expr, *args):
     ccg = CCodeGenerator(expr)
 
     generated_c_code = ccg.generate_code()
@@ -61,9 +86,9 @@ def eval_expr(expr, *args):
     # Get the output of the expression for the given args
     output = run_elf_file(elf_file_name, *args).strip().decode('ascii')
 
-
+    var_ctypes = list("int" for i in range(len(var_names)))
     see  = SymbolicExpressionExtractor(elf_file_name)
-    extracted_symexpr = see.extract(target_func, var_names)
+    extracted_symexpr = see.extract(target_func, var_names, var_ctypes, "int")
     symvars = extracted_symexpr.symvars
     ast = extracted_symexpr.symex_expr
 

@@ -5,6 +5,7 @@ from collections.abc import Iterable
 from collections import deque
 
 
+from expression.components import *
 from code_generation.c_code_generation import GeneratedCCode
 
 def s32(value):
@@ -66,7 +67,7 @@ class SymbolicExpressionExtractor:
 
 
 
-    def extract(self, target_func_name: str, symvar_names: Iterable):
+    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str):
         '''
         Extract the AST of the return value of a target function.
             target_func_name: The name of the function to perform symbolic execution on.
@@ -77,19 +78,30 @@ class SymbolicExpressionExtractor:
         func_addr = target_func.addr
 
         num_symvars = len(symvar_names)
-        func_args = target_func.calling_convention.args
-        num_params_cc = len(func_args)
+        func_symvar_args = []
+        is_fp_args = []
+        for i in range(num_symvars):
+            ctype = symvar_ctypes[i]
+            name = symvar_names[i]
+            if ctype in C_TYPES_INT:
+                func_symvar_args.append(claripy.BVS(name, 64, explicit_name=True))
+                is_fp_args.append(False)
+            else:
+                func_symvar_args.append(claripy.FPS(name, claripy.fp.FSORT_DOUBLE, explicit_name=True))
+                is_fp_args.append(True)
 
-        if num_params_cc != num_symvars:
-            raise Exception("Function calling convention indicates {} args required, but {} supplied.".format(num_params_cc, num_symvars))
-        func_symvar_args = [claripy.BVS(symvar_name, size=arg.size * 8, explicit_name=True) for symvar_name, arg in zip(symvar_names, func_args)]
-        #start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, add_options=[angr.sim_options.LAZY_SOLVES])
-        start_state = self.proj.factory.call_state(func_addr, *func_symvar_args)
+        if ret_type in C_TYPES_INT:
+            ret_fp = False
+        else:
+            ret_fp = True
+
+        sym_cc = target_func.calling_convention.from_arg_kinds(self.proj.arch, fp_args=is_fp_args, ret_fp=ret_fp)
+        start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
 
         simgr = self.proj.factory.simulation_manager(start_state)
         simgr.run()
 
-        ret_reg_name = target_func.calling_convention.return_val.reg_name
+        ret_reg_name = sym_cc.return_val.reg_name
 
         if len(simgr.deadended) > 1:
             symex_expr = claripy.Or(*list(state.regs.get(ret_reg_name) for state in simgr.deadended))

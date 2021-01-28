@@ -48,13 +48,14 @@ def do_expr(expr):
     code = generated_c_code.code
     target_func = generated_c_code.wrapper_func
     var_names = generated_c_code.expr_var_names
+    var_ctypes = generated_c_code.expr_var_ctypes
     
     c_file_name = 'example_c.c'
     cfile = CFile(c_file_name, code)
     bin_file_name = cfile.compile()
 
     see  = SymbolicExpressionExtractor(bin_file_name)
-    extracted_symexpr = see.extract(target_func, var_names)
+    extracted_symexpr = see.extract(target_func, var_names, var_ctypes, "int")
     return extracted_symexpr
 
 
