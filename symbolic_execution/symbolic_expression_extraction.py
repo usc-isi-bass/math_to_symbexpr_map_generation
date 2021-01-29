@@ -20,7 +20,6 @@ from expression.components import *
 from code_generation.c_code_generation import GeneratedCCode
 
 simplification_options = [
-    LAZY_SOLVES,
     SIMPLIFY_EXPRS,
     SIMPLIFY_MEMORY_READS,
     SIMPLIFY_MEMORY_WRITES,
