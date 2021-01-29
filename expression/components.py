@@ -1,5 +1,9 @@
 from abc import ABC, abstractmethod
 
+C_TYPES = ["int", "unsigned int", "long", "unsigned long", "float", "double"]
+C_TYPES_INT = ["int", "unsigned int", "long", "unsigned long"]
+C_TYPES_FLOAT = ["float", "double"]
+
 #######################################
 # Lists of Operators & Math Functions
 #   Format: (class name, math symbol/function name, (arg_type, return_type))
@@ -7,6 +11,9 @@ from abc import ABC, abstractmethod
 #     |+ return_type: return type for this operator/function
 #        None stands for any given type
 #######################################
+
+# Commutable Operators
+COMMUTABLE_OPERATORS = ["+", "*"]
 
 # Unary Operators
 UNARY_OPERATORS = [("NegOp", "-", (None, None))]
@@ -162,9 +169,10 @@ class Const(Leaf):
         return str(self.num)
 
 class Var(Leaf):
-    def __init__(self, name):
+    def __init__(self, name, c_type="int"):
         super().__init__()
         self.name = name
+        self.c_type = c_type
 
     def __str__(self):
         return str(self.name)

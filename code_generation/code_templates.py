@@ -17,7 +17,7 @@ C_CODE_TEMPLATE = \
 #include <math.h>
 
 {f_sig_ret:} {f_sig_name:}({f_sig_args:}) {{
-    return {f_expr:};
+    return ({f_sig_ret:}){f_expr:};
 }}
 
 int main(int argc, char *argv[]) {{
@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {{
         fprintf(stderr, "usage: %s {usage_msg:}\\n", argv[0]);
         return EXIT_FAILURE;
     }}
-    printf("%d\\n", {f_sig_name:}({f_call_args}));
+    printf("{f_sig_print:}\\n", {f_sig_name:}({f_call_args}));
     return EXIT_SUCCESS;
 }}\
 """
