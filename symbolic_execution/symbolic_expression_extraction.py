@@ -36,33 +36,39 @@ def s32(value):
     return -(value & 0x80000000) | (value & 0x7fffffff)
 
 def process_token(token):
+    # May get xxx[31:0] for unsimplified expressions
+    # Discard this first
+    token = re.sub(r"\[\d{1,2}:\d{1,2}\]", "", token)
+
     # First handle hex numbers
     if token == "0x0":
         # Probably padding 0, keep it
         return token
 
-    elif re.match(r"0xf\w{7}", token):
+    elif re.fullmatch(r"0xff+[0-9A-Fa-f]+", token):
         # 0xfff*, probably negative number, transfer to decimal
         number = s32(int(token, 16))
         return str(number)
 
-    elif re.match(r"0x\w{2}f{6}", token):
+    elif re.fullmatch(r"0x[0-9A-Fa-f]{2}f{6}", token):
         # FIXME
         # 0x*ffffff, probably -1 after shifting
         return "-1"
 
-    elif re.match(r"0x\w{1,8}", token):
+    elif re.fullmatch(r"0x[0-9A-Fa-f]{1,8}", token):
         return str(int(token, 16))
-
-    # Variable bit extraction
-    elif re.match(r"\w+\[\d{1,2}:\d{1,2}\]", token):
-        return token.split("[")[0]
 
     elif token == "__add__":
         return "+"
 
+    elif token == "__sub__":
+        return "-"
+
     elif token == "__mul__":
         return "*"
+    
+    elif token == "__lshift__":
+        return "<<"
 
     else:
         return token
@@ -198,12 +204,12 @@ class ExtractedSymExpr:
             if arg.args[1] != idx + 1:
                 return None
             idx = arg.args[0]
-        # Discard "Extract" expression
-        #return ["Extract", "(%s, %s)" % (idx, start), var]
         return [var]
 
 
-    def _symex_to_prefix(self, expr):
+    def _symex_to_prefix(self, expr, use_heuristics=True):
+        if not hasattr(expr, "op"):
+            return [str(expr)]
         op = str(expr.op)
 
         if op == "BVV":
@@ -219,14 +225,18 @@ class ExtractedSymExpr:
                 return queue
 
         elif op == "Extract":
-            # Variable Extraction
-            # Discard "Extract" expression
-            #return [op, str((expr.args[0], expr.args[1])), expr.args[2].args[0]]
-            return [expr.args[2].args[0]]
+            if not use_heuristics:
+                return [op, str((expr.args[0], expr.args[1]))] + self._symex_to_prefix(expr.args[2])
+            else:
+                # Discard "Extract" expression
+                return self._symex_to_prefix(expr.args[2])
+
+        elif op == "ZeroExt" and use_heuristics:
+            return self._symex_to_prefix(expr.args[1])
 
         elif op == "BVS":
             # FIXME:
-            # if we extracted variable at "Extract", won't execute here
+            # if <use_heuristic>, we extracted variable at "Extract", won't execute here
             return [str(expr.args[0])]
 
         children = []
@@ -252,7 +262,7 @@ class ExtractedSymExpr:
             return prefix_queue
 
 
-    def symex_to_prefix(self):
+    def symex_to_prefix(self, use_heuristics=True):
         symex_expr = self.symex_expr
         prefix = self._symex_to_prefix(symex_expr)
         return [process_token(elem) for elem in prefix]
