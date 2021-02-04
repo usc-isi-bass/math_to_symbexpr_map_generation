@@ -58,17 +58,26 @@ def process_token(token):
     elif re.fullmatch(r"0x[0-9A-Fa-f]{1,8}", token):
         return str(int(token, 16))
 
-    elif token == "__add__":
+    elif token == "__add__" or token == "fpAdd":
         return "+"
 
-    elif token == "__sub__":
+    elif token == "__sub__" or token == "fpSub":
         return "-"
 
-    elif token == "__mul__":
+    elif token == "__mul__" or token == "fpMul":
         return "*"
+
+    elif token == "__div__" or token == "SDiv" or token == "fpDiv":
+        return "/"
+
+    elif token == "__mod__" or token == "SMod":
+        return "%"
     
     elif token == "__lshift__":
         return "<<"
+    
+    elif token == "__rshift__":
+        return ">>"
 
     else:
         return token
@@ -211,6 +220,7 @@ class ExtractedSymExpr:
         if not hasattr(expr, "op"):
             return [str(expr)]
         op = str(expr.op)
+        print(op)
 
         if op == "BVV":
             # Constant value
@@ -221,6 +231,17 @@ class ExtractedSymExpr:
             # (a[7:0] .. a[15:8] .. a[23:16] .. a[31:24])
             # If not this case, do nothing here
             queue = self._try_merge_same_variable_concat(list(expr.args))
+            if use_heuristics:
+                # Merge SignExt (a[31:0] >> 0x1f .. a[31:0])
+                if hasattr(expr.args[0], "op") and str(expr.args[0].op) == "__rshift__":
+                    child1 = expr.args[0].args[0]
+                    child2 = expr.args[1]
+                    if (child1 == child2).is_true():
+                        return self._symex_to_prefix(child1)
+                # Merge ZeroExt
+                if hasattr(expr.args[0], "op") and str(expr.args[0].op) == "BVV":
+                    if str(hex(expr.args[0].args[0])) == "0x0":
+                        return self._symex_to_prefix(expr.args[1])
             if queue is not None:
                 return queue
 
@@ -231,13 +252,22 @@ class ExtractedSymExpr:
                 # Discard "Extract" expression
                 return self._symex_to_prefix(expr.args[2])
 
-        elif op == "ZeroExt" and use_heuristics:
+        elif (op == "ZeroExt" or op == "SignExt") and use_heuristics:
             return self._symex_to_prefix(expr.args[1])
 
-        elif op == "BVS":
+        elif op == "BVS" or op == "FPS" or op == "FPV":
             # FIXME:
             # if <use_heuristic>, we extracted variable at "Extract", won't execute here
             return [str(expr.args[0])]
+
+        elif op == "fpToFP":
+            return self._symex_to_prefix(expr.args[1])
+
+        elif op == "fpAdd" or \
+                op == "fpSub" or \
+                op == "fpMul" or \
+                op == "fpDiv":
+            return [op] + self._symex_to_prefix(expr.args[1]) + self._symex_to_prefix(expr.args[2])
 
         children = []
         ast_queue = deque([iter(expr.args)])

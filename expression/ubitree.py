@@ -27,19 +27,22 @@ import numpy as np
 #
 #######################################
 class UbiTreeGenerator():
-    def __init__(self, max_ops, num_leaves, max_int, int_only=False, use_bit_op=False):
-        unas = UNARY_OPERATORS + UNARY_FUNCTIONS
+    def __init__(self, max_ops, num_leaves, max_int, int_only=False, use_bit_op=False, use_mathlib=False):
+        bins = BINARY_OPERATORS
+        unas = UNARY_OPERATORS
         if use_bit_op:
-            bins = BINARY_OPERATORS + BINARY_BIT_OPERATORS + BINARY_FUNCTIONS
-        else:
-            bins = BINARY_OPERATORS + BINARY_FUNCTIONS
+            bins += BINARY_OPERATORS + BINARY_BIT_OPERATORS
+        if use_mathlib:
+            unas += UNARY_FUNCTIONS
+            bins += BINARY_FUNCTIONS
+
         if int_only:
             self.una_ops = [o for o,_,(arg,ret) in unas if (arg is None and ret is None) or (ret == "int")]
             self.bin_ops = [o for o,_,(arg,ret) in bins if (arg is None and ret is None) or (ret == "int")]
             self.all_ops = self.una_ops + self.bin_ops
         else:
             self.una_ops = [o for o,_,_ in unas]
-            self.bin_ops = [o for o,_,_ in bins]
+            self.bin_ops = [o for o,_,(arg,ret) in bins if (arg != "int")]
             self.all_ops = self.una_ops + self.bin_ops
 
         # generation parameters
@@ -165,7 +168,17 @@ class UbiTreeGenerator():
         return stack
 
 
-def _prefix_to_infix(stack):
+def _get_rand_type(rng):
+    int_or_float = rng.choice(2, p=[0.2, 0.8])
+    if int_or_float == 0:
+        idx = rng.choice(len(C_TYPES_INT))
+        return C_TYPES_INT[idx]
+    else:
+        idx = rng.choice(len(C_TYPES_FLOAT))
+        return C_TYPES_FLOAT[idx]
+
+
+def _prefix_to_infix(stack, int_only, rng):
     if len(stack) == 0:
         raise RuntimeError("Empty prefix list.")
     t, num_children = stack[0]
@@ -174,23 +187,29 @@ def _prefix_to_infix(stack):
     # Is a leaf
     if num_children == 0:
         if isinstance(t, str):
-            return Var(t), l1
+            if not int_only:
+                c_type = _get_rand_type(rng)
+                return Var(t, c_type), l1
+            else:
+                return Var(t), l1
         else:
             return Const(t), l1
 
     args = []
     for _ in range(num_children):
-        i1, l1 = _prefix_to_infix(l1)
+        i1, l1 = _prefix_to_infix(l1, int_only, rng)
         args.append(i1)
     return globals()[t](*args), l1
 
 
-def prefix_stack_to_expression(stack):
+def prefix_stack_to_expression(stack, int_only=False):
     """
     Parse an prefix stack into expression.components.
     """
-    expr, r = _prefix_to_infix(stack)
+    rng = np.random.RandomState(np.random.randint(1_000_000_000))
+    expr, r = _prefix_to_infix(stack, int_only, rng)
     return expr
+
 
 def _expression_to_prefix(expr):
     prefix_list = []
