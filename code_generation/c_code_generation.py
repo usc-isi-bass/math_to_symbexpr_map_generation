@@ -99,7 +99,7 @@ class CCodeGenerator:
 
     def _gen_f_expr(self):
         # The C representation of the signature to wrap in the code.
-        return str(self.expression)
+        return self.expression.to_c()
 
     def _gen_argc_min(self):
         # The minimum number of command line arguments required (argc must be +1 more than the number of variables).
