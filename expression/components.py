@@ -15,6 +15,8 @@ C_TYPES_FLOAT = ["float", "double"]
 # Commutable Operators
 COMMUTABLE_OPERATORS = ["+", "*"]
 
+# Format: [(Operator Name, Operator Symbol, (Argument Type, Return Type))]
+
 # Unary Operators
 UNARY_OPERATORS = [("NegOp", "-", (None, None))]
 
@@ -87,12 +89,19 @@ class Node(ABC):
         for child in node.children:
             Node._get_leaves(child, leaves)
 
-    def to_c(self):
-        return str(self)
-    
     @abstractmethod
     def __str__(self):
         pass
+
+    @abstractmethod
+    def to_c(self):
+        pass
+
+    def check_and_cast_arg(self, arg, arg_type):
+        arg_str = arg.to_c()
+        if arg_type is not None:
+            arg_str = "({}){}".format(arg_type, arg_str)
+        return arg_str
 
 
 class Leaf(Node):
@@ -111,10 +120,13 @@ class Function(Node):
     def __init__(self, func_name, *children):
         super().__init__(*children)
         self.func_name = func_name
+        self.args = children
 
     def __str__(self):
-        return "{}({})".format(self.func_name, ', '.join(str(child) for child in self.children))
+        return "{}({})".format(self.func_name, ', '.join(str(arg) for arg in self.args))
 
+    def to_c(self):
+        return "{}({})".format(self.func_name, ', '.join(self.check_and_cast_arg(arg, self.arg_type) for arg in self.args))
 
 class UnaryFunction(Function):
     num_children = 1
@@ -137,7 +149,10 @@ class UnaryOperator(Operator):
         self.arg = arg
 
     def __str__(self):
-        return "({}{})".format(self.op, str(self.arg))
+        return "({}{})".format(self.op, self.arg)
+
+    def to_c(self):
+        return "({}{})".format(self.op, self.check_and_cast_arg(self.arg, self.arg_type))
 
 
 class BinaryOperator(Operator):
@@ -149,6 +164,9 @@ class BinaryOperator(Operator):
 
     def __str__(self):
         return "({} {} {})".format(self.left, self.op, self.right)
+
+    def to_c(self):
+        return "({} {} {})".format(self.check_and_cast_arg(self.left, self.arg_type), self.op, self.check_and_cast_arg(self.right, self.arg_type))
 
 
 class TernaryOperator(Operator):
@@ -168,6 +186,9 @@ class Const(Leaf):
     def __str__(self):
         return str(self.num)
 
+    def to_c(self):
+        return str(self)
+
 class Var(Leaf):
     def __init__(self, name, c_type="int"):
         super().__init__()
@@ -183,32 +204,37 @@ class Var(Leaf):
     def __hash__(self):
         return hash(self.name)
 
+    def to_c(self):
+        return str(self)
+
 
 #######################################
 # Generate Operators & Functions class
 #######################################
-def make_classes(method, op, classname):
+def make_classes(method, op, classname, arg_type, ret_type):
     code = "class %s(%s):\n" % (method, classname)
     code += "   def __init__(self, *arg):\n"
     code += "       super().__init__('%s', *arg)\n" % op
+    code += "       self.arg_type = %s\n" % repr(arg_type)
+    code += "       self.ret_type = %s\n" % repr(ret_type)
     locals_dict = {}
     exec(code, globals(), locals_dict)
     globals()[method] = locals_dict[method]
 
-for (name, op, _) in UNARY_OPERATORS:
-    make_classes(name, op, "UnaryOperator")
+for (name, op, (arg_type, ret_type)) in UNARY_OPERATORS:
+    make_classes(name, op, "UnaryOperator", arg_type, ret_type)
 
-for (name, op, _) in BINARY_OPERATORS:
-    make_classes(name, op, "BinaryOperator")
+for (name, op, (arg_type, ret_type)) in BINARY_OPERATORS:
+    make_classes(name, op, "BinaryOperator", arg_type, ret_type)
 
-for (name, op, _) in BINARY_BIT_OPERATORS:
-    make_classes(name, op, "BinaryOperator")
+for (name, op, (arg_type, ret_type)) in BINARY_BIT_OPERATORS:
+    make_classes(name, op, "BinaryOperator", arg_type, ret_type)
 
-for (name, func_name, _) in UNARY_FUNCTIONS:
-    make_classes(name, func_name, "UnaryFunction")
+for (name, func_name, (arg_type, ret_type)) in UNARY_FUNCTIONS:
+    make_classes(name, func_name, "UnaryFunction", arg_type, ret_type)
 
-for (name, func_name, _) in BINARY_FUNCTIONS:
-    make_classes(name, func_name, "BinaryFunction")
+for (name, func_name, (arg_type, ret_type)) in BINARY_FUNCTIONS:
+    make_classes(name, func_name, "BinaryFunction", arg_type, ret_type)
 
 
 
