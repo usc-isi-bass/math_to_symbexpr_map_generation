@@ -31,13 +31,14 @@ def do_expr(expr):
     ccg = CCodeGenerator(expr)
     generated_c_code = ccg.generate_code()
     code = generated_c_code.code
+    var_ctypes = generated_c_code.expr_var_ctypes
 
     print("Generated C code:")
     print(code)
     print("")
     print("----")
     target_func = generated_c_code.wrapper_func
-    var_names = set(generated_c_code.expr_var_names)
+    var_names = generated_c_code.expr_var_names
     
     c_file_name = 'example_c.c'
     cfile = CFile(c_file_name, code)
@@ -46,7 +47,7 @@ def do_expr(expr):
 
     print("Symbolic Expression:")
     see  = SymbolicExpressionExtractor(bin_file_name)
-    extracted_symexpr = see.extract(target_func, var_names)
+    extracted_symexpr = see.extract(target_func, var_names, var_ctypes, 'int')
     ast = extracted_symexpr.symex_expr
     print(ast)
     ast_z3 = claripy.backends.z3.convert(ast)
