@@ -1,4 +1,5 @@
 import angr
+import claripy
 from angr.sim_options import LAZY_SOLVES,\
     SIMPLIFY_EXPRS,\
     SIMPLIFY_MEMORY_READS,\
@@ -87,6 +88,7 @@ class SymbolicExpressionExtractor:
         self.proj = angr.Project(elf_file_name, auto_load_libs=False)
         self.cfg = self.proj.analyses.CFGFast(normalize=True)
         self.proj.analyses.CompleteCallingConventions(recover_variables=True, cfg=self.cfg.model, analyze_callsites=True)
+        self.setup_func_simprocs()
 
 
 
@@ -122,7 +124,7 @@ class SymbolicExpressionExtractor:
         else:
             ret_fp = True
 
-        # Create a new symbolic calling convention based on the original target function 
+        # Create a new symbolic calling convention based on the original target function
         # With correct types of arguments and return type
         sym_cc = target_func.calling_convention.from_arg_kinds(self.proj.arch, fp_args=is_fp_args, ret_fp=ret_fp)
 
@@ -146,8 +148,39 @@ class SymbolicExpressionExtractor:
 
         return ExtractedSymExpr(symex_expr, func_symvar_args)
 
+    def setup_func_simprocs(self):
+        double_length = claripy.fp.FSORT_DOUBLE.length
+        class UnaFuncSymProc(angr.SimProcedure):
+            def run(self, x, op=None):
+                x_claripy = x.to_claripy()
+                if x_claripy.length > double_length:
+                    x_claripy = x_claripy[double_length-1:0]
+                x_fp = x_claripy.raw_to_fp()
+                return op(x_fp)
+        una_cc = self.proj.factory.cc_from_arg_kinds((True,), ret_fp=True)
+        for func_name, symbol_name, (arg, ret) in UNARY_FUNCTIONS:
+            una_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x: double_length)
+            self.proj.hook_symbol(symbol_name, UnaFuncSymProc(cc=una_cc, op=una_func_op))
+        class BinFuncSymProc(angr.SimProcedure):
+            def run(self, x, y, op=None):
+                x_claripy = x.to_claripy()
+                y_claripy = y.to_claripy()
+                if x_claripy.length > double_length:
+                    x_claripy = x_claripy[double_length-1:0]
+                x_fp = x_claripy.raw_to_fp()
+                if y_claripy.length > double_length:
+                    y_claripy = y_claripy[double_length-1:0]
 
-        
+                y_fp = y_claripy.raw_to_fp()
+                return op(x_fp, y_fp)
+        bin_cc = self.proj.factory.cc_from_arg_kinds((True,True), ret_fp=True)
+        for func_name, symbol_name, (arg, ret) in BINARY_FUNCTIONS:
+            bin_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,claripy.ast.fp.FP), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x, y: double_length)
+            self.proj.hook_symbol(symbol_name, BinFuncSymProc(cc=bin_cc, op=bin_func_op))
+
+
+
+
 class ExtractedSymExpr:
     #######################################
     #
@@ -232,7 +265,7 @@ class ExtractedSymExpr:
         children = []
         ast_queue = deque([iter(expr.args)])
         while ast_queue:
-            try: 
+            try:
                 ast = next(ast_queue[-1])
             except StopIteration:
                 ast_queue.pop()
