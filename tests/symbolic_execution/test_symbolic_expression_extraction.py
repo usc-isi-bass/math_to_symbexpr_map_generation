@@ -78,6 +78,62 @@ def test_mix_type():
 
     assert(output in str(symexpr.symex_expr))
 
+def test_math_func_01():
+    v1 = Var('a', "float")
+    expr = SinFunc(v1)
+
+    ccg = CCodeGenerator(expr, ret_type="float")
+    generated_c_code = ccg.generate_code()
+    code = generated_c_code.code
+    target_func = generated_c_code.wrapper_func
+    var_names = generated_c_code.expr_var_names
+    var_ctypes = generated_c_code.expr_var_ctypes
+    c_file_name = 'example_c.c'
+    cfile = CFile(c_file_name, code)
+    bin_file_name = cfile.compile()
+    see = SymbolicExpressionExtractor(bin_file_name)
+    symexpr = see.extract(target_func, var_names, var_ctypes, "float")
+
+    assert_true(any(ast.op == 'SinFunc' for ast in symexpr.symex_expr.children_asts()))
+
+def test_math_func_02():
+    v1 = Var('a', "float")
+    v2 = Var('b', "float")
+    expr = PowFunc(v1, CosFunc(v2))
+
+    ccg = CCodeGenerator(expr, ret_type="float")
+    generated_c_code = ccg.generate_code()
+    code = generated_c_code.code
+    target_func = generated_c_code.wrapper_func
+    var_names = generated_c_code.expr_var_names
+    var_ctypes = generated_c_code.expr_var_ctypes
+    c_file_name = 'example_c.c'
+    cfile = CFile(c_file_name, code)
+    bin_file_name = cfile.compile()
+    see = SymbolicExpressionExtractor(bin_file_name)
+    symexpr = see.extract(target_func, var_names, var_ctypes, "float")
+
+    assert_true(any(ast.op == 'CosFunc' for ast in symexpr.symex_expr.children_asts()))
+    assert_true(any(ast.op == 'PowFunc' for ast in symexpr.symex_expr.children_asts()))
+
+def test_math_func_03():
+    v1 = Var('a', "float")
+    v2 = Var('b', "float")
+    expr = AddOp(v1, LogFunc(v2))
+
+    ccg = CCodeGenerator(expr, ret_type="float")
+    generated_c_code = ccg.generate_code()
+    code = generated_c_code.code
+    target_func = generated_c_code.wrapper_func
+    var_names = generated_c_code.expr_var_names
+    var_ctypes = generated_c_code.expr_var_ctypes
+    c_file_name = 'example_c.c'
+    cfile = CFile(c_file_name, code)
+    bin_file_name = cfile.compile()
+    see = SymbolicExpressionExtractor(bin_file_name)
+    symexpr = see.extract(target_func, var_names, var_ctypes, "float")
+
+    assert_true(any(ast.op == 'LogFunc' for ast in symexpr.symex_expr.children_asts()))
 
 def eval_int_expr(expr, *args):
     ccg = CCodeGenerator(expr)
