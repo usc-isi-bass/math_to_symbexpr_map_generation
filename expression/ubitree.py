@@ -240,4 +240,4 @@ def expression_to_prefix(expr):
     return prefix_list
 
 def expression_to_seq(expr):
-    return str(expr).replace("(", "( ").replace(")", " )").split()
+    return str(expr).replace("(", " ( ").replace(")", " ) ").replace(",", " ,").split()

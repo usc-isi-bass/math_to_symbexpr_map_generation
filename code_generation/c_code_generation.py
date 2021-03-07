@@ -79,6 +79,8 @@ class CCodeGenerator:
             return '%ld'
         elif self.ret_type == "unsigned long":
             return '%lu'
+        elif self.ret_type == "long long":
+            return '%lld'
         else:
             return '%f'
 
