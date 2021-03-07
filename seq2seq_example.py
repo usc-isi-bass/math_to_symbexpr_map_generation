@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-import angr
-import claripy
 import logging
-from collections import OrderedDict, deque
 
 logging.getLogger('angr').disabled = True
 logging.getLogger('angr').propagate = False
@@ -10,7 +7,7 @@ logging.getLogger('cle').disabled = True
 logging.getLogger('cle').propagate = False
 
 from expression.components import *
-from expression.ubitree import expression_to_prefix, expression_to_seq
+from expression.ubitree import expression_to_prefix, expression_to_infix
 from code_generation.c_code_generation import CCodeGenerator
 from symbolic_execution.symbolic_expression_extraction import SymbolicExpressionExtractor, sym_prefix_to_infix
 from code_generation.bin_code_generation import CFile
@@ -34,7 +31,7 @@ def main():
     print(sym_expr.symex_to_prefix())
     print("\n+====== infix ======+")
     print("math:")
-    print(expression_to_seq(expr))
+    print(expression_to_infix(expr))
     print("--------")
     print("sym:")
     print(sym_prefix_to_infix(sym_expr.symex_to_prefix()))

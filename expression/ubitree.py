@@ -239,5 +239,5 @@ def expression_to_prefix(expr):
     prefix_list = _expression_to_prefix(expr)
     return prefix_list
 
-def expression_to_seq(expr):
+def expression_to_infix(expr):
     return str(expr).replace("(", " ( ").replace(")", " ) ").replace(",", " ,").split()
