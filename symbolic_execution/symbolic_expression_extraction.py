@@ -87,7 +87,6 @@ class SymbolicExpressionExtractor:
         self.elf_file_name = elf_file_name
         self.proj = angr.Project(elf_file_name, auto_load_libs=False)
         self.cfg = self.proj.analyses.CFGFast(normalize=True)
-        self.proj.analyses.CompleteCallingConventions(recover_variables=True, cfg=self.cfg.model, analyze_callsites=True)
         self.setup_func_simprocs()
 
 
@@ -126,7 +125,7 @@ class SymbolicExpressionExtractor:
 
         # Create a new symbolic calling convention based on the original target function
         # With correct types of arguments and return type
-        sym_cc = target_func.calling_convention.from_arg_kinds(self.proj.arch, fp_args=is_fp_args, ret_fp=ret_fp)
+        sym_cc = self.proj.factory.cc_from_arg_kinds(fp_args=is_fp_args, ret_fp=ret_fp)
 
         if simplified:
             start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
