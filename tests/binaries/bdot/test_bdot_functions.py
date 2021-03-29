@@ -31,9 +31,7 @@ def main(bin_file_name):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Get symexprs from a binary.')
-    parser.add_argument('file_name', metavar='FILENAME', type=str, nargs=1,
-                        help='path to a binary with expressions')
+    parser = argparse.ArgumentParser(description='Test the BDot binary.')
 
     args = parser.parse_args()
-    main(os.path.join(os.path.dirname(args.file_name[0])
+    main(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'bin', 'FSWBDot'))

@@ -20,10 +20,10 @@ logging.getLogger('cle').propagate = False
 
 
 def main(bin_file_name):
+    print("Symbolic Expression:")
     see = SymbolicExpressionExtractor(bin_file_name)
     # TODO: find a way to automate var_names and var_ctypes
-    for target_func in see.get_functions():
-        extracted_symexpr = see.extract(target_func.name, var_names, var_ctypes, 'int')
+    extracted_symexpr = see.extract(target_func, var_names, var_ctypes, 'int')
     ast = extracted_symexpr.symex_expr
     print(ast)
     ast_z3 = claripy.backends.z3.convert(ast)
@@ -31,9 +31,7 @@ def main(bin_file_name):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Get symexprs from a binary.')
-    parser.add_argument('file_name', metavar='FILENAME', type=str, nargs=1,
-                        help='path to a binary with expressions')
-
+    parser = argparse.ArgumentParser(description='Test cspice.a')
     args = parser.parse_args()
-    main(os.path.join(os.path.dirname(args.file_name[0])
+
+    main(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib', 'cspice.a'))
