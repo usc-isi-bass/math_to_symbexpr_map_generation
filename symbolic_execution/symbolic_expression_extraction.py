@@ -410,6 +410,13 @@ class ExtractedSymExpr:
     def symex_to_prefix(self, use_heuristics=True):
         symex_expr = self.symex_expr
         prefix = self._symex_to_prefix(symex_expr)
+
+        if use_heuristics and \
+           len(prefix) > 2 and \
+           prefix[0] == "Concat" and \
+           prefix[1].startswith("reg_"):
+            prefix = prefix[2:]
+
         return [_process_token(elem) for elem in prefix]
 
 
