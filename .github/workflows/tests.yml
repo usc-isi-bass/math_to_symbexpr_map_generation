@@ -7,10 +7,14 @@ on:
   pull_request:
     branches: [ main ]
 
+
 jobs:
   test:
 
-    runs-on: ubuntu-latest
+    runs-on:  ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-18.04, ubuntu-16.04]
 
     steps:
     - uses: actions/checkout@v2
@@ -23,12 +27,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8
         pip install -r requirements.txt
-    - name: Test Symbolic Execution
+    - name: Test Expression Sequence Generation
       run: |
-        nosetests tests/symbolic_execution/test_symbolic_expression_extraction.py
+        nosetests tests/expression/test_sequenize.py
     - name: Test Code Generation
       run: |
         nosetests tests/code_generation/test_c_code_generation.py
+    - name: Test Symbolic Execution
+      run: |
+        nosetests tests/symbolic_execution/test_symbolic_expression_extraction.py
+    - name: Test Symbolic Execution Sequence Generation
+      run: |
+        nosetests tests/symbolic_execution/test_sequenize.py
     - name: Lint with pyflakes
       run: |
         python3 -m flake8 . --count --exit-zero --max-complexity=10 --max-line-length=100 --show-source --statistics

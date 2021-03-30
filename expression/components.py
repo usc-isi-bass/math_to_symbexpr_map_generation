@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 
-C_TYPES = ["int", "unsigned int", "long", "unsigned long", "float", "double"]
-C_TYPES_INT = ["int", "unsigned int", "long", "unsigned long"]
+# Not including "unsigned long", "long long" since angr
+# doesn't support type casting between them and floating points
+C_TYPES = ["int", "unsigned int", "long", "float", "double"]
+C_TYPES_INT = ["int", "unsigned int", "long"]
 C_TYPES_FLOAT = ["float", "double"]
 
 #######################################
