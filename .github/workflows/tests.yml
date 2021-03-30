@@ -31,4 +31,4 @@ jobs:
         nosetests tests/code_generation/test_c_code_generation.py
     - name: Lint with pyflakes
       run: |
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=100 --show-source --statistics
+        python3 -m pyflakes . --count --exit-zero --max-complexity=10 --max-line-length=100 --show-source --statistics
