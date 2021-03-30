@@ -10,6 +10,8 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..'))
 
+test_location = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', '..', 'smellcps-binaries', 'test_binaries')
+
 from expression.components import *
 from code_generation.c_code_generation import CCodeGenerator
 from code_generation.bin_code_generation import CFile
@@ -137,6 +139,30 @@ def test_math_func_03():
     symexpr = see.extract(target_func, var_names, var_ctypes, "float")
 
     assert_true(any(ast.op == 'LogFunc' for ast in symexpr.symex_expr.children_asts()))
+
+def test_short_circuit_calls_01():
+    elf_name = 'nested_func_call'
+    elf_path = os.path.join(test_location, elf_name)
+    func_name = 'f01'
+    var_ctypes = ['float', 'float']
+    see = SymbolicExpressionExtractor(elf_path)
+    func = see.cfg.functions.function(name=func_name)
+    extracted_symexpr = see.extract(func_name, ['x', 'y'], var_ctypes, "float", short_circuit_calls=True)
+    seq = extracted_symexpr.symex_to_prefix()
+
+    assert_true(any(t.startswith('ret_f_inner') for t in seq), msg='We replaced the function call to f_inner with a symvar named ret_f_inner_... but this variable is not in the sequence: {}'.format(seq))
+
+def test_short_circuit_calls_02():
+    elf_name = 'nested_func_call'
+    elf_path = os.path.join(test_location, elf_name)
+    func_name = 'f02'
+    var_ctypes = ['float', 'float']
+    see = SymbolicExpressionExtractor(elf_path)
+    func = see.cfg.functions.function(name=func_name)
+    extracted_symexpr = see.extract(func_name, ['x', 'y'], var_ctypes, "float", short_circuit_calls=True)
+    seq = extracted_symexpr.symex_to_prefix()
+
+    assert_true('sin' in seq, msg='We only replaced the function call to f_inner with a symvar named ret_f_inner_... however, now the "sin" token also disappeared: {}'.format(seq))
 
 def eval_int_expr(expr, *args):
     ccg = CCodeGenerator(expr)
