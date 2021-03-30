@@ -237,8 +237,10 @@ class SymbolicExpressionExtractor:
                 return op(x_fp)
         una_cc = self.proj.factory.cc_from_arg_kinds((True,), ret_fp=True)
         for func_name, symbol_name, (arg, ret) in UNARY_FUNCTIONS:
-            una_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x: double_length)
-            self.proj.hook_symbol(symbol_name, UnaFuncSymProc(cc=una_cc, op=una_func_op))
+            func = self.cfg.functions.function(name=symbol_name)
+            if func is not None:
+                una_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x: double_length)
+                self.proj.hook_symbol(func.addr, UnaFuncSymProc(cc=una_cc, op=una_func_op))
         class BinFuncSymProc(angr.SimProcedure):
             def run(self, x, y, op=None):
                 x_claripy = x.to_claripy()
@@ -253,8 +255,10 @@ class SymbolicExpressionExtractor:
                 return op(x_fp, y_fp)
         bin_cc = self.proj.factory.cc_from_arg_kinds((True,True), ret_fp=True)
         for func_name, symbol_name, (arg, ret) in BINARY_FUNCTIONS:
-            bin_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,claripy.ast.fp.FP), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x, y: double_length)
-            self.proj.hook_symbol(symbol_name, BinFuncSymProc(cc=bin_cc, op=bin_func_op))
+            func = self.cfg.functions.function(name=symbol_name)
+            if func is not None:
+                bin_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,claripy.ast.fp.FP), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x, y: double_length)
+                self.proj.hook_symbol(func.addr, BinFuncSymProc(cc=bin_cc, op=bin_func_op))
 
 
     def _hook_func_callsites(self, func):
