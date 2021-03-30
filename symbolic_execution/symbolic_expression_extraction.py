@@ -165,18 +165,23 @@ class SymbolicExpressionExtractor:
 
 
 
-    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True):
+    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls=False):
         '''
         Extract the AST of the return value of a target function.
-            target_func_name: The name of the function to perform symbolic execution on.
-            symvar_names:     The names of the symbolic variables to pass this function as parameters.
-            symvar_types:     The types of the symbolic variables to pass this function as parameters.
-            ret_type:         The type of the return value of this function
-            simplified:       To simplify the symbolic expression or not
+            target_func_name:       The name of the function to perform symbolic execution on.
+            symvar_names:           The names of the symbolic variables to pass this function as parameters.
+            symvar_types:           The types of the symbolic variables to pass this function as parameters.
+            ret_type:               The type of the return value of this function
+            simplified:             To simplify the symbolic expression or not
+            short_circuit_calls:    Replace the return value of a called function with a symbolic variable.
+                                    This only affects the unknown functions, not in the math libraries.
         '''
         target_func = self.cfg.functions.function(name=target_func_name)
         assert target_func is not None, "Could not find a function by name: {}".format(target_func_name)
         func_addr = target_func.addr
+
+        if short_circuit_calls:
+            self._hook_func_callsites(target_func)
 
         # Create BVS for integer/long arguments, and FPS for float/double
         num_symvars = len(symvar_names)
@@ -250,6 +255,23 @@ class SymbolicExpressionExtractor:
         for func_name, symbol_name, (arg, ret) in BINARY_FUNCTIONS:
             bin_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,claripy.ast.fp.FP), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x, y: double_length)
             self.proj.hook_symbol(symbol_name, BinFuncSymProc(cc=bin_cc, op=bin_func_op))
+
+
+    def _hook_func_callsites(self, func):
+        class FuncSimProc(angr.SimProcedure):
+            def run(self, func_name=None):
+                bvs64 = claripy.BVS(name="ret_{}".format(func_name), size=64)
+                bvs128 = claripy.BVS(name="ret_{}".format(func_name), size=18)
+                # We don't know if rax, or xmm0 should house the return value, so we populate both.
+                # Both of these are considered volatile, so the caller must save them
+                # Therefore, this shouldn't overwrite important values
+                self.state.regs.rax = bvs64
+                self.state.regs.xmm0 = bvs128
+        for call_site in func.get_call_sites():
+            call_target = func.get_call_target(call_site)
+            if not self.proj.is_hooked(call_target):
+                target_func = self.cfg.functions.function(addr=call_target)
+                self.proj.hook_symbol(call_target, FuncSimProc(func_name=target_func.name))
 
 
 
