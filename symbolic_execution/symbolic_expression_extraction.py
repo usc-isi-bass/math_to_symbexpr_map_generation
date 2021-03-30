@@ -33,37 +33,111 @@ simplification_options = [
     SIMPLIFY_CONSTRAINTS
 ]
 
-def s32(value):
+SYM_BINOPS = [op for (_, op, _) in BINARY_OPERATORS] + \
+        [op for (_, op, _) in BINARY_BIT_OPERATORS] + \
+        ["Concat", "Extract"]
+SYM_UNFUNCS = [op for (_, op, _) in UNARY_FUNCTIONS]
+SYM_BINFUNCS = [op for (_, op, _) in BINARY_FUNCTIONS]
+SYM_UNFUNCS_d = {func:op for (func, op, _) in UNARY_FUNCTIONS}
+SYM_BINFUNCS_d = {func:op for (func, op, _) in BINARY_FUNCTIONS}
+
+
+def sym_prefix_to_infix(prefix):
+    stack = []
+
+    # read prefix in reverse order
+    i = len(prefix) - 1
+    while i >= 0:
+        if not (prefix[i] in SYM_BINOPS or \
+                prefix[i] in SYM_BINFUNCS or \
+                prefix[i] in SYM_UNFUNCS):
+            # symbol is operand
+            if prefix[i] == "Concat":
+                stack.append("..")
+            else:
+                stack.append(prefix[i])
+            i -= 1
+        else:
+            # symbol is operator
+            if prefix[i] in SYM_UNFUNCS:
+                # Unary operators
+                op1 = stack.pop()
+                if not isinstance(op1, list):
+                    op1 = [op1]
+                sym = [prefix[i]] + ["("] + op1 + [")"]
+                stack.append(sym)
+            elif prefix[i] in SYM_BINFUNCS:
+                # Unary operators
+                op1 = stack.pop()
+                if not isinstance(op1, list):
+                    op1 = [op1]
+                op2 = stack.pop()
+                if not isinstance(op2, list):
+                    op2 = [op2]
+                sym = [prefix[i]] + ["("] + op1 + [","] + op2 + [")"]
+                stack.append(sym)
+            else:
+                op1 = stack.pop()
+                if not isinstance(op1, list):
+                    op1 = [op1]
+                op2 = stack.pop()
+                if not isinstance(op2, list):
+                    op2 = [op2]
+                sym = ["("] + op1 + [prefix[i]] + op2 + [")"]
+                stack.append(sym)
+            i -= 1
+
+    return stack.pop()
+
+def _s32(value):
     return -(value & 0x80000000) | (value & 0x7fffffff)
 
-def process_token(token):
+def _process_token(token):
+    # May get xxx[31:0] for unsimplified expressions
+    # Discard this first
+    token = re.sub(r"\[\d{1,2}:\d{1,2}\]", "", token)
+
     # First handle hex numbers
     if token == "0x0":
         # Probably padding 0, keep it
         return token
 
-    elif re.match(r"0xf\w{7}", token):
+    elif re.fullmatch(r"0xff+[0-9A-Fa-f]+", token):
         # 0xfff*, probably negative number, transfer to decimal
-        number = s32(int(token, 16))
+        number = _s32(int(token, 16))
         return str(number)
 
-    elif re.match(r"0x\w{2}f{6}", token):
+    elif re.fullmatch(r"0x[0-9A-Fa-f]{2}f{6}", token):
         # FIXME
         # 0x*ffffff, probably -1 after shifting
         return "-1"
 
-    elif re.match(r"0x\w{1,8}", token):
+    elif re.fullmatch(r"0x[0-9A-Fa-f]{1,8}", token):
         return str(int(token, 16))
 
-    # Variable bit extraction
-    elif re.match(r"\w+\[\d{1,2}:\d{1,2}\]", token):
-        return token.split("[")[0]
-
-    elif token == "__add__":
+    elif token == "__add__" or token == "fpAdd":
         return "+"
 
-    elif token == "__mul__":
+    elif token == "__sub__" or token == "fpSub":
+        return "-"
+
+    elif token == "__mul__" or token == "fpMul":
         return "*"
+
+    elif token == "__div__" or token == "SDiv" or token == "fpDiv":
+        return "/"
+
+    elif token == "__mod__" or token == "SMod":
+        return "%"
+    
+    elif token == "__lshift__":
+        return "<<"
+    
+    elif token == "__rshift__":
+        return ">>"
+    
+    elif token == "__xor__":
+        return "^"
 
     else:
         return token
@@ -205,7 +279,7 @@ class ExtractedSymExpr:
         seq = []
 
         for token in tokens:
-            seq.append(process_token(token))
+            seq.append(_process_token(token))
         return seq
 
     def _try_merge_same_variable_concat(self, args):
@@ -233,11 +307,12 @@ class ExtractedSymExpr:
             if arg.args[1] != idx + 1:
                 return None
             idx = arg.args[0]
-        # Discard "Extract" expression
-        #return ["Extract", "(%s, %s)" % (idx, start), var]
         return [var]
 
-    def _symex_to_prefix(self, expr):
+
+    def _symex_to_prefix(self, expr, use_heuristics=True):
+        if not hasattr(expr, "op"):
+            return [str(expr)]
         op = str(expr.op)
 
         if op == "BVV":
@@ -251,17 +326,66 @@ class ExtractedSymExpr:
             queue = self._try_merge_same_variable_concat(list(expr.args))
             if queue is not None:
                 return queue
+            if use_heuristics:
+                # Merge SignExt (a[31:0] >> 0x1f .. a[31:0])
+                if hasattr(expr.args[0], "op") and str(expr.args[0].op) == "__rshift__":
+                    child1 = expr.args[0].args[0]
+                    child2 = expr.args[1]
+                    if (child1 == child2).is_true():
+                        return self._symex_to_prefix(child1)
+
+                # Merge ZeroExt
+                if hasattr(expr.args[0], "op") and str(expr.args[0].op) == "BVV":
+                    if str(hex(expr.args[0].args[0])) == "0x0":
+                        return self._symex_to_prefix(expr.args[1])
+
+                # For case <BV128 (0x0 .. fpToIEEEBV()[127:32] .. fpToIEEEBV())>
+                # Only return the first fpToIEEEBV()
+                if len(expr.args) == 2 and \
+                   hasattr(expr.args[0], "op") and str(expr.args[0].op) == "Extract" and \
+                   expr.args[0].args[0] == 127 and expr.args[0].args[1] == 32 and \
+                   hasattr(expr.args[1], "op") and expr.args[1].op == "fpToIEEEBV":
+                    return self._symex_to_prefix(expr.args[0].args[2])
+
 
         elif op == "Extract":
-            # Variable Extraction
-            # Discard "Extract" expression
-            #return [op, str((expr.args[0], expr.args[1])), expr.args[2].args[0]]
-            return [expr.args[2].args[0]]
+            if not use_heuristics:
+                return [op, str((expr.args[0], expr.args[1]))] + self._symex_to_prefix(expr.args[2])
+            else:
+                # Discard "Extract" expression
+                return self._symex_to_prefix(expr.args[2])
+
+        elif (op == "ZeroExt" or op == "SignExt") and use_heuristics:
+            return self._symex_to_prefix(expr.args[1])
+
+        elif op == "fpToIEEEBV" or op == "FPS" or op == "FPV":
+            return self._symex_to_prefix(expr.args[0])
+
+        elif op == "fpToFP":
+            if isinstance(expr.args[0], claripy.fp.RM):
+                return self._symex_to_prefix(expr.args[1])
+            else:
+                return self._symex_to_prefix(expr.args[0])
 
         elif op == "BVS":
             # FIXME:
-            # if we extracted variable at "Extract", won't execute here
+            # if <use_heuristic>, we extracted variable at "Extract", won't execute here
             return [str(expr.args[0])]
+
+        elif op == "fpAdd" or \
+                op == "fpSub" or \
+                op == "fpMul" or \
+                op == "fpDiv":
+            return [op] + self._symex_to_prefix(expr.args[1]) + self._symex_to_prefix(expr.args[2])
+        
+        elif op == "fpNeg":
+            return ["*", "-1"] + self._symex_to_prefix(expr.args[0])
+
+        elif op in SYM_UNFUNCS_d:
+            return [SYM_UNFUNCS_d[op]] + self._symex_to_prefix(expr.args[0])
+
+        elif op in SYM_BINFUNCS_d:
+            return [SYM_BINFUNCS_d[op]] + self._symex_to_prefix(expr.args[0]) + self._symex_to_prefix(expr.args[1])
 
         children = []
         ast_queue = deque([iter(expr.args)])
@@ -286,9 +410,17 @@ class ExtractedSymExpr:
             return prefix_queue
 
 
-    def symex_to_prefix(self):
+    def symex_to_prefix(self, use_heuristics=True):
         symex_expr = self.symex_expr
         prefix = self._symex_to_prefix(symex_expr)
-        return [process_token(elem) for elem in prefix]
+
+        if use_heuristics and \
+           len(prefix) > 2 and \
+           prefix[0] == "Concat" and \
+           prefix[1].startswith("reg_"):
+            prefix = prefix[2:]
+
+        return [_process_token(elem) for elem in prefix]
+
 
 

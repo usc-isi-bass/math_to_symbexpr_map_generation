@@ -1,9 +1,11 @@
 from nose.tools import *
 import os
-import tempfile
 import subprocess
+import sys
+import tempfile
 import uuid
 
+sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..'))
 from expression.components import *
 from code_generation.c_code_generation import CCodeGenerator
 from code_generation.bin_code_generation import CFile

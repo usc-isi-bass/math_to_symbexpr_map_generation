@@ -6,6 +6,9 @@ import tempfile
 import subprocess
 import uuid
 import logging
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..'))
 
 from expression.components import *
 from code_generation.c_code_generation import CCodeGenerator
