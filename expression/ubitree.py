@@ -2,6 +2,12 @@
 from .components import *
 import numpy as np
 
+UNARY_OPERATORS = []
+
+# Binary Operators
+BINARY_OPERATORS = [("AddOp", "+", (None, None)),
+       ("SubOp", "-", (None, None))]
+
 #######################################
 #
 # Generate a tree of unary & binary operations.
@@ -155,7 +161,7 @@ class UbiTreeGenerator():
 
         # create leaves
         leaves = self._get_leaves(t_leaves, num_var, dup_var_prob, rng)
-        rng.shuffle(leaves)
+        #rng.shuffle(leaves)
 
         # insert leaves into tree
         for pos in range(len(stack) - 1, -1, -1):
