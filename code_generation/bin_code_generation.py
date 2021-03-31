@@ -39,7 +39,7 @@ class CFile:
         '''
         if out_file_name is None:
             out_file_name = os.path.splitext(self.c_file_name)[0]
-        p = subprocess.Popen(['gcc', '-o', out_file_name, self.c_file_name, '-lm'])
+        p = subprocess.Popen(['gcc', '-o', out_file_name, "-g", self.c_file_name, '-lm'])
         p.wait()
         retcode = p.returncode
         assert retcode == 0, "Compilation failed: return code: {}".format(retcode) 
