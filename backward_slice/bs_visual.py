@@ -277,6 +277,8 @@ def generate_vex_and_bs(proj, func_name, func_addr, func_nodes,
             elif isinstance(stmt, pyvex.stmt.Exit):
                 stmt_str = stmt.__str__(reg_name=proj.arch.translate_register_name(stmt.offsIP))
             else:
+                print(type(stmt))
+                print(stmt)
                 stmt_str = stmt.__str__()
             stmt_color = stmt_str
 
