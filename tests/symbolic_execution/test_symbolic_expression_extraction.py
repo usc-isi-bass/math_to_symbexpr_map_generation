@@ -10,7 +10,7 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..'))
 
-test_location = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', '..', 'smellcps-binaries', 'test_binaries')
+test_location = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'binaries', 'test_binaries')
 
 from expression.components import *
 from code_generation.c_code_generation import CCodeGenerator
