@@ -142,6 +142,7 @@ def _process_token(token):
     else:
         return token
 
+
 #######################################
 #
 # Perform symbolic execution on functions in a binary executable and extract the AST of the return value.
@@ -163,7 +164,12 @@ class SymbolicExpressionExtractor:
         self.cfg = self.proj.analyses.CFGFast(normalize=True)
         self.setup_func_simprocs()
 
-
+    def get_functions(self):
+        funcs = []
+        idfer = self.proj.analyses.Identifier()
+        for funcInfo in idfer.func_info:
+            funcs.append(funcInfo)
+        return funcs
 
     def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True):
         '''
@@ -252,8 +258,6 @@ class SymbolicExpressionExtractor:
             self.proj.hook_symbol(symbol_name, BinFuncSymProc(cc=bin_cc, op=bin_func_op))
 
 
-
-
 class ExtractedSymExpr:
     #######################################
     #
@@ -277,7 +281,6 @@ class ExtractedSymExpr:
         for token in tokens:
             seq.append(_process_token(token))
         return seq
-
 
     def _try_merge_same_variable_concat(self, args):
         # Try to match the form

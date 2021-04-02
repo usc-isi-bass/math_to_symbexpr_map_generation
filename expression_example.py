@@ -13,4 +13,3 @@ expr4 = AddOp(expr2, expr3)
 print(expr4)
 print(expr4.num_children)
 print(expr4.children[1])
-
