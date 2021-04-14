@@ -165,7 +165,7 @@ class SymbolicExpressionExtractor:
 
 
 
-    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls=False):
+    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
         '''
         Extract the AST of the return value of a target function.
             target_func_name:       The name of the function to perform symbolic execution on.
@@ -173,15 +173,13 @@ class SymbolicExpressionExtractor:
             symvar_types:           The types of the symbolic variables to pass this function as parameters.
             ret_type:               The type of the return value of this function
             simplified:             To simplify the symbolic expression or not
-            short_circuit_calls:    Replace the return value of a called function with a symbolic variable.
-                                    This only affects the unknown functions, not in the math libraries.
+            short_circuit_calls:    A map from the addresses of the functions we want to skip, to a tuple ((arg1_type, arg2_type, ...), ret_type).
         '''
         target_func = self.cfg.functions.function(name=target_func_name)
         assert target_func is not None, "Could not find a function by name: {}".format(target_func_name)
         func_addr = target_func.addr
 
-        if short_circuit_calls:
-            self._hook_func_callsites(target_func)
+        self._hook_func_callsites(short_circuit_calls)
 
         # Create BVS for integer/long arguments, and FPS for float/double
         num_symvars = len(symvar_names)
@@ -261,21 +259,31 @@ class SymbolicExpressionExtractor:
                 self.proj.hook_symbol(func.addr, BinFuncSymProc(cc=bin_cc, op=bin_func_op))
 
 
-    def _hook_func_callsites(self, func):
+    def _hook_func_callsites(self, short_circuit_calls):
+        double_length = claripy.fp.FSORT_DOUBLE.length
         class FuncSimProc(angr.SimProcedure):
-            def run(self, func_name=None):
-                bvs64 = claripy.BVS(name="ret_{}".format(func_name), size=64)
-                bvs128 = claripy.BVS(name="ret_{}".format(func_name), size=18)
-                # We don't know if rax, or xmm0 should house the return value, so we populate both.
-                # Both of these are considered volatile, so the caller must save them
-                # Therefore, this shouldn't overwrite important values
-                self.state.regs.rax = bvs64
-                self.state.regs.xmm0 = bvs128
-        for call_site in func.get_call_sites():
-            call_target = func.get_call_target(call_site)
-            if not self.proj.is_hooked(call_target):
-                target_func = self.cfg.functions.function(addr=call_target)
-                self.proj.hook_symbol(call_target, FuncSimProc(func_name=target_func.name))
+            def run(self, op=None):
+                arg_locs = self.cc.args
+                claripy_args = []
+                for arg_loc in arg_locs:
+                    arg = arg_loc.get_value(self.state)
+                    claripy_arg = arg.to_claripy()
+                    if self.cc.is_fp_arg(arg_loc):
+                        claripy_arg = claripy_arg[double_length-1:0].raw_to_fp()
+                    claripy_args.append(claripy_arg)
+                print(claripy_args)
+                return op(*claripy_args)
+        for func_addr, func_types in short_circuit_calls.items():
+            if not self.proj.is_hooked(func_addr):
+                func = self.cfg.functions.function(addr=func_addr)
+                func_arg_types = func_types[0]
+                func_ret_type = func_types[1]
+
+                func_op_arg_types = [claripy.ast.fp.FP if (arg_type in C_TYPES_FLOAT) else claripy.ast.bv.BV for arg_type in func_arg_types]
+                func_op_ret_type = claripy.ast.fp.FP if (func_ret_type in C_TYPES_FLOAT) else claripy.ast.bv.BV
+                func_op = claripy.operations.op(func.name, func_op_arg_types, func_op_ret_type, do_coerce=False, calc_length=lambda *x: c_type_to_bit_size(func_ret_type))
+                func_cc = self.proj.factory.cc_from_arg_kinds([typ in C_TYPES_FLOAT for typ in func_arg_types], ret_fp=func_ret_type in C_TYPES_FLOAT)
+                self.proj.hook_symbol(func_addr, FuncSimProc(cc=func_cc, op=func_op))
 
 
 
