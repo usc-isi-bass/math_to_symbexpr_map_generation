@@ -2,9 +2,21 @@ from abc import ABC, abstractmethod
 
 # Not including "unsigned long", "long long" since angr
 # doesn't support type casting between them and floating points
-C_TYPES = ["int", "unsigned int", "long", "float", "double"]
 C_TYPES_INT = ["int", "unsigned int", "long"]
 C_TYPES_FLOAT = ["float", "double"]
+C_TYPES = C_TYPES_INT + C_TYPES_FLOAT
+
+def c_type_to_bit_size(typ):
+    if 'long' in typ:
+        return 64
+    if 'double' in typ:
+        return 64
+    if 'float' in typ:
+        return 32
+    if 'int' in typ:
+        return 32
+    raise Exception("Unknown C type: {}".format(typ))
+
 
 #######################################
 # Lists of Operators & Math Functions
