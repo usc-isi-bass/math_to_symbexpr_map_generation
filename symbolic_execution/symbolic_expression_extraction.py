@@ -271,7 +271,6 @@ class SymbolicExpressionExtractor:
                     if self.cc.is_fp_arg(arg_loc):
                         claripy_arg = claripy_arg[double_length-1:0].raw_to_fp()
                     claripy_args.append(claripy_arg)
-                print(claripy_args)
                 return op(*claripy_args)
         for func_addr, func_types in short_circuit_calls.items():
             if not self.proj.is_hooked(func_addr):
