@@ -598,8 +598,8 @@ class InfixTree:
         if use_heuristics and \
            len(self.children) == 2 and \
            self.op == "Concat" and \
-           self.children.expr is not None and \
-           self.children.expr.startswith("reg_"):
+           self.children[0].expr is not None and \
+           self.children[0].expr.startswith("reg_"):
             return self.children[1].sequenize()
         else:
             return self.sequenize()
