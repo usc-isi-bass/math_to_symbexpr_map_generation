@@ -15,6 +15,8 @@ import claripy
 import re
 from collections.abc import Iterable
 from collections import deque
+import logging
+log = logging.getLogger('symbolic_expression_extraction')
 
 
 from expression.components import *
@@ -35,7 +37,7 @@ simplification_options = [
 
 SYM_BINOPS = [op for (_, op, _) in BINARY_OPERATORS] + \
         [op for (_, op, _) in BINARY_BIT_OPERATORS] + \
-        ["Concat", "Extract"]
+        [".."]
 SYM_UNFUNCS = [op for (_, op, _) in UNARY_FUNCTIONS]
 SYM_BINFUNCS = [op for (_, op, _) in BINARY_FUNCTIONS]
 SYM_UNFUNCS_d = {func:op for (func, op, _) in UNARY_FUNCTIONS}
@@ -43,6 +45,7 @@ SYM_BINFUNCS_d = {func:op for (func, op, _) in BINARY_FUNCTIONS}
 
 
 def sym_prefix_to_infix(prefix):
+    log.warning("Legacy: Only infix is used now")
     stack = []
 
     # read prefix in reverse order
@@ -139,6 +142,9 @@ def _process_token(token):
     elif token == "__xor__":
         return "^"
 
+    elif token == "Concat":
+        return ".."
+
     else:
         return token
 
@@ -165,18 +171,21 @@ class SymbolicExpressionExtractor:
 
 
 
-    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True):
+    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
         '''
         Extract the AST of the return value of a target function.
-            target_func_name: The name of the function to perform symbolic execution on.
-            symvar_names:     The names of the symbolic variables to pass this function as parameters.
-            symvar_types:     The types of the symbolic variables to pass this function as parameters.
-            ret_type:         The type of the return value of this function
-            simplified:       To simplify the symbolic expression or not
+            target_func_name:       The name of the function to perform symbolic execution on.
+            symvar_names:           The names of the symbolic variables to pass this function as parameters.
+            symvar_types:           The types of the symbolic variables to pass this function as parameters.
+            ret_type:               The type of the return value of this function
+            simplified:             To simplify the symbolic expression or not
+            short_circuit_calls:    A map from the addresses of the functions we want to skip, to a tuple ((arg1_type, arg2_type, ...), ret_type).
         '''
         target_func = self.cfg.functions.function(name=target_func_name)
         assert target_func is not None, "Could not find a function by name: {}".format(target_func_name)
         func_addr = target_func.addr
+
+        self._hook_func_callsites(short_circuit_calls)
 
         # Create BVS for integer/long arguments, and FPS for float/double
         num_symvars = len(symvar_names)
@@ -232,8 +241,10 @@ class SymbolicExpressionExtractor:
                 return op(x_fp)
         una_cc = self.proj.factory.cc_from_arg_kinds((True,), ret_fp=True)
         for func_name, symbol_name, (arg, ret) in UNARY_FUNCTIONS:
-            una_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x: double_length)
-            self.proj.hook_symbol(symbol_name, UnaFuncSymProc(cc=una_cc, op=una_func_op))
+            func = self.cfg.functions.function(name=symbol_name)
+            if func is not None:
+                una_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x: double_length)
+                self.proj.hook_symbol(func.addr, UnaFuncSymProc(cc=una_cc, op=una_func_op))
         class BinFuncSymProc(angr.SimProcedure):
             def run(self, x, y, op=None):
                 x_claripy = x.to_claripy()
@@ -248,8 +259,36 @@ class SymbolicExpressionExtractor:
                 return op(x_fp, y_fp)
         bin_cc = self.proj.factory.cc_from_arg_kinds((True,True), ret_fp=True)
         for func_name, symbol_name, (arg, ret) in BINARY_FUNCTIONS:
-            bin_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,claripy.ast.fp.FP), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x, y: double_length)
-            self.proj.hook_symbol(symbol_name, BinFuncSymProc(cc=bin_cc, op=bin_func_op))
+            func = self.cfg.functions.function(name=symbol_name)
+            if func is not None:
+                bin_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,claripy.ast.fp.FP), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x, y: double_length)
+                self.proj.hook_symbol(func.addr, BinFuncSymProc(cc=bin_cc, op=bin_func_op))
+
+
+    def _hook_func_callsites(self, short_circuit_calls):
+        double_length = claripy.fp.FSORT_DOUBLE.length
+        class FuncSimProc(angr.SimProcedure):
+            def run(self, op=None):
+                arg_locs = self.cc.args
+                claripy_args = []
+                for arg_loc in arg_locs:
+                    arg = arg_loc.get_value(self.state)
+                    claripy_arg = arg.to_claripy()
+                    if self.cc.is_fp_arg(arg_loc):
+                        claripy_arg = claripy_arg[double_length-1:0].raw_to_fp()
+                    claripy_args.append(claripy_arg)
+                return op(*claripy_args)
+        for func_addr, func_types in short_circuit_calls.items():
+            if not self.proj.is_hooked(func_addr):
+                func = self.cfg.functions.function(addr=func_addr)
+                func_arg_types = func_types[0]
+                func_ret_type = func_types[1]
+
+                func_op_arg_types = [claripy.ast.fp.FP if (arg_type in C_TYPES_FLOAT) else claripy.ast.bv.BV for arg_type in func_arg_types]
+                func_op_ret_type = claripy.ast.fp.FP if (func_ret_type in C_TYPES_FLOAT) else claripy.ast.bv.BV
+                func_op = claripy.operations.op(func.name, func_op_arg_types, func_op_ret_type, do_coerce=False, calc_length=lambda *x: c_type_to_bit_size(func_ret_type))
+                func_cc = self.proj.factory.cc_from_arg_kinds([typ in C_TYPES_FLOAT for typ in func_arg_types], ret_fp=func_ret_type in C_TYPES_FLOAT)
+                self.proj.hook_symbol(func_addr, FuncSimProc(cc=func_cc, op=func_op))
 
 
 
@@ -406,8 +445,8 @@ class ExtractedSymExpr:
             prefix_queue += children.pop(0)
             return prefix_queue
 
-
     def symex_to_prefix(self, use_heuristics=True):
+        log.warning("Legacy: Only infix is used now")
         symex_expr = self.symex_expr
         prefix = self._symex_to_prefix(symex_expr)
 
@@ -420,4 +459,147 @@ class ExtractedSymExpr:
         return [_process_token(elem) for elem in prefix]
 
 
+    def _symex_to_infix_tree(self, expr, use_heuristics=True):
+        if not hasattr(expr, "op"):
+            return InfixTree(expr=str(expr))
+        op = str(expr.op)
 
+        if op == "BVV":
+            # Constant value
+            return InfixTree(expr=str(hex(expr.args[0])))
+
+        elif op == "Concat":
+            # Handle special case of
+            # (a[7:0] .. a[15:8] .. a[23:16] .. a[31:24])
+            # If not this case, do nothing here
+            queue = self._try_merge_same_variable_concat(list(expr.args))
+            if queue is not None:
+                return InfixTree(expr=queue[0])
+            if use_heuristics:
+                # Merge SignExt (a[31:0] >> 0x1f .. a[31:0])
+                if hasattr(expr.args[0], "op") and str(expr.args[0].op) == "__rshift__":
+                    child1 = expr.args[0].args[0]
+                    child2 = expr.args[1]
+                    if (child1 == child2).is_true():
+                        return self._symex_to_infix_tree(child1)
+
+                # Merge ZeroExt
+                if hasattr(expr.args[0], "op") and str(expr.args[0].op) == "BVV":
+                    if str(hex(expr.args[0].args[0])) == "0x0":
+                        return self._symex_to_infix_tree(expr.args[1])
+
+                # For case <BV128 (0x0 .. fpToIEEEBV()[127:32] .. fpToIEEEBV())>
+                # Only return the first fpToIEEEBV()
+                if len(expr.args) == 2 and \
+                   hasattr(expr.args[0], "op") and str(expr.args[0].op) == "Extract" and \
+                   expr.args[0].args[0] == 127 and expr.args[0].args[1] == 32 and \
+                   hasattr(expr.args[1], "op") and expr.args[1].op == "fpToIEEEBV":
+                    return self._symex_to_infix_tree(expr.args[0].args[2])
+
+        elif op == "Extract":
+            if not use_heuristics:
+                ch1 = str((expr.args[0], expr.args[1]))
+                ch2 = self._symex_to_infix_tree(expr.args[2])
+                return InfixTree(op=op, children=[ch1, ch2])
+            else:
+                # Discard "Extract" expression
+                return self._symex_to_infix_tree(expr.args[2])
+
+        elif (op == "ZeroExt" or op == "SignExt") and use_heuristics:
+            return self._symex_to_infix_tree(expr.args[1])
+
+        elif op == "fpToIEEEBV" or op == "FPS" or op == "FPV":
+            return self._symex_to_infix_tree(expr.args[0])
+
+        elif op == "fpToFP":
+            if isinstance(expr.args[0], claripy.fp.RM):
+                return self._symex_to_infix_tree(expr.args[1])
+            else:
+                return self._symex_to_infix_tree(expr.args[0])
+
+        elif op == "BVS":
+            # FIXME:
+            # if <use_heuristic>, we extracted variable at "Extract", won't execute here
+            return InfixTree(expr=str(expr.args[0]))
+
+        elif op == "fpAdd" or \
+                op == "fpSub" or \
+                op == "fpMul" or \
+                op == "fpDiv":
+            children = [self._symex_to_infix_tree(expr.args[1]), self._symex_to_infix_tree(expr.args[2])]
+            return InfixTree(op=op, children=children)
+        
+        elif op == "fpNeg":
+            children = [self._symex_to_infix_tree(expr.args[0])]
+            return InfixTree(op="-", children=children)
+
+        elif op in SYM_UNFUNCS_d:
+            children = [self._symex_to_infix_tree(expr.args[0])]
+            return InfixTree(op=SYM_UNFUNCS_d[op], children=children)
+
+        elif op in SYM_BINFUNCS_d:
+            children = [self._symex_to_infix_tree(expr.args[0]), self._symex_to_infix_tree(expr.args[1])]
+            return InfixTree(op=SYM_BINFUNCS_d[op], children=children)
+        else: 
+            print(op)
+
+        children = []
+        ast_queue = deque([iter(expr.args)])
+        while ast_queue:
+            try:
+                ast = next(ast_queue[-1])
+            except StopIteration:
+                ast_queue.pop()
+                continue
+            children.append(self._symex_to_infix_tree(ast))
+        return InfixTree(op=op, children=children)
+
+
+    def symex_to_infix(self, use_heuristics=True):
+        symex_expr = self.symex_expr
+        infix_tree = self._symex_to_infix_tree(symex_expr)
+
+        return infix_tree.get_sequence(use_heuristics)
+
+
+class InfixTree:
+    def __init__(self, expr=None, op=None, children=[]):
+        self.expr = expr
+        self.op = op
+        self.children = children
+
+    def __str__(self):
+        if self.op is not None:
+            return self.op + "(" + ",".join(str(ch) for ch in self.children) + ")"
+        else:
+            return self.expr
+
+    def sequenize(self):
+        if self.op is None:
+            return [_process_token(self.expr)]
+        op = _process_token(self.op)
+        if op == "-" and len(self.children) == 1:
+            return ["-", "("] + self.children[0].sequenize() + [")"]
+        if op in SYM_BINOPS:
+            ret = self.children[0].sequenize()
+            for child in self.children[1:]:
+                ret += [op]
+                ret += child.sequenize()
+            return ret
+        else:
+            ret = [op, "("] + self.children[0].sequenize()
+            for child in self.children[1:]:
+                ret += [","]
+                ret += child.sequenize()
+            ret += [")"]
+        return ret
+
+    def get_sequence(self, use_heuristics=True):
+        if use_heuristics and \
+           len(self.children) == 2 and \
+           self.op == "Concat" and \
+           self.children[0].expr is not None and \
+           self.children[0].expr.startswith("reg_"):
+            return self.children[1].sequenize()
+        else:
+            return self.sequenize()
