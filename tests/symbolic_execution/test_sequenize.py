@@ -1,9 +1,14 @@
 from nose.tools import *
 import os
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..'))
+
+test_location = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'binaries', 'test_binaries')
 
 from expression.components import *
 from code_generation.c_code_generation import CCodeGenerator
-from symbolic_execution.symbolic_expression_extraction import SymbolicExpressionExtractor, sym_prefix_to_infix
+from symbolic_execution.symbolic_expression_extraction import SymbolicExpressionExtractor
 from code_generation.bin_code_generation import CFile
 
 import logging
@@ -35,9 +40,19 @@ def test_sequence():
 
     sym_expr = _do_expr(expr, "float")
 
-    pre_sym = sym_expr.symex_to_prefix()
-    in_sym = sym_prefix_to_infix(sym_expr.symex_to_prefix())
-    prefix = ['*', 'tan', '+', 'b', 'c', 'a']
-    infix = ['(', 'tan', '(', '(', 'b', '+', 'c', ')', ')', '*', 'a', ')']
-    assert_equal(pre_sym, prefix)
+    in_sym = sym_expr.symex_to_infix()
+    infix = ['tan', '(', 'b', '+', 'c', ')', '*', 'a']
+    assert_equal(in_sym, infix)
+
+def test_short_circuit_calls_05():
+    elf_name = 'nested_func_call'
+    elf_path = os.path.join(test_location, elf_name)
+    func_name = 'f05'
+    var_ctypes = ['float', 'int']
+    see = SymbolicExpressionExtractor(elf_path)
+    func = see.cfg.functions.function(name=func_name)
+    arg1, arg2 = 'argf1','argi2'
+    symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "float", short_circuit_calls={0x4007d7:(('float', 'int'), 'float')})
+    infix = ['f_inner4', '(', 'argf1', ',', 'argi2', ')']
+    in_sym = symexpr.symex_to_infix()
     assert_equal(in_sym, infix)

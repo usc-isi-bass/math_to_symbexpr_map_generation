@@ -15,6 +15,8 @@ import claripy
 import re
 from collections.abc import Iterable
 from collections import deque
+import logging
+log = logging.getLogger('symbolic_expression_extraction')
 
 
 from expression.components import *
@@ -35,7 +37,7 @@ simplification_options = [
 
 SYM_BINOPS = [op for (_, op, _) in BINARY_OPERATORS] + \
         [op for (_, op, _) in BINARY_BIT_OPERATORS] + \
-        ["Concat", "Extract"]
+        [".."]
 SYM_UNFUNCS = [op for (_, op, _) in UNARY_FUNCTIONS]
 SYM_BINFUNCS = [op for (_, op, _) in BINARY_FUNCTIONS]
 SYM_UNFUNCS_d = {func:op for (func, op, _) in UNARY_FUNCTIONS}
@@ -43,6 +45,7 @@ SYM_BINFUNCS_d = {func:op for (func, op, _) in BINARY_FUNCTIONS}
 
 
 def sym_prefix_to_infix(prefix):
+    log.warning("Legacy: Only infix is used now")
     stack = []
 
     # read prefix in reverse order
@@ -138,6 +141,9 @@ def _process_token(token):
     
     elif token == "__xor__":
         return "^"
+
+    elif token == "Concat":
+        return ".."
 
     else:
         return token
@@ -439,8 +445,8 @@ class ExtractedSymExpr:
             prefix_queue += children.pop(0)
             return prefix_queue
 
-
     def symex_to_prefix(self, use_heuristics=True):
+        log.warning("Legacy: Only infix is used now")
         symex_expr = self.symex_expr
         prefix = self._symex_to_prefix(symex_expr)
 
@@ -453,4 +459,147 @@ class ExtractedSymExpr:
         return [_process_token(elem) for elem in prefix]
 
 
+    def _symex_to_infix_tree(self, expr, use_heuristics=True):
+        if not hasattr(expr, "op"):
+            return InfixTree(expr=str(expr))
+        op = str(expr.op)
 
+        if op == "BVV":
+            # Constant value
+            return InfixTree(expr=str(hex(expr.args[0])))
+
+        elif op == "Concat":
+            # Handle special case of
+            # (a[7:0] .. a[15:8] .. a[23:16] .. a[31:24])
+            # If not this case, do nothing here
+            queue = self._try_merge_same_variable_concat(list(expr.args))
+            if queue is not None:
+                return InfixTree(expr=queue[0])
+            if use_heuristics:
+                # Merge SignExt (a[31:0] >> 0x1f .. a[31:0])
+                if hasattr(expr.args[0], "op") and str(expr.args[0].op) == "__rshift__":
+                    child1 = expr.args[0].args[0]
+                    child2 = expr.args[1]
+                    if (child1 == child2).is_true():
+                        return self._symex_to_infix_tree(child1)
+
+                # Merge ZeroExt
+                if hasattr(expr.args[0], "op") and str(expr.args[0].op) == "BVV":
+                    if str(hex(expr.args[0].args[0])) == "0x0":
+                        return self._symex_to_infix_tree(expr.args[1])
+
+                # For case <BV128 (0x0 .. fpToIEEEBV()[127:32] .. fpToIEEEBV())>
+                # Only return the first fpToIEEEBV()
+                if len(expr.args) == 2 and \
+                   hasattr(expr.args[0], "op") and str(expr.args[0].op) == "Extract" and \
+                   expr.args[0].args[0] == 127 and expr.args[0].args[1] == 32 and \
+                   hasattr(expr.args[1], "op") and expr.args[1].op == "fpToIEEEBV":
+                    return self._symex_to_infix_tree(expr.args[0].args[2])
+
+        elif op == "Extract":
+            if not use_heuristics:
+                ch1 = str((expr.args[0], expr.args[1]))
+                ch2 = self._symex_to_infix_tree(expr.args[2])
+                return InfixTree(op=op, children=[ch1, ch2])
+            else:
+                # Discard "Extract" expression
+                return self._symex_to_infix_tree(expr.args[2])
+
+        elif (op == "ZeroExt" or op == "SignExt") and use_heuristics:
+            return self._symex_to_infix_tree(expr.args[1])
+
+        elif op == "fpToIEEEBV" or op == "FPS" or op == "FPV":
+            return self._symex_to_infix_tree(expr.args[0])
+
+        elif op == "fpToFP":
+            if isinstance(expr.args[0], claripy.fp.RM):
+                return self._symex_to_infix_tree(expr.args[1])
+            else:
+                return self._symex_to_infix_tree(expr.args[0])
+
+        elif op == "BVS":
+            # FIXME:
+            # if <use_heuristic>, we extracted variable at "Extract", won't execute here
+            return InfixTree(expr=str(expr.args[0]))
+
+        elif op == "fpAdd" or \
+                op == "fpSub" or \
+                op == "fpMul" or \
+                op == "fpDiv":
+            children = [self._symex_to_infix_tree(expr.args[1]), self._symex_to_infix_tree(expr.args[2])]
+            return InfixTree(op=op, children=children)
+        
+        elif op == "fpNeg":
+            children = [self._symex_to_infix_tree(expr.args[0])]
+            return InfixTree(op="-", children=children)
+
+        elif op in SYM_UNFUNCS_d:
+            children = [self._symex_to_infix_tree(expr.args[0])]
+            return InfixTree(op=SYM_UNFUNCS_d[op], children=children)
+
+        elif op in SYM_BINFUNCS_d:
+            children = [self._symex_to_infix_tree(expr.args[0]), self._symex_to_infix_tree(expr.args[1])]
+            return InfixTree(op=SYM_BINFUNCS_d[op], children=children)
+        else: 
+            print(op)
+
+        children = []
+        ast_queue = deque([iter(expr.args)])
+        while ast_queue:
+            try:
+                ast = next(ast_queue[-1])
+            except StopIteration:
+                ast_queue.pop()
+                continue
+            children.append(self._symex_to_infix_tree(ast))
+        return InfixTree(op=op, children=children)
+
+
+    def symex_to_infix(self, use_heuristics=True):
+        symex_expr = self.symex_expr
+        infix_tree = self._symex_to_infix_tree(symex_expr)
+
+        return infix_tree.get_sequence(use_heuristics)
+
+
+class InfixTree:
+    def __init__(self, expr=None, op=None, children=[]):
+        self.expr = expr
+        self.op = op
+        self.children = children
+
+    def __str__(self):
+        if self.op is not None:
+            return self.op + "(" + ",".join(str(ch) for ch in self.children) + ")"
+        else:
+            return self.expr
+
+    def sequenize(self):
+        if self.op is None:
+            return [_process_token(self.expr)]
+        op = _process_token(self.op)
+        if op == "-" and len(self.children) == 1:
+            return ["-", "("] + self.children[0].sequenize() + [")"]
+        if op in SYM_BINOPS:
+            ret = self.children[0].sequenize()
+            for child in self.children[1:]:
+                ret += [op]
+                ret += child.sequenize()
+            return ret
+        else:
+            ret = [op, "("] + self.children[0].sequenize()
+            for child in self.children[1:]:
+                ret += [","]
+                ret += child.sequenize()
+            ret += [")"]
+        return ret
+
+    def get_sequence(self, use_heuristics=True):
+        if use_heuristics and \
+           len(self.children) == 2 and \
+           self.op == "Concat" and \
+           self.children[0].expr is not None and \
+           self.children[0].expr.startswith("reg_"):
+            return self.children[1].sequenize()
+        else:
+            return self.sequenize()
