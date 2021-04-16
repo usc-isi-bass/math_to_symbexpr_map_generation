@@ -268,8 +268,11 @@ class SymbolicExpressionExtractor:
     def _hook_func_callsites(self, short_circuit_calls):
         double_length = claripy.fp.FSORT_DOUBLE.length
         class FuncSimProc(angr.SimProcedure):
-            def run(self, op=None):
+            def run(self, op=None, func_name=None):
                 arg_locs = self.cc.args
+                if len(arg_locs) == 0:
+                    ret_bvs = claripy.BVS(name=func_name, explicit_name=True, size=self.cc.ret_val.size)
+                    return ret_bvs
                 claripy_args = []
                 for arg_loc in arg_locs:
                     arg = arg_loc.get_value(self.state)
@@ -286,9 +289,11 @@ class SymbolicExpressionExtractor:
 
                 func_op_arg_types = [claripy.ast.fp.FP if (arg_type in C_TYPES_FLOAT) else claripy.ast.bv.BV for arg_type in func_arg_types]
                 func_op_ret_type = claripy.ast.fp.FP if (func_ret_type in C_TYPES_FLOAT) else claripy.ast.bv.BV
-                func_op = claripy.operations.op(func.name, func_op_arg_types, func_op_ret_type, do_coerce=False, calc_length=lambda *x: c_type_to_bit_size(func_ret_type))
                 func_cc = self.proj.factory.cc_from_arg_kinds([typ in C_TYPES_FLOAT for typ in func_arg_types], ret_fp=func_ret_type in C_TYPES_FLOAT)
-                self.proj.hook_symbol(func_addr, FuncSimProc(cc=func_cc, op=func_op))
+                func_op = None
+                if len(func_arg_types) > 0:
+                    func_op = claripy.operations.op(func.name, func_op_arg_types, func_op_ret_type, do_coerce=False, calc_length=lambda *x: c_type_to_bit_size(func_ret_type))
+                self.proj.hook_symbol(func_addr, FuncSimProc(cc=func_cc, op=func_op, func_name=func.name))
 
 
 
