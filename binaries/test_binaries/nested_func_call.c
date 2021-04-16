@@ -41,6 +41,16 @@ float f_inner4(float x, int y)
     return x + (float)y;
 }
 
+int f_inner5(void)
+{
+    int x;
+    // Something to blow up symbolic execution
+    while (1) {
+        x++;
+    }
+    return x;
+}
+
 
 float f01(float x, float y)
 {
@@ -67,6 +77,11 @@ int f04(int x, float y)
 float f05(float x, int y)
 {
     return f_inner4(x, y);
+}
+
+int f06(float x)
+{
+    return (int)x + f_inner5();
 }
 
 int main(int argc, char *argv[])
