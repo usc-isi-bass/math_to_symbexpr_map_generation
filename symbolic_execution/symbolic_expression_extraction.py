@@ -226,7 +226,7 @@ class SymbolicExpressionExtractor:
             state = simgr.deadended[0]
             symex_expr = state.regs.get(ret_reg_name)
         else:
-            raise Exception("No deadended states in simulation manager: {}".format(simgr.stashes))
+            raise Exception("No deadended states in simulation manager: stashes: {} errored: {}".format(simgr.stashes, simgr.errored))
 
         return ExtractedSymExpr(symex_expr, func_symvar_args)
 
