@@ -236,7 +236,17 @@ def test_short_circuit_calls_05():
     assert_true(arg1 in f_inner4_ast_arg1.variables and arg2 not in f_inner4_ast_arg1.variables, msg="We expect only {} to be in the first argument variables of f_inner4, but: {}".format(arg1, f_inner4_ast_arg1.variables))
     assert_true(arg2 in f_inner4_ast_arg2.variables and arg1 not in f_inner4_ast_arg2.variables, msg="We expect only {} to be in the second argument variables of f_inner4, but: {}".format(arg2, f_inner4_ast_arg2.variables))
 
-
+def test_short_circuit_calls_06():
+    elf_name = 'nested_func_call'
+    elf_path = os.path.join(test_location, elf_name)
+    func_name = 'f06'
+    var_ctypes = ['float']
+    see = SymbolicExpressionExtractor(elf_path)
+    func = see.cfg.functions.function(name=func_name)
+    arg1 = 'argf1'
+    extracted_symexpr = see.extract(func_name, [arg1], var_ctypes, "int", short_circuit_calls={0x4007ff:([], 'int')})
+    symex_expr = extracted_symexpr.symex_expr
+    assert_true(any(t.startswith('f_inner5') for t in symex_expr.variables), msg='We replaced the function call to f_inner5 with a variable named f_inner5 but this is not in the AST: {}'.format(symex_expr))
 
 def eval_int_expr(expr, *args):
     ccg = CCodeGenerator(expr)
@@ -312,3 +322,4 @@ if __name__ == "__main__":
     test_short_circuit_calls_03()
     test_short_circuit_calls_04()
     test_short_circuit_calls_05()
+    test_short_circuit_calls_06()
