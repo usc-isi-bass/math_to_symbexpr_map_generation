@@ -92,7 +92,7 @@ def _match_debug_line(func_name, elf_file_name):
         if len(line) == 0:
             break
         if line.startswith("/"):
-            file, line = line.split(":")
+            file, line = line.split()[0].split(":")
             src_file = file
             src_line = (line, file)
             line_no = int(line)
@@ -100,8 +100,6 @@ def _match_debug_line(func_name, elf_file_name):
         else:
             line_no = int(line.strip().split(":", 1)[0], 16)
             addrs_srcline[line_no] = src_line
-
-
     return srcline_contents, addrs_srcline
 
 
@@ -277,8 +275,6 @@ def generate_vex_and_bs(proj, func_name, func_addr, func_nodes,
             elif isinstance(stmt, pyvex.stmt.Exit):
                 stmt_str = stmt.__str__(reg_name=proj.arch.translate_register_name(stmt.offsIP))
             else:
-                print(type(stmt))
-                print(stmt)
                 stmt_str = stmt.__str__()
             stmt_color = stmt_str
 

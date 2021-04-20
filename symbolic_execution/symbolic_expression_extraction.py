@@ -21,6 +21,8 @@ log = logging.getLogger('symbolic_expression_extraction')
 
 from expression.components import *
 from code_generation.c_code_generation import GeneratedCCode
+from expression.components import *
+from backward_slice.backward_slice_extraction import BackwardVexExtractor, match_debug_line
 
 simplification_options = [
     SIMPLIFY_EXPRS,
@@ -165,10 +167,62 @@ class SymbolicExpressionExtractor:
 
     def __init__(self, elf_file_name):
         self.elf_file_name = elf_file_name
-        self.proj = angr.Project(elf_file_name, auto_load_libs=False)
+        self.proj = angr.Project(elf_file_name, load_options={'auto_load_libs': False, 'main_opts': {'base_addr': 0x0}})
+        self.bs = BackwardVexExtractor(elf_file_name)
         self.cfg = self.proj.analyses.CFGFast(normalize=True)
         self.setup_func_simprocs()
 
+    def extract_middle(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, block_addr: int, stmt_idx: int, simplified=True, short_circuit_calls={}):
+        target_func = self.cfg.functions.function(name=target_func_name)
+        assert target_func is not None, "Could not find a function by name: {}".format(target_func_name)
+        func_addr = target_func.addr
+
+        self._hook_func_callsites(short_circuit_calls)
+
+        # Create BVS for integer/long arguments, and FPS for float/double
+        num_symvars = len(symvar_names)
+        func_symvar_args = []
+        is_fp_args = []
+        for i in range(num_symvars):
+            ctype = symvar_ctypes[i]
+            name = symvar_names[i]
+            if ctype in C_TYPES_INT:
+                func_symvar_args.append(claripy.BVS(name, 64, explicit_name=True))
+                is_fp_args.append(False)
+            else:
+                func_symvar_args.append(claripy.FPS(name, claripy.fp.FSORT_DOUBLE, explicit_name=True))
+                is_fp_args.append(True)
+
+        if ret_type in C_TYPES_INT:
+            ret_fp = False
+        else:
+            ret_fp = True
+        # Create a new symbolic calling convention based on the original target function
+        # With correct types of arguments and return type
+        sym_cc = self.proj.factory.cc_from_arg_kinds(fp_args=is_fp_args, ret_fp=ret_fp)
+
+        if simplified:
+            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
+        else:
+            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, add_options=[LAZY_SOLVES], remove_options=simplification_options)
+
+        load_locations, store_locations = self.bs.find_load_store_locations(target_func_name, block_addr, stmt_idx)
+        for reg_name, offset,_ in load_locations:
+            symstate_init_reg_offset(start_state, reg_name, offset)
+
+        simgr = self.proj.factory.simulation_manager(start_state)
+        simgr.run()
+        state = simgr.deadended[0]
+
+        src_contents, addrs_srcline = match_debug_line(target_func_name, self.elf_file_name)
+        for line in src_contents.values():
+            print(line)
+        print()
+        for reg_name, offset, addr in store_locations:
+            line = int(addrs_srcline[addr][0])
+            print(src_contents[line])
+            name, symex_expr = symstate_get_reg_offset(state, reg_name, offset)
+        return name, ExtractedSymExpr(symex_expr, func_symvar_args)
 
 
     def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
@@ -229,6 +283,7 @@ class SymbolicExpressionExtractor:
             raise Exception("No deadended states in simulation manager: {}".format(simgr.stashes))
 
         return ExtractedSymExpr(symex_expr, func_symvar_args)
+
 
     def setup_func_simprocs(self):
         double_length = claripy.fp.FSORT_DOUBLE.length
@@ -291,6 +346,43 @@ class SymbolicExpressionExtractor:
                 self.proj.hook_symbol(func_addr, FuncSimProc(cc=func_cc, op=func_op))
 
 
+def symstate_init_reg_offset(state, reg_name, offset):
+    if reg_name is None:
+        return
+    if reg_name == "rsp":
+        log.debug("Skip rsp initialization")
+        return
+    elif reg_name == "rsi":
+        reg = state.regs.rsi
+    elif reg_name == "fs":
+        reg = state.regs.rsi
+    elif reg_name == "rdi":
+        reg = state.regs.rdi
+    elif reg_name == "rdx":
+        reg = state.regs.rdx
+    else:
+        log.warning("Register not in symstate_init: %s" % reg_name)
+        return
+    init_mem = str(state.mem[reg+offset].uint64_t)
+    name = init_mem.split(" at ", 1)[1][:-1].replace(" ", "_")
+    # TODO: What type is each offset? Currently set to FPS
+    state.mem[reg+offset].uint64_t = claripy.FPS(name, claripy.fp.FSORT_DOUBLE, explicit_name=True)
+
+
+def symstate_get_reg_offset(state, reg_name, offset):
+    if reg_name == "rsi":
+        reg = state.regs.rsi
+    elif reg_name == "rdi":
+        reg = state.regs.rdi
+    elif reg_name == "rdx":
+        reg = state.regs.rdx
+    else:
+        log.warning("Register not in symstate_get_reg: %s" % reg_name)
+        return
+    init_mem = str(state.mem[reg+offset].uint64_t)
+    name = init_mem.split(" at ", 1)[1][:-1].replace(" ", "_")
+    return name, state.mem[reg + offset].uint64_t.resolved
+    
 
 
 class ExtractedSymExpr:
