@@ -179,7 +179,7 @@ class SymbolicExpressionExtractor:
             symvar_types:           The types of the symbolic variables to pass this function as parameters.
             ret_type:               The type of the return value of this function
             simplified:             To simplify the symbolic expression or not
-            short_circuit_calls:    A map from the addresses of the functions we want to skip, to a tuple ((arg1_type, arg2_type, ...), ret_type).
+            short_circuit_calls:    A map from the addresses of the functions we want to skip, to a tuple (func_name, (arg1_type, arg2_type, ...), ret_type).
         '''
         target_func = self.cfg.functions.function(name=target_func_name)
         assert target_func is not None, "Could not find a function by name: {}".format(target_func_name)
@@ -283,17 +283,20 @@ class SymbolicExpressionExtractor:
                 return op(*claripy_args)
         for func_addr, func_types in short_circuit_calls.items():
             if not self.proj.is_hooked(func_addr):
-                func = self.cfg.functions.function(addr=func_addr)
-                func_arg_types = func_types[0]
-                func_ret_type = func_types[1]
+                func_name = func_types[0]
+                if func_name is None:
+                    func = self.cfg.functions.function(addr=func_addr)
+                    func_name = func.name
+                func_arg_types = func_types[1]
+                func_ret_type = func_types[2]
 
                 func_op_arg_types = [claripy.ast.fp.FP if (arg_type in C_TYPES_FLOAT) else claripy.ast.bv.BV for arg_type in func_arg_types]
                 func_op_ret_type = claripy.ast.fp.FP if (func_ret_type in C_TYPES_FLOAT) else claripy.ast.bv.BV
                 func_cc = self.proj.factory.cc_from_arg_kinds([typ in C_TYPES_FLOAT for typ in func_arg_types], ret_fp=func_ret_type in C_TYPES_FLOAT)
                 func_op = None
                 if len(func_arg_types) > 0:
-                    func_op = claripy.operations.op(func.name, func_op_arg_types, func_op_ret_type, do_coerce=False, calc_length=lambda *x: c_type_to_bit_size(func_ret_type))
-                self.proj.hook_symbol(func_addr, FuncSimProc(cc=func_cc, op=func_op, func_name=func.name))
+                    func_op = claripy.operations.op(func_name, func_op_arg_types, func_op_ret_type, do_coerce=False, calc_length=lambda *x: c_type_to_bit_size(func_ret_type))
+                self.proj.hook_symbol(func_addr, FuncSimProc(cc=func_cc, op=func_op, func_name=func_name))
 
 
 
