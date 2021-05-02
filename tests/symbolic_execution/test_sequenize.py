@@ -41,7 +41,7 @@ def test_sequence():
     sym_expr = _do_expr(expr, "float")
 
     in_sym = sym_expr.symex_to_infix()
-    infix = ['tan', '(', 'b', '+', 'c', ')', '*', 'a']
+    infix = ['(', 'tan', '(', 'b', '+', 'c', ')', ')', '*', 'a']
     assert_equal(in_sym, infix)
 
 def test_short_circuit_calls_05():
@@ -56,3 +56,25 @@ def test_short_circuit_calls_05():
     infix = ['f_inner4', '(', 'argf1', ',', 'argi2', ')']
     in_sym = symexpr.symex_to_infix()
     assert_equal(in_sym, infix)
+
+def test_int_branch_conditions():
+    elf_name = 'branch_symexpr'
+    elf_path = os.path.join(test_location, elf_name)
+    var_ctypes = ['int', 'int']
+    arg1, arg2 = 'q1','q2'
+
+    func_name = 'branch_int1'
+    see = SymbolicExpressionExtractor(elf_path)
+    func = see.cfg.functions.function(name=func_name)
+    symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "int", False)
+    expr1 = "If(((q1+5)>q2)&&((q1+5)>0),(q2+1+q1),(If(((q1+5)>q2)&&((q1+5)<=0),(q2+2+q1),(If((q1+5)<=q2,(q2+3+q1),0)))))"
+    in_sym = "".join(e for e in symexpr.symex_to_infix())
+    assert_equal(in_sym, expr1)
+
+    func_name = 'branch_int2'
+    see = SymbolicExpressionExtractor(elf_path)
+    func = see.cfg.functions.function(name=func_name)
+    symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "int", False)
+    expr2 = "If((q2<=(q1+4))&&(q1>=-4),(q2+1+q1),(If((q2<=(q1+4))&&(q1<-4),(q2+2+q1),(If(q2>(q1+4),(q2+3+q1),0)))))"
+    in_sym2 = "".join(e for e in symexpr.symex_to_infix())
+    assert_equal(in_sym2, expr2)
