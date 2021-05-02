@@ -52,7 +52,7 @@ def test_short_circuit_calls_05():
     see = SymbolicExpressionExtractor(elf_path)
     func = see.cfg.functions.function(name=func_name)
     arg1, arg2 = 'argf1','argi2'
-    symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "float", short_circuit_calls={0x4007d7:(('float', 'int'), 'float')})
+    symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "float", short_circuit_calls={0x4007d7:(None, ('float', 'int'), 'float')})
     infix = ['f_inner4', '(', 'argf1', ',', 'argi2', ')']
     in_sym = symexpr.symex_to_infix()
     assert_equal(in_sym, infix)
