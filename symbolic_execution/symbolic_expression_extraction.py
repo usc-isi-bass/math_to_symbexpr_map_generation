@@ -221,7 +221,20 @@ class SymbolicExpressionExtractor:
         ret_reg_name = sym_cc.return_val.reg_name
 
         if len(simgr.deadended) > 1:
-            symex_expr = claripy.Or(*list(state.regs.get(ret_reg_name) for state in simgr.deadended))
+            ret_states = simgr.deadended
+            #symex_expr = claripy.Or(*list(state.regs.get(ret_reg_name) for state in simgr.deadended))
+            def ret_states_to_ite_expr(i, ret_states):
+                ret_state = ret_states[i]
+                state_sym_expr = ret_state.regs.get(ret_reg_name)
+                if len(ret_state.solver.constraints) == 1:
+                    state_path_constraints = ret_state.solver.constraints[0]
+                else:
+                    state_path_constraints = claripy.And(*ret_state.solver.constraints)
+                if i == len(ret_states) - 1:
+                    return state_sym_expr
+                else_expr = ret_states_to_ite_expr(i + 1, ret_states)
+                return claripy.If(state_path_constraints, state_sym_expr, else_expr)
+            symex_expr = ret_states_to_ite_expr(0, ret_states)
         elif len(simgr.deadended) == 1:
             state = simgr.deadended[0]
             symex_expr = state.regs.get(ret_reg_name)
