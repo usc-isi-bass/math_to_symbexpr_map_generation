@@ -37,7 +37,7 @@ simplification_options = [
 
 SYM_BINOPS = [op for (_, op, _) in BINARY_OPERATORS] + \
         [op for (_, op, _) in BINARY_BIT_OPERATORS] + \
-        [".."]
+        ["..", ">", ">=", "<=", "<", "==", "!=", "&&", "||"]
 SYM_UNFUNCS = [op for (_, op, _) in UNARY_FUNCTIONS]
 SYM_BINFUNCS = [op for (_, op, _) in BINARY_FUNCTIONS]
 SYM_UNFUNCS_d = {func:op for (func, op, _) in UNARY_FUNCTIONS}
@@ -101,11 +101,7 @@ def _process_token(token):
     token = re.sub(r"\[\d{1,2}:\d{1,2}\]", "", token)
 
     # First handle hex numbers
-    if token == "0x0":
-        # Probably padding 0, keep it
-        return token
-
-    elif re.fullmatch(r"0xff+[0-9A-Fa-f]+", token):
+    if re.fullmatch(r"0xff+[0-9A-Fa-f]+", token):
         # 0xfff*, probably negative number, transfer to decimal
         number = _s32(int(token, 16))
         return str(number)
@@ -132,6 +128,30 @@ def _process_token(token):
 
     elif token == "__mod__" or token == "SMod":
         return "%"
+
+    elif token == "And" or token == "__and__":
+        return "&&"
+
+    elif token == "Or" or token == "__or__":
+        return "||"
+
+    elif token == "SLT" or token == "ULT" or token == "fpLT":
+        return "<"
+
+    elif token == "SLE" or token == "ULE" or token == "fpLE":
+        return "<="
+
+    elif token == "SGE" or token == "UGE" or token == "fpGE":
+        return ">="
+
+    elif token == "SGT" or token == "UGT" or token == "fpGT":
+        return ">"
+
+    elif token == "__eq__" or token == "fpEQ":
+        return "=="
+
+    elif token == "__ne__" or token == "fpNE":
+        return "!="
     
     elif token == "__lshift__":
         return "<<"
@@ -168,7 +188,6 @@ class SymbolicExpressionExtractor:
         self.proj = angr.Project(elf_file_name, auto_load_libs=False)
         self.cfg = self.proj.analyses.CFGFast(normalize=True)
         self.setup_func_simprocs()
-
 
 
     def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
@@ -221,14 +240,17 @@ class SymbolicExpressionExtractor:
         ret_reg_name = sym_cc.return_val.reg_name
 
         if len(simgr.deadended) > 1:
-            symex_expr = claripy.Or(*list(state.regs.get(ret_reg_name) for state in simgr.deadended))
+            states = simgr.deadended
+            state,_ , merge_occurred = states[0].merge(*states[1:], merge_conditions=[*[state.history.jump_guards for state in states]])
+            if not merge_occurred:
+                raise Exception("Merge state failed!")
         elif len(simgr.deadended) == 1:
             state = simgr.deadended[0]
-            symex_expr = state.regs.get(ret_reg_name)
         else:
             raise Exception("No deadended states in simulation manager: stashes: {} errored: {}".format(simgr.stashes, simgr.errored))
-
+        symex_expr = state.regs.get(ret_reg_name)
         return ExtractedSymExpr(symex_expr, func_symvar_args)
+
 
     def setup_func_simprocs(self):
         double_length = claripy.fp.FSORT_DOUBLE.length
@@ -548,8 +570,9 @@ class ExtractedSymExpr:
         elif op in SYM_BINFUNCS_d:
             children = [self._symex_to_infix_tree(expr.args[0]), self._symex_to_infix_tree(expr.args[1])]
             return InfixTree(op=SYM_BINFUNCS_d[op], children=children)
+
         else: 
-            print(op)
+            log.debug("Symexpr use default handling: %s, args: %s" % (op, len(expr.args)))
 
         children = []
         ast_queue = deque([iter(expr.args)])
@@ -570,6 +593,13 @@ class ExtractedSymExpr:
         return infix_tree.get_sequence(use_heuristics)
 
 
+def _put_brackets(children):
+    if len(children) > 1 and \
+       not (children[0] == "(" and children[-1] == ")"):
+        return ["("] + children + [")"]
+    return children
+
+
 class InfixTree:
     def __init__(self, expr=None, op=None, children=[]):
         self.expr = expr
@@ -587,18 +617,18 @@ class InfixTree:
             return [_process_token(self.expr)]
         op = _process_token(self.op)
         if op == "-" and len(self.children) == 1:
-            return ["-", "("] + self.children[0].sequenize() + [")"]
+            return ["-"] + _put_brackets(self.children[0].sequenize())
         if op in SYM_BINOPS:
-            ret = self.children[0].sequenize()
+            ret = _put_brackets(self.children[0].sequenize())
             for child in self.children[1:]:
                 ret += [op]
-                ret += child.sequenize()
+                ret += _put_brackets(child.sequenize())
             return ret
         else:
             ret = [op, "("] + self.children[0].sequenize()
             for child in self.children[1:]:
                 ret += [","]
-                ret += child.sequenize()
+                ret += _put_brackets(child.sequenize())
             ret += [")"]
         return ret
 
