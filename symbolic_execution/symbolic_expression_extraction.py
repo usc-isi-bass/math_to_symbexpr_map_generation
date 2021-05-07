@@ -183,10 +183,14 @@ class SymbolicExpressionExtractor:
     #
     #######################################
 
-    def __init__(self, elf_file_name):
+    def __init__(self, elf_file_name, proj=None, cfg=None):
         self.elf_file_name = elf_file_name
-        self.proj = angr.Project(elf_file_name, auto_load_libs=False)
-        self.cfg = self.proj.analyses.CFGFast(normalize=True)
+        self.proj = proj
+        if self.proj is None:
+            self.proj = angr.Project(elf_file_name, auto_load_libs=False)
+        self.cfg = cfg
+        if self.cfg is None:
+            self.cfg = self.proj.analyses.CFGFast(normalize=True)
         self.setup_func_simprocs()
 
 
