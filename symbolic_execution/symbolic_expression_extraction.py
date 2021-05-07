@@ -241,6 +241,7 @@ class SymbolicExpressionExtractor:
         simgr = self.proj.factory.simulation_manager(start_state)
         simgr.run()
 
+        ret_reg_name = sym_cc.return_val.reg_name
 
         if len(simgr.deadended) > 1:
             states = simgr.deadended
@@ -253,7 +254,7 @@ class SymbolicExpressionExtractor:
             raise Exception("No deadended states in simulation manager: stashes: {} errored: {}".format(simgr.stashes, simgr.errored))
         symex_expr = state.regs.get(ret_reg_name)
         return ExtractedSymExpr(symex_expr, func_symvar_args)
-  
+
 
     def setup_func_simprocs(self):
         double_length = claripy.fp.FSORT_DOUBLE.length
