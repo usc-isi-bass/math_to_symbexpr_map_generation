@@ -27,6 +27,11 @@ def generate_matlab_function(matlab_command, eng):
 def test_simple():
     eng = matlab.engine.start_matlab()
     print(generate_matlab_function('poly = A * B + 2', eng))
+    print(generate_matlab_function('poly = exp(A) * B ^ 2', eng))
+    print(generate_matlab_function('poly = A ^ B', eng))
+    print(generate_matlab_function('poly = log10(A)', eng))
+    print(generate_matlab_function('poly = 0', eng))
+    print(generate_matlab_function('poly = sqrt(A + B)', eng))
 
 
 if __name__ == "__main__":
