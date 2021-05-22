@@ -169,6 +169,19 @@ def _process_token(token):
     else:
         return token
 
+
+def heuristic_if_rebuild(args):
+    # has op of == or !=, should be floating points
+    """
+    if hasattr(args[2], "op"):
+        # Case for >,<
+    print(args)
+    print(str(args).startswith("BoolV"))
+    """
+
+    cond, ele1, ele2 = args
+    return cond, ele1, ele2
+
 #######################################
 #
 # Perform symbolic execution on functions in a binary executable and extract the AST of the return value.
@@ -257,6 +270,17 @@ class SymbolicExpressionExtractor:
 
         if len(simgr.deadended) > 1:
             states = simgr.deadended
+            for state in states:
+                for g in state.history.jump_guards:
+                    infix = ExtractedSymExpr(g, func_symvar_args).jumpguard_to_infix()
+                    if infix is None:
+                        continue
+                    print("".join(e for e in infix))
+                print("--")
+                expr = state.regs.get(ret_reg_name)
+                print("".join(e for e in ExtractedSymExpr(expr, func_symvar_args).symex_to_infix()))
+
+                print()
             state,_ , merge_occurred = states[0].merge(*states[1:], merge_conditions=[*[state.history.jump_guards for state in states]])
             if not merge_occurred:
                 raise Exception("Merge state failed!")
@@ -491,6 +515,7 @@ class ExtractedSymExpr:
             prefix_queue += children.pop(0)
             return prefix_queue
 
+
     def symex_to_prefix(self, use_heuristics=True):
         log.warning("Legacy: Only infix is used now")
         symex_expr = self.symex_expr
@@ -503,6 +528,64 @@ class ExtractedSymExpr:
             prefix = prefix[2:]
 
         return [_process_token(elem) for elem in prefix]
+
+
+    def jumpguard_to_infix(self, use_heuristics=True):
+        if not use_heuristics:
+            return self.symex_to_infix(use_heuristics)
+
+        expr = self.symex_expr
+        if len(expr.args) == 1 and str(expr) == '<Bool True>':
+            return None
+        str_expr = str(expr)
+        # Integer comparsion, directly parse
+        if "0x45" not in str_expr and "0x40" not in str_expr:
+            return self.symex_to_infix(use_heuristics)
+        # Probably >= or <= 
+        if "LShR" not in str_expr:
+            if str(expr.op) == "__ne__":
+                sub_expr = expr.args[0].args[0].args[1].args[0]
+                infix_tree = self._symex_to_infix_tree(sub_expr)
+                return infix_tree.get_sequence(use_heuristics)
+            else:
+                ch1 = expr.args[0].args[0].args[1].args[0].args[0]
+                ch2 = expr.args[0].args[0].args[1].args[0].args[1]
+                ch1_tree = self._symex_to_infix_tree(ch1)
+                ch2_tree = self._symex_to_infix_tree(ch2)
+                tree = InfixTree(op=">=", children=[ch1_tree, ch2_tree])
+                return tree.get_sequence(use_heuristics)
+        # Probably > or < 
+        if "|" in str_expr:
+            ch1 = expr.args[0].args[0].args[0].args[0].args[1].args[2].args[0].args[0]
+            ch2 = expr.args[0].args[0].args[0].args[0].args[1].args[2].args[0].args[1]
+            ch1_tree = self._symex_to_infix_tree(ch1)
+            ch2_tree = self._symex_to_infix_tree(ch2)
+            if str(expr.op) == "__ne__":
+                op = ">"
+            else:
+                op = "<="
+            tree = InfixTree(op=op, children=[ch1_tree, ch2_tree])
+            return tree.get_sequence(use_heuristics)
+        # Probably == or !=
+        if isinstance(expr.args[1], claripy.ast.bv.BV):
+            ch1 = expr.args[0].args[0].args[0].args[0].args[1].args[2].args[0].args[0]
+            ch2 = expr.args[0].args[0].args[0].args[0].args[1].args[2].args[0].args[1]
+            ch1_tree = self._symex_to_infix_tree(ch1)
+            ch2_tree = self._symex_to_infix_tree(ch2)
+            if expr.args[1].args[0] == 0:
+                tree = InfixTree(op="??", children=[ch1_tree, ch2_tree])
+                return tree.get_sequence(use_heuristics)
+            else:
+                if str(expr.op) == "__ne__":
+                    tree = InfixTree(op="!=", children=[ch1_tree, ch2_tree])
+                    return tree.get_sequence(use_heuristics)
+                else:
+                    tree = InfixTree(op="==", children=[ch1_tree, ch2_tree])
+                    return tree.get_sequence(use_heuristics)
+        else:
+            raise NotImplemented("Jump guard parsing")
+
+
 
 
     def _symex_to_infix_tree(self, expr, use_heuristics=True):
@@ -557,7 +640,7 @@ class ExtractedSymExpr:
         elif op == "fpToIEEEBV" or op == "FPS" or op == "FPV":
             return self._symex_to_infix_tree(expr.args[0])
 
-        elif op == "fpToFP":
+        elif op == "fpToFP" or op == "fpToSBV" or op == "fpToUBV":
             if isinstance(expr.args[0], claripy.fp.RM):
                 return self._symex_to_infix_tree(expr.args[1])
             else:
