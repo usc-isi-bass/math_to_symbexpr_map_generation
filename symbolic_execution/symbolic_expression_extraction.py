@@ -208,16 +208,7 @@ class SymbolicExpressionExtractor:
         self.setup_func_simprocs()
 
 
-    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
-        '''
-        Extract the AST of the return value of a target function.
-            target_func_name:       The name of the function to perform symbolic execution on.
-            symvar_names:           The names of the symbolic variables to pass this function as parameters.
-            symvar_types:           The types of the symbolic variables to pass this function as parameters.
-            ret_type:               The type of the return value of this function
-            simplified:             To simplify the symbolic expression or not
-            short_circuit_calls:    A map from the addresses of the functions we want to skip, to a tuple (func_name, (arg1_type, arg2_type, ...), ret_type).
-        '''
+    def _get_sim_states(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
         target_func = self.cfg.functions.function(name=target_func_name)
         assert target_func is not None, "Could not find a function by name: {}".format(target_func_name)
         func_addr = target_func.addr
@@ -251,45 +242,77 @@ class SymbolicExpressionExtractor:
             start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
         else:
             start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, add_options=[LAZY_SOLVES, BYPASS_UNSUPPORTED_IROP], remove_options=simplification_options)
-        # TMP
-        start_state.mem[start_state.regs.rdi+0x14].float = claripy.FPS("rdi+0x14", claripy.fp.FSORT_FLOAT, explicit_name=True)
-        start_state.mem[start_state.regs.rdi+0x30].uint64_t = 0x601050 
-        start_state.mem[0x601050].uint64_t = 0x601052
-        start_state.mem[0x601062].uint64_t = 0x601070
-        # TMP
 
         simgr = self.proj.factory.simulation_manager(start_state)
         simgr.run()
+        return simgr.deadended, func_symvar_args
 
-        ret_reg_name = sym_cc.return_val.reg_name
-        # TMP
-        state = simgr.deadended[0]
-        symex_expr = state.regs.get(ret_reg_name)
-        return ExtractedSymExpr(symex_expr, func_symvar_args)
-        # TMP
+    def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
+        return self.extract_merged(target_func_name, symvar_names, symvar_ctypes, ret_type, simplified, short_circuit_calls)
 
-        if len(simgr.deadended) > 1:
-            states = simgr.deadended
-            for state in states:
-                for g in state.history.jump_guards:
-                    infix = ExtractedSymExpr(g, func_symvar_args).jumpguard_to_infix()
-                    if infix is None:
-                        continue
-                    print("".join(e for e in infix))
-                print("--")
-                expr = state.regs.get(ret_reg_name)
-                print("".join(e for e in ExtractedSymExpr(expr, func_symvar_args).symex_to_infix()))
+    def extract_merged(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
+        '''
+        Extract the AST of the return value of a target function.
+        Merge all deadend branches into one state
+            target_func_name:       The name of the function to perform symbolic execution on.
+            symvar_names:           The names of the symbolic variables to pass this function as parameters.
+            symvar_types:           The types of the symbolic variables to pass this function as parameters.
+            ret_type:               The type of the return value of this function
+            simplified:             To simplify the symbolic expression or not
+            short_circuit_calls:    A map from the addresses of the functions we want to skip, to a tuple (func_name, (arg1_type, arg2_type, ...), ret_type).
+        '''
+        states, func_symvar_args = self._get_sim_states(target_func_name, symvar_names, symvar_ctypes, ret_type, simplified, short_circuit_calls)
 
-                print()
+        if ret_type in C_TYPES_INT:
+            ret_reg_name = self.proj.factory.cc_from_arg_kinds(fp_args=[], ret_fp=False).return_val.reg_name
+        else:
+            ret_reg_name = self.proj.factory.cc_from_arg_kinds(fp_args=[], ret_fp=True).return_val.reg_name
+
+        if len(states) > 1:
             state,_ , merge_occurred = states[0].merge(*states[1:], merge_conditions=[*[state.history.jump_guards for state in states]])
             if not merge_occurred:
                 raise Exception("Merge state failed!")
-        elif len(simgr.deadended) == 1:
-            state = simgr.deadended[0]
+        elif len(states) == 1:
+            state = states[0]
         else:
             raise Exception("No deadended states in simulation manager: stashes: {} errored: {}".format(simgr.stashes, simgr.errored))
         symex_expr = state.regs.get(ret_reg_name)
         return ExtractedSymExpr(symex_expr, func_symvar_args)
+
+
+    def extract_allstates(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
+        '''
+        Extract the AST of the return value of a target function.
+        Instead of merging states, return the list of jumpguards and ret_value of each state
+            target_func_name:       The name of the function to perform symbolic execution on.
+            symvar_names:           The names of the symbolic variables to pass this function as parameters.
+            symvar_types:           The types of the symbolic variables to pass this function as parameters.
+            ret_type:               The type of the return value of this function
+            simplified:             To simplify the symbolic expression or not
+            short_circuit_calls:    A map from the addresses of the functions we want to skip, to a tuple (func_name, (arg1_type, arg2_type, ...), ret_type).
+        '''
+        states, func_symvar_args = self._get_sim_states(target_func_name, symvar_names, symvar_ctypes, ret_type, simplified, short_circuit_calls)
+
+        if ret_type in C_TYPES_INT:
+            ret_reg_name = self.proj.factory.cc_from_arg_kinds(fp_args=[], ret_fp=False).return_val.reg_name
+        else:
+            ret_reg_name = self.proj.factory.cc_from_arg_kinds(fp_args=[], ret_fp=True).return_val.reg_name
+
+        jumpguards_states = []
+        if len(states) >= 1:
+            for state in states:
+                jump_guards = []
+                for g in state.history.jump_guards:
+                    infix = ExtractedSymExpr(g, func_symvar_args).jumpguard_to_infix()
+                    if infix is None:
+                        continue
+                    jump_guards.append(infix)
+                expr = state.regs.get(ret_reg_name)
+                ret_expr = ExtractedSymExpr(expr, func_symvar_args).symex_to_infix()
+                jumpguards_states.append((jump_guards, ret_expr))
+        else:
+            raise Exception("No deadended states in simulation manager: stashes: {} errored: {}".format(simgr.stashes, simgr.errored))
+        return jumpguards_states
 
 
     def setup_func_simprocs(self):
@@ -373,7 +396,7 @@ class ExtractedSymExpr:
     #
     #######################################
 
-    def __init__(self, symex_expr, symvars):
+    def __init__(self, symex_expr, symvars=[]):
         self.symex_expr = symex_expr
         self.symvars = symvars
 
