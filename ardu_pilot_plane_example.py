@@ -1,4 +1,5 @@
 import angr
+import argparse
 import claripy
 import logging
 import os
@@ -10,9 +11,12 @@ logging.getLogger('cle').propagate = False
 
 from symbolic_execution.symbolic_expression_extraction import SymbolicExpressionExtractor
 
-elf_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'binaries', 'ardupilot', 'arduplane')
-
 def main():
+    parser = argparse.ArgumentParser("Perform symbolic execution on the arduplane binary")
+    parser.add_argument('binary', help='Path to arduplane binary')
+    args = parser.parse_args()
+    elf_path = args.binary
+
     see  = SymbolicExpressionExtractor(elf_path)
     millis_map = (0x62e3f8, ('millis', (), 'int'))
     groundspeed_map = (0x45b9b6, ('groundspeed', (), 'int'))
