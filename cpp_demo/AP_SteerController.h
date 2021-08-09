@@ -10,7 +10,11 @@ public:
       return a steering servo output from -4500 to 4500 given a
       desired yaw rate in degrees/sec. Positive yaw is to the right.
      */
-	int32_t get_steering_out_rate(float desired_rate);
+	float get_steering_out_rate(float desired_rate);
+
+	float simple_return(float desired_rate);
+
+	float simple_compare(float desired_rate);
 
 private:
     float _tau;

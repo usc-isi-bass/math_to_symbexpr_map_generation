@@ -10,7 +10,8 @@ from angr.sim_options import LAZY_SOLVES,\
     SIMPLIFY_EXIT_STATE,\
     SIMPLIFY_EXIT_TARGET,\
     SIMPLIFY_EXIT_GUARD,\
-    SIMPLIFY_CONSTRAINTS
+    SIMPLIFY_CONSTRAINTS,\
+    BYPASS_UNSUPPORTED_IROP
 import claripy
 import re
 from collections.abc import Iterable
@@ -236,12 +237,23 @@ class SymbolicExpressionExtractor:
         if simplified:
             start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
         else:
-            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, add_options=[LAZY_SOLVES], remove_options=simplification_options)
+            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, add_options=[LAZY_SOLVES, BYPASS_UNSUPPORTED_IROP], remove_options=simplification_options)
+        # TMP
+        start_state.mem[start_state.regs.rdi+0x14].float = claripy.FPS("rdi+0x14", claripy.fp.FSORT_FLOAT, explicit_name=True)
+        start_state.mem[start_state.regs.rdi+0x30].uint64_t = 0x601050 
+        start_state.mem[0x601050].uint64_t = 0x601052
+        start_state.mem[0x601062].uint64_t = 0x601070
+        # TMP
 
         simgr = self.proj.factory.simulation_manager(start_state)
         simgr.run()
 
         ret_reg_name = sym_cc.return_val.reg_name
+        # TMP
+        state = simgr.deadended[0]
+        symex_expr = state.regs.get(ret_reg_name)
+        return ExtractedSymExpr(symex_expr, func_symvar_args)
+        # TMP
 
         if len(simgr.deadended) > 1:
             states = simgr.deadended

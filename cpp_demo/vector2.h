@@ -36,7 +36,6 @@
 #include <cmath>
 #include <cfloat>
 #include "AP_Common.h"
-#include "AP_Math.h"
 
 template <typename T>
 struct Vector2
@@ -273,6 +272,8 @@ typedef Vector2<uint32_t>       Vector2ul;
 typedef Vector2<float>          Vector2f;
 
 #pragma GCC optimize("O2")
+
+#include "AP_Math.h"
 
 template <typename T>
 float Vector2<T>::length_squared() const
