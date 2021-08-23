@@ -1,0 +1,149 @@
+
+# Program:
+
+int branch_int1(int q1, int q2) {
+    int tmp = q1 + 5;
+    int x = 0;
+    if (tmp > q2) {
+        if (tmp > 0)
+            x = 1;
+        else
+            x = 2;
+    } else
+        x = 3;
+    return x + q1 + q2;
+}
+
+
+# Symexpr:
+
+If(((q1+5)>q2)&&((q1+5)>0),(q2+1+q1),(If(((q1+5)>q2)&&((q1+5)<=0),(q2+2+q1),(If((q1+5)<=q2,(q2+3+q1),0)))))
+
+
+If ( ((q1+5)>q2) && ((q1+5)>0),
+
+  (q2+1+q1),
+
+  // Else
+  (
+   If ( ((q1+5)>q2)&&((q1+5)<=0),
+
+       (q2+2+q1),
+
+       // Else
+       (If((q1+5)<=q2,(q2+3+q1),0)))
+   )
+)
+
+
+------------------------------------------------------------------
+Changes introduced by Compiler 
+
+# Program:
+
+int branch_int1(int q1, int q2) {
+    int tmp = q1 + 5;
+    int x = 0;
+    if (tmp > q2) {
+        if (tmp > 0)
+            x = 1;
+        else
+            x = 2;
+    } else
+        x = 3;
+    return x + q1 + q2;
+}
+
+o0:   If(((q1+5)>q2)&&((q1+5)>0),(q2+1+q1),(If(((q1+5)>q2)&&((q1+5)<=0),(q2+2+q1),(If((q1+5)<=q2,(q2+3+q1),0)))))
+o1:   If((q1+5)>q2,((If((q1+5)<=0,1,0))+1+q1+q2),(3+q1+q2))
+o2:   If((q1+5)>q2,((If((q1+5)<=0,1,0))+1+q1+q2),(3+q1+q2))
+
+------------------------------------------------------------------
+
+
+# Program:
+
+int branch_int2(int q1, int q2) {
+    int x = 0;
+    if (q1 + 5 > q2) {
+        if (q1 + 5 > 0)
+            x = 1;
+        else
+            x = 2;
+    } else
+        x = 3;
+    return x + q1 + q2;
+}
+
+o0:   If((q2<=(q1+4))&&(q1>=-4),(q2+1+q1),(If((q2<=(q1+4))&&(q1<-4),(q2+2+q1),(If(q2>(q1+4),(q2+3+q1),0)))))
+o1:   If((q1+4)>=q2,((If(q1<-4,1,0))+1+q1+q2),(3+q1+q2))
+o2:   If((q1+4)>=q2,((If(q1<-4,1,0))+1+q1+q2),(3+q1+q2))
+
+------------------------------------------------------------------
+
+Floating point Conditions
+
+double branch_double(double q1, double q2) {
+    if (q1 > q2) {
+        return q1;
+    } else
+        return q2;
+}
+
+
+o0: If( (((If(q1<q2,1,(If(q1>q2,0,(If(q1==q2,64,69))))))&&69)||(LShR((If(q1<q2,1,(If(q1>q2,0,(If(q1==q2,64,69))))))&&69,6))&&1)!=1,
+        q1,
+        q2)
+
+	...
+	    0x1924:	comisd	xmm0, xmmword ptr [rbp - 0x10]
+        0x1929:	jbe	0x1932
+
+        ------ IMark(0x1924, 5, 0) ------
+	    t20 = Add64(t8,0xfffffffffffffff0)
+	    t6 = LDle:F64(t20)
+	    t5 = GET:F64(ymm0)
+	    PUT(cc_op) = 0x0000000000000000
+	    PUT(cc_dep2) = 0x0000000000000000
+	    t24 = CmpF64(t5,t6)
+	    t32 = 32Uto64(t24)
+	    t23 = t32
+	    t22 = And64(t23,0x0000000000000045)
+	    PUT(cc_dep1) = t22
+	    PUT(rip) = 0x0000000000001929
+	    ------ IMark(0x1929, 2, 0) ------
+	    t37 = Shr64(t22,0x06)
+	    t38 = Shr64(t22,0x00)
+	    t36 = Or64(t38,t37)
+	    t35 = And64(t36,0x0000000000000001)
+	    t34 = CmpEQ64(t35,0x0000000000000001)
+	    t33 = 1Uto64(t34)
+	    t30 = t33
+	    t39 = 64to1(t30)
+	    t25 = t39
+
+	...
+
+* 64 -> 0x40, 69 -> 0x45
+  Vex:
+      /* Comparison, yielding GT/LT/EQ/UN(ordered), as per the following:
+            0x45 Unordered
+            0x01 LT
+            0x00 GT
+            0x40 EQ
+         This just happens to be the Intel encoding.  The values
+         are recorded in the type IRCmpF64Result.
+      */
+
+
+
+
+o1: If(q1>q2,q1,q2)
+
+	...
+    maxsd  %xmm1,%xmm0
+    ret
+	...
+
+------------------------------------------------------------------
+

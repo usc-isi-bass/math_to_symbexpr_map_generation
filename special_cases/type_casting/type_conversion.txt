@@ -1,0 +1,75 @@
+
+(a - b) * c
+
+
+#######
+    long -> float
+    print float (%f)
++++++++
+Code:
+    float f_003(long a, long b, long c) {
+        return (float)((a - b) * c);
+    }
+    printf("%f\n", f_003(atoi(argv[1]), atoi(argv[2]), atoi(argv[3])));
+-------
+./l_2_f 1 2 3
+-3.000000
+
+
+..............................................................................................
+
+
+#######
+    long long -> float
+    print float (%f)
++++++++
+Code:
+    float f_003(long a, long b, long c) {
+        return (float)((a - b) * c);
+    }
+    printf("%f\n", f_003(atol(argv[1]), atol(argv[2]), atol(argv[3])));
+-------
+./ll_2_f 1 2 3
+-3.000000
+
+
+..............................................................................................
+
+
+#######
+    unsigned int -> float
+    print float (%f)
++++++++
+Code 1:
+    float f_003(unsigned int a, unsigned int b, unsigned int c) {
+        return (float)((a - b) * c);
+    }
+    printf("%f\n", f_003(atoi(argv[1]), atoi(argv[2]), atoi(argv[3])));
+-------
+./u_2_f 1 2 3
+4294967296.000000
+
++++++++
+Code 2:
+    float f_003(unsigned int a, unsigned int b, unsigned int c) {
+        return (int)((a - b) * c);
+    }
+    printf("%f\n", f_003(atoi(argv[1]), atoi(argv[2]), atoi(argv[3])));
+-------
+./u_2_i_2_f 1 2 3
+-3.000000
+
++++++++
+Code 3:
+    float f_003(unsigned int a, unsigned int b, unsigned int c) {
+        return (float)((a - b) * c);
+    }
+    printf("%u\n", f_003(atoi(argv[1]), atoi(argv[2]), atoi(argv[3])));
+-------
+$ ./u_2_f_pu 1 2 3
+2
+
+
+..............................................................................................
+
+

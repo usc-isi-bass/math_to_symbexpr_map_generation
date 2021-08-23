@@ -1,0 +1,4 @@
+a_0 + a_1 + a_2
+
+32Uto64(Add32(64to32(32Uto64(LDle:I32(Add64(Sub64(GET:I64(rsp),8),-4)))),64to32(32Uto64(Add32(64to32(32Uto64(LDle:I32(Add64(Sub64(GET:I64(rsp),8),-8)))),64to32(32Uto64(LDle:I32(Add64(Sub64(GET:I64(rsp),8),-12)))))))))
+

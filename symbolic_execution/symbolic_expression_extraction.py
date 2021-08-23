@@ -208,11 +208,15 @@ class SymbolicExpressionExtractor:
         self.setup_func_simprocs()
 
 
-    def _get_sim_states(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
+    def _get_sim_states(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={},
+                       ardupilot_demo=False):
         target_func = self.cfg.functions.function(name=target_func_name)
         assert target_func is not None, "Could not find a function by name: {}".format(target_func_name)
         func_addr = target_func.addr
 
+        # TODO:
+        # Initial function shortcut location here
+        # How do we automatically detect fucntion arguments?
         self._hook_func_callsites(short_circuit_calls)
 
         # Create BVS for integer/long arguments, and FPS for float/double
@@ -243,9 +247,16 @@ class SymbolicExpressionExtractor:
         else:
             start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, add_options=[LAZY_SOLVES, BYPASS_UNSUPPORTED_IROP], remove_options=simplification_options)
 
+        if ardupilot_demo:
+            start_state.mem[start_state.regs.rdi+0x30].uint64_t = 0x601050 
+            start_state.mem[0x601050].uint64_t = 0x601052
+            start_state.mem[0x601062].uint64_t = 0x601070
+        # TODO:
+        # Initial mem location here
+
         simgr = self.proj.factory.simulation_manager(start_state)
         simgr.run()
-        return simgr.deadended, func_symvar_args
+        return simgr.deadended, func_symvar_args, simgr.stashes, simgr.errored
 
     def extract(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
         return self.extract_merged(target_func_name, symvar_names, symvar_ctypes, ret_type, simplified, short_circuit_calls)
@@ -261,7 +272,7 @@ class SymbolicExpressionExtractor:
             simplified:             To simplify the symbolic expression or not
             short_circuit_calls:    A map from the addresses of the functions we want to skip, to a tuple (func_name, (arg1_type, arg2_type, ...), ret_type).
         '''
-        states, func_symvar_args = self._get_sim_states(target_func_name, symvar_names, symvar_ctypes, ret_type, simplified, short_circuit_calls)
+        states, func_symvar_args, stashes, errored = self._get_sim_states(target_func_name, symvar_names, symvar_ctypes, ret_type, simplified, short_circuit_calls)
 
         if ret_type in C_TYPES_INT:
             ret_reg_name = self.proj.factory.cc_from_arg_kinds(fp_args=[], ret_fp=False).return_val.reg_name
@@ -275,12 +286,13 @@ class SymbolicExpressionExtractor:
         elif len(states) == 1:
             state = states[0]
         else:
-            raise Exception("No deadended states in simulation manager: stashes: {} errored: {}".format(simgr.stashes, simgr.errored))
+            raise Exception("No deadended states in simulation manager: stashes: {} errored: {}".format(stashes, errored))
         symex_expr = state.regs.get(ret_reg_name)
         return ExtractedSymExpr(symex_expr, func_symvar_args)
 
 
-    def extract_allstates(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={}):
+    def extract_allstates(self, target_func_name: str, symvar_names: Iterable, symvar_ctypes: Iterable, ret_type: str, simplified=True, short_circuit_calls={},
+                         ardupilot_demo=False):
         '''
         Extract the AST of the return value of a target function.
         Instead of merging states, return the list of jumpguards and ret_value of each state
@@ -291,7 +303,8 @@ class SymbolicExpressionExtractor:
             simplified:             To simplify the symbolic expression or not
             short_circuit_calls:    A map from the addresses of the functions we want to skip, to a tuple (func_name, (arg1_type, arg2_type, ...), ret_type).
         '''
-        states, func_symvar_args = self._get_sim_states(target_func_name, symvar_names, symvar_ctypes, ret_type, simplified, short_circuit_calls)
+        states, func_symvar_args, stashes, errored = self._get_sim_states(target_func_name, symvar_names, symvar_ctypes, ret_type, simplified, short_circuit_calls,
+                                                                          ardupilot_demo)
 
         if ret_type in C_TYPES_INT:
             ret_reg_name = self.proj.factory.cc_from_arg_kinds(fp_args=[], ret_fp=False).return_val.reg_name
@@ -311,7 +324,7 @@ class SymbolicExpressionExtractor:
                 ret_expr = ExtractedSymExpr(expr, func_symvar_args).symex_to_infix()
                 jumpguards_states.append((jump_guards, ret_expr))
         else:
-            raise Exception("No deadended states in simulation manager: stashes: {} errored: {}".format(simgr.stashes, simgr.errored))
+            raise Exception("No deadended states in simulation manager: stashes: {} errored: {}".format(stashes, errored))
         return jumpguards_states
 
 
@@ -567,6 +580,10 @@ class ExtractedSymExpr:
         # Probably >= or <= 
         if "LShR" not in str_expr:
             if str(expr.op) == "__ne__":
+                """
+                for arg in expr.args:
+                    print(arg)
+                """
                 sub_expr = expr.args[0].args[0].args[1].args[0]
                 infix_tree = self._symex_to_infix_tree(sub_expr)
                 return infix_tree.get_sequence(use_heuristics)

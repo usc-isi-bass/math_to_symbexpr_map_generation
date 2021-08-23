@@ -1,0 +1,14 @@
+
+# Problem
+Floating points multiplied with -1, will become an XOR with 0x80000000.
+
+
+
+# Symbolic execution
+
+Natural Expression:
+(a * -1)
+--------
+Symbolic Expression (naive printing):
+<BV128 (0x0 .. fpToIEEEBV(FPS(a, DOUBLE))[31:0]) ^ 0x80000000>
+=> a XOR 0x80000000

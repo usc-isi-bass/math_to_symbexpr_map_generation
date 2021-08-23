@@ -1,0 +1,40 @@
+
+# Symbolic execution
+
++====== prefix ======+
+math:
+['*', '-', 'a', 'c', 'b']
+--------
+sym:
+['NotImplemented']
+
++====== infix ======+
+math:
+['(', '(', 'a', '-', 'c', ')', '*', 'b', ')']
+--------
+sym:
+NotImplemented
+
+----------------------------------------------
+
+# Problem
+Seeing not-implemented
+
+# Reason
+Angr does not support `unsigned long` -> `float`/`double`
+
+----------------------------------------------
+
+# C code
+float f_003(unsigned long a, unsigned long c, unsigned long b) {
+    return (float)((a - c) * b);
+}
+printf("%f\n", f_003(atoi(argv[1]), atoi(argv[2]), atoi(argv[3])));
+
+Executing the compiled binary will also go crazy actually
+
+$ ./example_c 1 2 3
+18446744073709551616.000000
+
+
+

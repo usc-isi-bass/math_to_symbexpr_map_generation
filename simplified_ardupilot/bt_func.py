@@ -1,72 +1,10 @@
+import pyvex
 
-##
-## Copy from trimafl
-##
-def search_node_by_addr(cfg, t_addr):
-    for node in cfg.model.nodes():
-        if node is not None and t_addr in node.instruction_addrs:
-            return node
-# Return the node before cur_node_addr
-#   search for the caller node of this ret node
-def search_pre_node(cfg, cur_node):
-    cur_node_addr = cur_node.addr
-    for i in range(4, 10):
-        pred = search_node_by_addr(cfg, cur_node_addr - i)
-        if pred is not None:
-            return pred
-    return None
-# Return the next node after cur_node_addr
-#   search for the ret node of this caller node
-def search_next_node(cfg, cur_node):
-    if cur_node.block is None:
-        return None
-    cur_block_size = cur_node.block.size
-    next_node_addr = cur_node.addr + cur_block_size
-    for i in range(5):
-        succ = search_node_by_addr(cfg, next_node_addr + i)
-        if succ is not None:
-            return succ
-    return None
-
-
-
-# TODO: just copy from the other part, fix it
-def symstate_init_reg_offset(state, reg_name, offset):
-    if reg_name is None:
-        return
-    if reg_name == "rsp":
-        log.debug("Skip rsp initialization")
-        return
-    elif reg_name == "rsi":
-        reg = state.regs.rsi
-    elif reg_name == "fs":
-        reg = state.regs.rsi
-    elif reg_name == "rdi":
-        reg = state.regs.rdi
-    elif reg_name == "rdx":
-        reg = state.regs.rdx
-    else:
-        log.warning("Register not in symstate_init: %s" % reg_name)
-        return
-    init_mem = str(state.mem[reg+offset].uint64_t)
-    name = init_mem.split(" at ", 1)[1][:-1].replace(" ", "_")
-    # TODO: What type is each offset? Currently set to FPS
-    state.mem[reg+offset].uint64_t = claripy.FPS(name, claripy.fp.FSORT_DOUBLE, explicit_name=True)
-
-
-def symstate_get_reg_offset(state, reg_name, offset):
-    if reg_name == "rsi":
-        reg = state.regs.rsi
-    elif reg_name == "rdi":
-        reg = state.regs.rdi
-    elif reg_name == "rdx":
-        reg = state.regs.rdx
-    else:
-        log.warning("Register not in symstate_get_reg: %s" % reg_name)
-        return
-    init_mem = str(state.mem[reg+offset].uint64_t)
-    name = init_mem.split(" at ", 1)[1][:-1].replace(" ", "_")
-    return name, state.mem[reg + offset].uint64_t.resolved
+def get_jump_call_location(proj, block):
+    jump_var = str(block.vex.next)
+    stmt_addr_list = get_block_stmt_addr(block)
+    load_addr = _get_jump_var_content(proj, stmt_addr_list, jump_var)
+    return load_addr
 
 
 # TODO: is this the right way of patching own symbol?
@@ -92,15 +30,6 @@ def get_block_stmt_addr(block):
         else:
             bs_vex_addrs.append((stmt, addr))
     return bs_vex_addrs
-
-
-def init_call_location(proj, state, jump_tmp):
-    block = state.block()
-    stmt_addr_list = get_block_stmt_addr(block)
-    load_addr = get_jump_tmp_content(proj, stmt_addr_list, jump_tmp)
-    return load_addr
-    load_locations = []
-
 
 def _s32(value):
     return -(value & 0x80000000) | (value & 0x7fffffff)
@@ -207,7 +136,7 @@ def _proceed_ST_stmt(tmpvar_dict, memory_dict, lhs, rhs, store_addrs, addr):
     return location
 
 
-def get_jump_tmp_content(proj, stmt_addr_list, jump_tmp):
+def _get_jump_var_content(proj, stmt_addr_list, jump_var):
     tmpvar_dict = {}
     memory_dict = {}
     load_addrs = set()
@@ -232,6 +161,6 @@ def get_jump_tmp_content(proj, stmt_addr_list, jump_tmp):
             log.warning("Un-handled Vex type: %s" % type(stmt))
             log.warning(str(stmt))
             continue
-        if lhs == jump_tmp:
+        if lhs == jump_var:
             return rhs
     return None

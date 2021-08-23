@@ -1,0 +1,60 @@
+
+# Issues
+1. For some operations for floating points, it will also be a result of concated
+2. fpNeg is used rather than fpSub
+
+
+# C code
+float f_006(double a_3, double a_2, int a_0, double a_5, float a_1, float a_4) {
+    return (float)((a_3 - (a_2 / a_0)) - ((a_5 * a_1) / a_4));
+}
+
+
+# Symbolic execution
+
+Natural:
+((a_3 - (a_2 / a_0)) - ((a_5 * a_1) / a_4))
+
+<BV128 
+(0x0 .. fpToIEEEBV(
+	 *fpAdd(RM.RM_NearestTiesEven, 
+		 *fpAdd(RM.RM_NearestTiesEven, 
+			 FPS(a_3, DOUBLE), 
+			 *fpNeg(
+				 *fpDiv(RM.RM_NearestTiesEven, 
+					 FPS(a_2, DOUBLE), 
+					 fpToFP(RM.RM_NearestTiesEven, a_0[31:0], DOUBLE))
+				 )
+			 ), 
+		 *fpNeg(
+			 *fpDiv(RM.RM_NearestTiesEven, 
+				 *fpMul(RM.RM_NearestTiesEven, 
+					 fpToFP(RM.RM_NearestTiesEven, fpToFP(fpToIEEEBV(FPS(a_1, DOUBLE))[31:0], FLOAT), DOUBLE), 
+					 FPS(a_5, DOUBLE)), 
+				 fpToFP(RM.RM_NearestTiesEven, fpToFP(fpToIEEEBV(FPS(a_4, DOUBLE))[31:0], FLOAT), DOUBLE))
+			 )
+		 )
+	 )
+ )[127:32]
+.. 
+fpToIEEEBV(fpToFP(RM.RM_NearestTiesEven, 
+			*fpAdd(RM.RM_NearestTiesEven, 
+				*fpAdd(RM.RM_NearestTiesEven, 
+					FPS(a_3, DOUBLE), 
+					*fpNeg(
+						*fpDiv(RM.RM_NearestTiesEven, 
+							FPS(a_2, DOUBLE), 
+							fpToFP(RM.RM_NearestTiesEven, a_0[31:0], DOUBLE))
+						)
+					), 
+				*fpNeg(
+					*fpDiv(RM.RM_NearestTiesEven, 
+						*fpMul(RM.RM_NearestTiesEven, 
+							fpToFP(RM.RM_NearestTiesEven, fpToFP(fpToIEEEBV(FPS(a_1, DOUBLE))[31:0], FLOAT), DOUBLE), 
+							FPS(a_5, DOUBLE)), 
+						fpToFP(RM.RM_NearestTiesEven, fpToFP(fpToIEEEBV(FPS(a_4, DOUBLE))[31:0], FLOAT), DOUBLE)))), FLOAT))
+>
+
+
+
+

@@ -1,0 +1,14 @@
+
+# Problem
+Pure integer multiplied with a constant, will be compiled into a combination 
+of right-shift and add.
+
+
+# Symbolic execution
+
+Natural Expression:
+(a * 5)
+--------
+Symbolic Expression (naive printing):
+<BV64 0#32 .. (0#32 .. a[31:0]) << 0x2[31:0] + a[31:0]>
+=> (a << 2) + a
