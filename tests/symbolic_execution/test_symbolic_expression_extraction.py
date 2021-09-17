@@ -147,7 +147,7 @@ def test_short_circuit_calls_01():
     var_ctypes = ['float', 'float']
     see = SymbolicExpressionExtractor(elf_path)
     func = see.cfg.functions.function(name=func_name)
-    extracted_symexpr = see.extract(func_name, ['x', 'y'], var_ctypes, "float", short_circuit_calls={0x40077a:(None, ('float',), 'float')})
+    extracted_symexpr = see.extract(func_name, ['x', 'y'], var_ctypes, "float", short_circuit_calls={0x400826:(None, ('float',), 'float')})
     symex_expr = extracted_symexpr.symex_expr
     symex_expr_ops = [ast.op for ast in symex_expr.children_asts()]
     assert_true(any(t.startswith('f_inner') for t in symex_expr_ops), msg='We replaced the function call to f_inner with an operation named f_inner but this is not in the AST: {}'.format(symex_expr_ops))
@@ -159,7 +159,7 @@ def test_short_circuit_calls_02():
     var_ctypes = ['float', 'float']
     see = SymbolicExpressionExtractor(elf_path)
     func = see.cfg.functions.function(name=func_name)
-    extracted_symexpr = see.extract(func_name, ['x', 'y'], var_ctypes, "float", short_circuit_calls={0x40077a:(None, ('float',), 'float')})
+    extracted_symexpr = see.extract(func_name, ['x', 'y'], var_ctypes, "float", short_circuit_calls={0x40085e:(None, ('float',), 'float')})
     symex_expr = extracted_symexpr.symex_expr
     symex_expr_ops = [ast.op for ast in symex_expr.children_asts()]
     assert_true('SinFunc' in symex_expr_ops, msg='We only replaced the function call to f_inner with an operation  named f_inner however, now the "SinFunc" token also disappeared: {}'.format(symex_expr_ops))
@@ -172,7 +172,7 @@ def test_short_circuit_calls_03():
     see = SymbolicExpressionExtractor(elf_path)
     func = see.cfg.functions.function(name=func_name)
     arg1, arg2 = 'arg1','arg2'
-    extracted_symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "int", short_circuit_calls={0x40079b:(None, ('int', 'int'), 'int')})
+    extracted_symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "int", short_circuit_calls={0x40088a:(None, ('int', 'int'), 'int')})
     symex_expr = extracted_symexpr.symex_expr
     symex_expr_ops = [ast.op for ast in symex_expr.children_asts()]
     assert_true(any(t.startswith('f_inner2') for t in symex_expr_ops), msg='We replaced the function call to f_inner2 with an operation named f_inner2 but this is not in the AST: {}'.format(symex_expr_ops))
@@ -196,7 +196,7 @@ def test_short_circuit_calls_04():
     see = SymbolicExpressionExtractor(elf_path)
     func = see.cfg.functions.function(name=func_name)
     arg1, arg2 = 'argi1','argf2'
-    extracted_symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "int", short_circuit_calls={0x4007af:(None, ('int', 'float'), 'int')})
+    extracted_symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "int", short_circuit_calls={0x4008b1:(None, ('int', 'float'), 'int')})
     symex_expr = extracted_symexpr.symex_expr
     symex_expr_ops = [ast.op for ast in symex_expr.children_asts()]
     assert_true(any(t.startswith('f_inner3') for t in symex_expr_ops), msg='We replaced the function call to f_inner3 with an operation named f_inner3 but this is not in the AST: {}'.format(symex_expr_ops))
@@ -220,7 +220,7 @@ def test_short_circuit_calls_05():
     see = SymbolicExpressionExtractor(elf_path)
     func = see.cfg.functions.function(name=func_name)
     arg1, arg2 = 'argf1','argi2'
-    extracted_symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "float", short_circuit_calls={0x4007d7:(None, ('float', 'int'), 'float')})
+    extracted_symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "float", short_circuit_calls={0x4008d8:(None, ('float', 'int'), 'float')})
     symex_expr = extracted_symexpr.symex_expr
     symex_expr_ops = [ast.op for ast in symex_expr.children_asts()]
     assert_true(any(t.startswith('f_inner4') for t in symex_expr_ops), msg='We replaced the function call to f_inner4 with an operation named f_inner4 but this is not in the AST: {}'.format(symex_expr_ops))
@@ -244,7 +244,7 @@ def test_short_circuit_calls_06():
     see = SymbolicExpressionExtractor(elf_path)
     func = see.cfg.functions.function(name=func_name)
     arg1 = 'argf1'
-    extracted_symexpr = see.extract(func_name, [arg1], var_ctypes, "int", short_circuit_calls={0x4007ff:(None, [], 'int')})
+    extracted_symexpr = see.extract(func_name, [arg1], var_ctypes, "int", short_circuit_calls={0x4008f6:(None, [], 'int')})
     symex_expr = extracted_symexpr.symex_expr
     assert_true(any(t.startswith('f_inner5') for t in symex_expr.variables), msg='We replaced the function call to f_inner5 with a variable named f_inner5 but this is not in the AST: {}'.format(symex_expr))
 
@@ -256,7 +256,7 @@ def test_short_circuit_calls_07():
     see = SymbolicExpressionExtractor(elf_path)
     func = see.cfg.functions.function(name=func_name)
     arg1, arg2 = 'argf1','argi2'
-    extracted_symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "float", short_circuit_calls={0x4007d7:('chosen_func_name', ('float', 'int'), 'float')})
+    extracted_symexpr = see.extract(func_name, [arg1, arg2], var_ctypes, "float", short_circuit_calls={0x4008d8:('chosen_func_name', ('float', 'int'), 'float')})
     symex_expr = extracted_symexpr.symex_expr
     symex_expr_ops = [ast.op for ast in symex_expr.children_asts()]
     assert_true(any(t.startswith('chosen_func_name') for t in symex_expr_ops), msg='We replaced the function call to f_inner4 with an operation named chosen_func_name but this is not in the AST: {}'.format(symex_expr_ops))
@@ -280,9 +280,23 @@ def test_short_circuit_calls_08():
     see = SymbolicExpressionExtractor(elf_path)
     func = see.cfg.functions.function(name=func_name)
     arg1 = 'argf1'
-    extracted_symexpr = see.extract(func_name, [arg1], var_ctypes, "int", short_circuit_calls={0x4007ff:('chosen_func_name', [], 'int')})
+    extracted_symexpr = see.extract(func_name, [arg1], var_ctypes, "int", short_circuit_calls={0x4008f6:('chosen_func_name', [], 'int')})
     symex_expr = extracted_symexpr.symex_expr
     assert_true(any(t.startswith('chosen_func_name') for t in symex_expr.variables), msg='We replaced the function call to f_inner5 with a variable named chosen_func_name but this is not in the AST: {}'.format(symex_expr))
+
+def test_short_circuit_calls_09():
+    elf_name = 'nested_func_call'
+    elf_path = os.path.join(test_location, elf_name)
+    func_name = 'f07'
+    var_ctypes = ['float']
+    see = SymbolicExpressionExtractor(elf_path)
+    func = see.cfg.functions.function(name=func_name)
+    arg1 = 'argf1'
+    extracted_symexpr = see.extract(func_name, [arg1], var_ctypes, "float", short_circuit_calls={0x400936:(None, ['float'], 'float')})
+    symex_expr = extracted_symexpr.symex_expr
+    symex_expr_ops = [ast.op for ast in symex_expr.children_asts()]
+    assert_true(any(t.startswith('indirect') for t in symex_expr_ops), msg='We did not give a specified name for an indirectly called function. We expected to see a symbolic function named "indirect", but this is not in the AST: {}'.format(symex_expr))
+
 
 def eval_int_expr(expr, *args):
     ccg = CCodeGenerator(expr)
@@ -359,3 +373,6 @@ if __name__ == "__main__":
     test_short_circuit_calls_04()
     test_short_circuit_calls_05()
     test_short_circuit_calls_06()
+    test_short_circuit_calls_07()
+    test_short_circuit_calls_08()
+    test_short_circuit_calls_09()
