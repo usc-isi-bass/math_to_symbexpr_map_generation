@@ -84,6 +84,10 @@ int f06(float x)
     return (int)x + f_inner5();
 }
 
+float f07(float x, float (*f_indirect)(float))
+{
+    return (int)x + (*f_indirect)(x);
+}
 int main(int argc, char *argv[])
 {
     float x, y, a;

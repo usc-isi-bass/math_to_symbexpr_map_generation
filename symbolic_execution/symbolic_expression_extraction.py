@@ -152,13 +152,13 @@ def _process_token(token):
 
     elif token == "__ne__" or token == "fpNE":
         return "!="
-    
+
     elif token == "__lshift__":
         return "<<"
-    
+
     elif token == "__rshift__":
         return ">>"
-    
+
     elif token == "__xor__":
         return "^"
 
@@ -240,7 +240,6 @@ class SymbolicExpressionExtractor:
 
         simgr = self.proj.factory.simulation_manager(start_state)
         simgr.run()
-
         ret_reg_name = sym_cc.return_val.reg_name
 
         if len(simgr.deadended) > 1:
@@ -293,26 +292,26 @@ class SymbolicExpressionExtractor:
 
     def _hook_func_callsites(self, short_circuit_calls):
         double_length = claripy.fp.FSORT_DOUBLE.length
-        class FuncSimProc(angr.SimProcedure):
-            def run(self, op=None, func_name=None):
-                arg_locs = self.cc.args
-                if len(arg_locs) == 0:
-                    ret_bvs = claripy.BVS(name=func_name, explicit_name=True, size=self.cc.ret_val.size)
-                    return ret_bvs
-                claripy_args = []
-                for arg_loc in arg_locs:
-                    arg = arg_loc.get_value(self.state)
-                    claripy_arg = arg.to_claripy()
-                    if self.cc.is_fp_arg(arg_loc):
-                        claripy_arg = claripy_arg[double_length-1:0].raw_to_fp()
-                    claripy_args.append(claripy_arg)
-                return op(*claripy_args)
-        for func_addr, func_types in short_circuit_calls.items():
-            if not self.proj.is_hooked(func_addr):
+
+        for call_insn_addr, func_types in short_circuit_calls.items():
+            if not self.proj.is_hooked(call_insn_addr):
                 func_name = func_types[0]
+                cfg_node = self.cfg.model.get_any_node(addr=call_insn_addr, anyaddr=True)
+                if cfg_node is None:
+                    raise Exception("Could not find a CFGNode for addr: 0x{:x}".format(call_insn_addr))
+                func = self.cfg.functions.function(addr=cfg_node.function_address)
+                assert func is not None
                 if func_name is None:
-                    func = self.cfg.functions.function(addr=func_addr)
-                    func_name = func.name
+                    call_target = func.get_call_target(cfg_node.addr)
+                    if call_target is None:
+                        func_name = "indirect"
+                    else:
+                        tgt_func = self.cfg.functions.function(addr=call_target)
+                        if tgt_func.is_simprocedure and tgt_func.name == 'UnresolvableCallTarget':
+                            func_name = 'indirect'
+                        else:
+                            func_name = tgt_func.name
+
                 func_arg_types = func_types[1]
                 func_ret_type = func_types[2]
 
@@ -322,7 +321,24 @@ class SymbolicExpressionExtractor:
                 func_op = None
                 if len(func_arg_types) > 0:
                     func_op = claripy.operations.op(func_name, func_op_arg_types, func_op_ret_type, do_coerce=False, calc_length=lambda *x: c_type_to_bit_size(func_ret_type))
-                self.proj.hook_symbol(func_addr, FuncSimProc(cc=func_cc, op=func_op, func_name=func_name))
+
+                def call_hook(state):
+                    arg_locs = func_cc.args
+                    if len(arg_locs) == 0:
+                        ret_bvs = claripy.BVS(name=func_name, explicit_name=True, size=func_cc.ret_val.size)
+                        func_cc.ret_val.set_value(state, ret_bvs)
+                    else:
+                        claripy_args = []
+                        for arg_loc in arg_locs:
+                            arg = arg_loc.get_value(state)
+                            claripy_arg = arg.to_claripy()
+                            if func_cc.is_fp_arg(arg_loc):
+                                claripy_arg = claripy_arg[double_length-1:0].raw_to_fp()
+                            claripy_args.append(claripy_arg)
+                        #print('ret reg: {}'.format(func_cc.ret_val))
+                        #state.regs.rax = func_op(*claripy_args)
+                        func_cc.ret_val.set_value(state, func_op(*claripy_args))
+                self.proj.hook(call_insn_addr, hook=call_hook, length=func.instruction_size(call_insn_addr))
 
 
 
@@ -447,7 +463,7 @@ class ExtractedSymExpr:
                 op == "fpMul" or \
                 op == "fpDiv":
             return [op] + self._symex_to_prefix(expr.args[1]) + self._symex_to_prefix(expr.args[2])
-        
+
         elif op == "fpNeg":
             return ["*", "-1"] + self._symex_to_prefix(expr.args[0])
 
@@ -562,7 +578,7 @@ class ExtractedSymExpr:
                 op == "fpDiv":
             children = [self._symex_to_infix_tree(expr.args[1]), self._symex_to_infix_tree(expr.args[2])]
             return InfixTree(op=op, children=children)
-        
+
         elif op == "fpNeg":
             children = [self._symex_to_infix_tree(expr.args[0])]
             return InfixTree(op="-", children=children)
@@ -575,7 +591,7 @@ class ExtractedSymExpr:
             children = [self._symex_to_infix_tree(expr.args[0]), self._symex_to_infix_tree(expr.args[1])]
             return InfixTree(op=SYM_BINFUNCS_d[op], children=children)
 
-        else: 
+        else:
             log.debug("Symexpr use default handling: %s, args: %s" % (op, len(expr.args)))
 
         children = []
