@@ -236,7 +236,40 @@ class SymbolicExpressionExtractor:
         if simplified:
             start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
         else:
-            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, add_options=[LAZY_SOLVES], remove_options=simplification_options)
+            #start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, add_options=[LAZY_SOLVES], remove_options=simplification_options)
+            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, remove_options=simplification_options)
+
+
+        sym_addr_writes = {}
+        def mem_rd_bp(state):
+            addr = state.inspect.mem_read_address
+            #expr = state.inspect.mem_read_expr
+            leng = state.inspect.mem_read_length
+            expr = state.memory.load(addr, size=leng, disable_actions=True, inspect=False) # XXX For some reason I think expr is sometimes wrong
+            #print("READ: expr: {} data: {}".format(expr, data))
+            cond = state.inspect.mem_read_condition
+            load_op = claripy.operations.op("LD", (claripy.ast.bv.BV,), claripy.ast.bv.BV, do_coerce=False, calc_length=lambda x: leng * 8)
+            print("READ: insn: {} addr: {} expr: {} len: {} cond: {}".format(state.regs.ip, addr, expr, leng, cond))
+            uninit = expr is None or (expr.uninitialized )
+            print("^READ: uninit: {}".format(uninit))
+            
+            if uninit is True:
+                load_op_addr = load_op(addr)
+                print("^READ: storing {} at {}".format(load_op_addr, addr))
+                state.memory.store(addr, load_op_addr, disable_actions=True, inspect=False)
+                #state.inspect.mem_read_expr = load_op(expr)
+
+        def mem_wr_bp(state):
+            addr = state.inspect.mem_write_address
+            expr = state.inspect.mem_write_expr
+            leng = state.inspect.mem_write_length
+            cond = state.inspect.mem_write_condition
+            if addr.symbolic:
+                sym_addr_writes[addr] = expr
+            print("WRITE: insn: {} addr: {} expr: {} len: {} cond: {}".format(state.regs.ip, addr, expr, leng, cond))
+            
+        start_state.inspect.b('mem_read', when=angr.BP_BEFORE, action=mem_rd_bp)
+        start_state.inspect.b('mem_write', when=angr.BP_BEFORE, action=mem_wr_bp)
 
         simgr = self.proj.factory.simulation_manager(start_state)
         simgr.run()
@@ -251,6 +284,12 @@ class SymbolicExpressionExtractor:
             state = simgr.deadended[0]
         else:
             raise Exception("No deadended states in simulation manager: stashes: {} errored: {}".format(simgr.stashes, simgr.errored))
+        #print("RDI: {}".format(state.regs.rdi))
+        #print("[RDI]: {}".format(state.memory.load(state.regs.rdi, size=4, disable_actions=True, inspect=False)))
+        #print("[RDI+4]: {}".format(state.memory.load(state.regs.rdi+4, size=4, disable_actions=True, inspect=False)))
+        print("Symbolic writes:")
+        for sym_addr, expr in sym_addr_writes.items():
+            print("    {}: {}".format(sym_addr, expr))
         symex_expr = state.regs.get(ret_reg_name)
         return ExtractedSymExpr(symex_expr, func_symvar_args)
 
@@ -366,6 +405,10 @@ class ExtractedSymExpr:
         for token in tokens:
             seq.append(_process_token(token))
         return seq
+
+    def eval(self, maps):
+        solver = claripy.Solver()
+        return solver.eval(self.symex_expr, 1, extra_constraints=[var == val for var, val in maps.items()])
 
 
     def _try_merge_same_variable_concat(self, args):
