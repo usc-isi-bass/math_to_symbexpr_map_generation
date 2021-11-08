@@ -249,13 +249,13 @@ class SymbolicExpressionExtractor:
             #print("READ: expr: {} data: {}".format(expr, data))
             cond = state.inspect.mem_read_condition
             load_op = claripy.operations.op("LD", (claripy.ast.bv.BV,), claripy.ast.bv.BV, do_coerce=False, calc_length=lambda x: leng * 8)
-            print("READ: insn: {} addr: {} expr: {} len: {} cond: {}".format(state.regs.ip, addr, expr, leng, cond))
+            #print("READ: insn: {} addr: {} expr: {} len: {} cond: {}".format(state.regs.ip, addr, expr, leng, cond))
             uninit = expr is None or (expr.uninitialized )
-            print("^READ: uninit: {}".format(uninit))
+            #print("^READ: uninit: {}".format(uninit))
             
             if uninit is True:
                 load_op_addr = load_op(addr)
-                print("^READ: storing {} at {}".format(load_op_addr, addr))
+                #print("^READ: storing {} at {}".format(load_op_addr, addr))
                 state.memory.store(addr, load_op_addr, disable_actions=True, inspect=False)
                 #state.inspect.mem_read_expr = load_op(expr)
 
@@ -266,9 +266,9 @@ class SymbolicExpressionExtractor:
             cond = state.inspect.mem_write_condition
             if addr.symbolic:
                 sym_addr_writes[addr] = expr
-            print("WRITE: insn: {} addr: {} expr: {} len: {} cond: {}".format(state.regs.ip, addr, expr, leng, cond))
+            #print("WRITE: insn: {} addr: {} expr: {} len: {} cond: {}".format(state.regs.ip, addr, expr, leng, cond))
             
-        start_state.inspect.b('mem_read', when=angr.BP_BEFORE, action=mem_rd_bp)
+        #start_state.inspect.b('mem_read', when=angr.BP_BEFORE, action=mem_rd_bp)
         start_state.inspect.b('mem_write', when=angr.BP_BEFORE, action=mem_wr_bp)
 
         simgr = self.proj.factory.simulation_manager(start_state)
