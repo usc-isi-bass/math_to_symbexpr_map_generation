@@ -241,6 +241,7 @@ class SymbolicExpressionExtractor:
 
 
         sym_addr_writes = {}
+        sym_addr_rd_to_addr = {}
         def mem_rd_bp(state):
             addr = state.inspect.mem_read_address
             #expr = state.inspect.mem_read_expr
@@ -248,15 +249,19 @@ class SymbolicExpressionExtractor:
             expr = state.memory.load(addr, size=leng, disable_actions=True, inspect=False) # XXX For some reason I think expr is sometimes wrong
             #print("READ: expr: {} data: {}".format(expr, data))
             cond = state.inspect.mem_read_condition
-            load_op = claripy.operations.op("LD", (claripy.ast.bv.BV,), claripy.ast.bv.BV, do_coerce=False, calc_length=lambda x: leng * 8)
+            #load_op = claripy.operations.op("LD", (claripy.ast.bv.BV,), claripy.ast.bv.BV, do_coerce=True, calc_length=lambda x: leng * 8)
             #print("READ: insn: {} addr: {} expr: {} len: {} cond: {}".format(state.regs.ip, addr, expr, leng, cond))
             uninit = expr is None or (expr.uninitialized )
             #print("^READ: uninit: {}".format(uninit))
             
             if uninit is True:
-                load_op_addr = load_op(addr)
+                #load_op_addr = load_op(addr)
+                addr_bvs = claripy.BVS('a', size=addr.size(), explicit_name=False)
+                sym_addr_rd_to_addr[addr_bvs] = addr
+                #print(addr)
                 #print("^READ: storing {} at {}".format(load_op_addr, addr))
-                state.memory.store(addr, load_op_addr, disable_actions=True, inspect=False)
+                #state.memory.store(addr, load_op_addr, disable_actions=True, inspect=False)
+                state.memory.store(addr, addr_bvs, disable_actions=True, inspect=False)
                 #state.inspect.mem_read_expr = load_op(expr)
 
         def mem_wr_bp(state):
@@ -268,12 +273,17 @@ class SymbolicExpressionExtractor:
                 sym_addr_writes[addr] = expr
             #print("WRITE: insn: {} addr: {} expr: {} len: {} cond: {}".format(state.regs.ip, addr, expr, leng, cond))
             
-        #start_state.inspect.b('mem_read', when=angr.BP_BEFORE, action=mem_rd_bp)
+        start_state.inspect.b('mem_read', when=angr.BP_BEFORE, action=mem_rd_bp)
         start_state.inspect.b('mem_write', when=angr.BP_BEFORE, action=mem_wr_bp)
 
         simgr = self.proj.factory.simulation_manager(start_state)
-        simgr.run()
+        #simgr.run()
+        while len(simgr.active) > 0:
+            for state in simgr.active:
+                print("0x{:x}".format(state.addr, end=' '))
+            simgr.step()
         ret_reg_name = sym_cc.return_val.reg_name
+        print("")
 
         if len(simgr.deadended) > 1:
             states = simgr.deadended
@@ -287,10 +297,18 @@ class SymbolicExpressionExtractor:
         #print("RDI: {}".format(state.regs.rdi))
         #print("[RDI]: {}".format(state.memory.load(state.regs.rdi, size=4, disable_actions=True, inspect=False)))
         #print("[RDI+4]: {}".format(state.memory.load(state.regs.rdi+4, size=4, disable_actions=True, inspect=False)))
+            
+
         print("Symbolic writes:")
         for sym_addr, expr in sym_addr_writes.items():
+            for sym_addr_rd, addr in sym_addr_rd_to_addr.items():
+                load_op = claripy.operations.op("LD", (claripy.ast.bv.BV,), claripy.ast.bv.BV, do_coerce=True, calc_length=lambda x: sym_addr_rd.size())
+                expr = expr.replace(sym_addr_rd, load_op(addr))
             print("    {}: {}".format(sym_addr, expr))
         symex_expr = state.regs.get(ret_reg_name)
+        for sym_addr_rd, addr in sym_addr_rd_to_addr.items():
+            load_op = claripy.operations.op("LD", (claripy.ast.bv.BV,), claripy.ast.bv.BV, do_coerce=True, calc_length=lambda x: sym_addr_rd.size())
+            symex_expr = symex_expr.replace(sym_addr_rd, load_op(addr))
         return ExtractedSymExpr(symex_expr, func_symvar_args)
 
 
