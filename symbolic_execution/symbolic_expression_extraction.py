@@ -229,15 +229,17 @@ class SymbolicExpressionExtractor:
         else:
             ret_fp = True
 
-        # Create a new symbolic calling convention based on the original target function
-        # With correct types of arguments and return type
-        sym_cc = self.proj.factory.cc_from_arg_kinds(fp_args=is_fp_args, ret_fp=ret_fp)
+        sym_cc = self.proj.factory.cc()
+        prot = sym_cc.guess_prototype(func_symvar_args)
+        if ret_fp:
+            prot.returnty = angr.sim_type.SimTypeDouble()
+        else:
+            prot.returnty = angr.sim_type.SimTypeInt()
 
         if simplified:
-            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
+            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args)
         else:
-            #start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, add_options=[LAZY_SOLVES], remove_options=simplification_options)
-            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc, remove_options=simplification_options)
+            start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, add_options=[LAZY_SOLVES], remove_options=simplification_options)
 
 
         sym_addr_writes = {}
@@ -282,7 +284,7 @@ class SymbolicExpressionExtractor:
             for state in simgr.active:
                 print("0x{:x}".format(state.addr, end=' '))
             simgr.step()
-        ret_reg_name = sym_cc.return_val.reg_name
+        ret_reg_name = sym_cc.return_val(ty=prot.returnty).reg_name
         print("")
 
         if len(simgr.deadended) > 1:
@@ -306,6 +308,7 @@ class SymbolicExpressionExtractor:
                 expr = expr.replace(sym_addr_rd, load_op(addr))
             print("    {}: {}".format(sym_addr, expr))
         symex_expr = state.regs.get(ret_reg_name)
+        print("symex expr: {}".format(symex_expr))
         for sym_addr_rd, addr in sym_addr_rd_to_addr.items():
             load_op = claripy.operations.op("LD", (claripy.ast.bv.BV,), claripy.ast.bv.BV, do_coerce=True, calc_length=lambda x: sym_addr_rd.size())
             symex_expr = symex_expr.replace(sym_addr_rd, load_op(addr))
@@ -321,12 +324,14 @@ class SymbolicExpressionExtractor:
                     x_claripy = x_claripy[double_length-1:0]
                 x_fp = x_claripy.raw_to_fp()
                 return op(x_fp)
-        una_cc = self.proj.factory.cc_from_arg_kinds((True,), ret_fp=True)
+        cc = self.proj.factory.cc()
+        una_prot = cc.guess_prototype([claripy.ast.fp.FPS('fp_arg', claripy.fp.FSORT_DOUBLE)])
+        una_prot.returnty = angr.sim_type.SimTypeDouble()
         for func_name, symbol_name, (arg, ret) in UNARY_FUNCTIONS:
             func = self.cfg.functions.function(name=symbol_name)
             if func is not None:
                 una_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x: double_length)
-                self.proj.hook_symbol(func.addr, UnaFuncSymProc(cc=una_cc, op=una_func_op))
+                self.proj.hook_symbol(func.addr, UnaFuncSymProc(prototype=una_prot, op=una_func_op))
         class BinFuncSymProc(angr.SimProcedure):
             def run(self, x, y, op=None):
                 x_claripy = x.to_claripy()
@@ -339,12 +344,13 @@ class SymbolicExpressionExtractor:
 
                 y_fp = y_claripy.raw_to_fp()
                 return op(x_fp, y_fp)
-        bin_cc = self.proj.factory.cc_from_arg_kinds((True,True), ret_fp=True)
+        bin_prot = cc.guess_prototype([claripy.ast.fp.FPS('fp_arg', claripy.fp.FSORT_DOUBLE)] * 2)
+        bin_prot.returnty = angr.sim_type.SimTypeDouble()
         for func_name, symbol_name, (arg, ret) in BINARY_FUNCTIONS:
             func = self.cfg.functions.function(name=symbol_name)
             if func is not None:
                 bin_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,claripy.ast.fp.FP), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x, y: double_length)
-                self.proj.hook_symbol(func.addr, BinFuncSymProc(cc=bin_cc, op=bin_func_op))
+                self.proj.hook_symbol(func.addr, BinFuncSymProc(prototype=bin_prot, op=bin_func_op))
 
 
     def _hook_func_callsites(self, short_circuit_calls):
@@ -374,28 +380,33 @@ class SymbolicExpressionExtractor:
 
                 func_op_arg_types = [claripy.ast.fp.FP if (arg_type in C_TYPES_FLOAT) else claripy.ast.bv.BV for arg_type in func_arg_types]
                 func_op_ret_type = claripy.ast.fp.FP if (func_ret_type in C_TYPES_FLOAT) else claripy.ast.bv.BV
-                func_cc = self.proj.factory.cc_from_arg_kinds([typ in C_TYPES_FLOAT for typ in func_arg_types], ret_fp=func_ret_type in C_TYPES_FLOAT)
+                func_cc = self.proj.factory.cc()
+                func_prot = func_cc.guess_prototype([claripy.ast.fp.FPS('fp_arg', claripy.fp.FSORT_DOUBLE) if arg_type in C_TYPES_FLOAT else claripy.ast.bv.BVS('bv_arg', size=self.proj.arch.bits) for arg_type in func_arg_types])
+                if func_ret_type == 'float':
+                    ret_val_type = angr.sim_type.SimTypeFloat()
+                elif func_ret_type == 'double':
+                    ret_val_type = angr.sim_type.SimTypeDouble()
+                else:
+                    ret_val_type = angr.sim_type.SimTypeInt()
+                func_prot.returnty = ret_val_type
                 func_op = None
                 if len(func_arg_types) > 0:
                     func_op = claripy.operations.op(func_name, func_op_arg_types, func_op_ret_type, do_coerce=False, calc_length=lambda *x: c_type_to_bit_size(func_ret_type))
-
-                def call_hook(state):
-                    arg_locs = func_cc.args
+                def hook_run(state):
+                    arg_locs = func_cc.arg_locs(func_prot)
                     if len(arg_locs) == 0:
-                        ret_bvs = claripy.BVS(name=func_name, explicit_name=True, size=func_cc.ret_val.size)
-                        func_cc.ret_val.set_value(state, ret_bvs)
+                        ret_bvs = claripy.BVS(name=func_name, explicit_name=True, size=c_type_to_bit_size(func_ret_type))
+                        func_cc.set_return_val(state, ret_bvs, ret_val_type)
                     else:
                         claripy_args = []
                         for arg_loc in arg_locs:
                             arg = arg_loc.get_value(state)
                             claripy_arg = arg.to_claripy()
-                            if func_cc.is_fp_arg(arg_loc):
-                                claripy_arg = claripy_arg[double_length-1:0].raw_to_fp()
+                            #if func_cc.is_fp_arg(arg_loc):
+                            #    claripy_arg = claripy_arg[double_length-1:0].raw_to_fp()
                             claripy_args.append(claripy_arg)
-                        #print('ret reg: {}'.format(func_cc.ret_val))
-                        #state.regs.rax = func_op(*claripy_args)
-                        func_cc.ret_val.set_value(state, func_op(*claripy_args))
-                self.proj.hook(call_insn_addr, hook=call_hook, length=func.instruction_size(call_insn_addr))
+                        func_cc.set_return_val(state, func_op(*claripy_args), ret_val_type)
+                self.proj.hook(call_insn_addr, hook_run, length=func.instruction_size(call_insn_addr))
 
 
 
