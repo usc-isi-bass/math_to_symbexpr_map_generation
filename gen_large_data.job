@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#SBATCH --time=96:00:00
+#SBATCH --cpus-per-task=4
+#SBATCH --mem-per-cpu=20GB
+#SBATCH --partition="isi"
+
+source /project/jonmay_231/felkner/env_general/bin/activate
+
+python exp_gendata.py large_data 1

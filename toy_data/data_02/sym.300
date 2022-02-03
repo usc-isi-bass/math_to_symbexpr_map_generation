@@ -1,0 +1,1797 @@
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_3 + a_4 + a_1 + * -1 a_2 a_0
+Concat 0x0 + a_2 + * -1 a_4 + * -1 a_3 + a_5 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_4 + a_2 + a_3 + a_1 a_0
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + a_3 + a_4 + a_2 + a_1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 * -1 a_3
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_4 * -1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_5 + * -1 a_3 + * -1 a_4 * -1 a_2
+Concat 0x0 + __xor__ + a_2 + a_0 a_1 __rshift__ + a_2 + a_0 a_1 31 + * -1 __rshift__ + a_2 + a_0 a_1 31 + a_3 * -1 a_4
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_1 + a_2 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_2 + * -1 __xor__ __rshift__ a_5 31 a_5 + __rshift__ a_5 31 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_5 + a_4 * -1 a_6
+Concat 0x0 + a_6 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_6 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + __xor__ + a_4 + a_2 a_3 __rshift__ + a_4 + a_2 a_3 31 + * -1 __rshift__ + a_4 + a_2 a_3 31 + a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_5 + a_6 + a_4 + a_3 a_2
+Concat 0x0 + a_6 + a_5 + a_0 + * -1 a_1 + a_3 + a_4 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_6 + * -1 a_5 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_6 + * -1 a_4 a_5
+Concat 0x0 + __xor__ __rshift__ a_4 31 a_4 + * -1 __rshift__ a_4 31 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 * -1 a_5
+Concat 0x0 + a_0 + a_5 + a_4 + a_2 + * -1 a_3 + a_6 a_1
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_4 + a_5 + a_6 * -1 a_1
+Concat 0x0 + __xor__ + a_1 + * -1 a_2 + a_4 a_3 __rshift__ + a_1 + * -1 a_2 + a_4 a_3 31 + * -1 __rshift__ + a_1 + * -1 a_2 + a_4 a_3 31 + a_0 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_7 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_6 + a_7 + * -1 a_3 + a_4 + a_5 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 + * -1 a_5 + * -1 a_7 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + * -1 a_5 + * -1 a_4 + * -1 a_7 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_6 + * -1 a_2 + * -1 a_3 + a_4 + a_5 a_7
+Concat 0x0 + __xor__ __rshift__ a_6 31 a_6 + * -1 __rshift__ a_6 31 + a_1 + a_2 + a_3 + a_0 + a_5 a_4
+Concat 0x0 + a_0 + a_3 + * -1 a_4 + a_5 + a_2 + a_7 + a_6 a_1
+Concat 0x0 + a_7 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_6 + * -1 a_5 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_6 + a_4 + a_3 + * -1 a_5 * -1 a_7
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_2 + * -1 __xor__ __rshift__ a_1 31 a_1 + __rshift__ a_1 31 + * -1 a_4 + a_6 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_5 + * -1 a_6 + * -1 a_7 + a_3 a_4
+Concat 0x0 + a_6 + * -1 a_7 + a_5 + a_4 + a_2 + a_0 + a_1 * -1 a_3
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + * -1 a_6 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 + a_1 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_7 + * -1 a_6 + * -1 a_4 + * -1 a_3 + * -1 a_1 + * -1 a_2 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 + a_6 * -1 a_7
+Concat 0x0 + a_4 + a_5 + * -1 a_7 + * -1 a_6 + a_1 + a_2 + a_3 a_0
+Concat 0x0 + a_4 + * -1 a_5 + * -1 a_6 + a_7 + a_2 + * -1 a_3 + a_0 * -1 a_1
+Concat 0x0 + a_5 + a_3 + a_2 + * -1 a_4 + * -1 a_6 + * -1 a_7 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + a_5 + a_4 + * -1 a_6 * -1 a_7
+Concat 0x0 + a_7 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_6 + * -1 a_3 + * -1 a_4 + * -1 a_5 + * -1 a_1 + a_2 * -1 a_7
+Concat 0x0 + a_4 + * -1 a_5 + * -1 a_6 + * -1 a_7 + a_0 + * -1 a_1 + a_2 a_3
+Concat 0x0 + a_7 + a_5 + a_0 + * -1 a_3 + * -1 a_1 + * -1 a_2 + a_4 * -1 a_6
+Concat 0x0 + a_4 + a_5 + * -1 a_6 + a_7 + a_0 + * -1 a_2 + * -1 a_3 * -1 a_1
+Concat 0x0 + a_0 + a_2 + * -1 a_4 + a_5 + * -1 a_6 + a_7 + a_8 + * -1 a_3 a_1
+Concat 0x0 + a_7 + a_5 + a_6 + a_0 + a_1 + a_2 + * -1 a_4 + * -1 a_3 * -1 a_8
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_5 + a_6 + * -1 a_4 + * -1 a_7 a_8
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + a_5 + * -1 a_6 + * -1 a_7 a_8
+Concat 0x0 + __xor__ + a_0 + a_1 + a_3 + * -1 a_4 + a_2 * -1 a_5 __rshift__ + a_0 + a_1 + a_3 + * -1 a_4 + a_2 * -1 a_5 31 + * -1 __rshift__ + a_0 + a_1 + a_3 + * -1 a_4 + a_2 * -1 a_5 31 + * -1 a_7 * -1 a_6
+Concat 0x0 + a_7 + * -1 a_8 + a_3 + a_1 + a_0 + * -1 a_2 + * -1 a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_2 + a_5 + * -1 a_6 + a_7 + * -1 a_8 + a_4 + a_3 * -1 a_1
+Concat 0x0 + a_7 + * -1 a_8 + a_2 + * -1 a_4 + a_5 + * -1 a_3 + a_6 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_5 + * -1 a_4 + * -1 a_6 + * -1 a_8 * -1 a_7
+Concat 0x0 + a_7 + a_5 + a_4 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_6
+Concat 0x0 + a_5 + a_4 + * -1 a_6 + * -1 a_7 + * -1 a_8 + a_1 + * -1 a_2 + a_0 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_4 + a_3 + * -1 a_5 + * -1 a_6 + a_7 * -1 a_8
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 + * -1 a_5 + a_6 + a_7 a_8
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_8 + a_4 + * -1 a_5 + a_6 + a_7 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_5 + * -1 a_6 + a_7 * -1 a_8
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_4 + a_3 + * -1 a_5 + * -1 a_6 + a_7 * -1 a_8
+Concat 0x0 + a_7 + a_3 + * -1 a_4 + a_5 + * -1 a_6 + a_2 + a_1 + a_0 * -1 a_8
+Concat 0x0 + a_2 + a_0 + a_1 + * -1 a_3 + a_7 + a_4 + a_5 + a_6 * -1 a_8
+Concat 0x0 + a_7 + a_5 + a_4 + a_2 + * -1 a_3 + a_1 + a_0 + * -1 a_6 * -1 a_8
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + a_6 + a_5 + a_7 * -1 a_8
+Concat 0x0 + a_2 + * -1 a_4 + a_5 + a_6 + * -1 a_3 + a_8 + a_7 + a_0 a_1
+Concat 0x0 + a_6 + a_0 + a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 + * -1 a_5 + * -1 a_7 * -1 a_8
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + a_6 + a_5 + * -1 a_1 + * -1 a_7 a_8
+Concat 0x0 + a_4 + a_5 + * -1 a_6 + a_7 + * -1 a_8 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + a_4 + a_5 + a_6 + * -1 a_2 + a_7 * -1 a_8
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + a_5 + a_6 + * -1 a_3 + a_7 * -1 a_8
+Concat 0x0 + __xor__ + a_0 + * -1 __xor__ __rshift__ a_1 31 a_1 __rshift__ a_1 31 __rshift__ + a_0 + * -1 __xor__ __rshift__ a_1 31 a_1 __rshift__ a_1 31 31 + * -1 __rshift__ + a_0 + * -1 __xor__ __rshift__ a_1 31 a_1 __rshift__ a_1 31 31 + a_4 + * -1 a_5 + * -1 a_6 + a_2 a_3
+Concat 0x0 + a_2 + * -1 a_3 + a_4 + a_5 + * -1 a_6 + * -1 a_7 + a_8 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 + * -1 a_6 + * -1 a_7 a_8
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 + * -1 a_8 + * -1 a_5 + a_6 a_7
+Concat 0x0 + a_6 + a_7 + * -1 a_8 + a_4 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_8 + a_1 + * -1 a_2 + a_3 + a_5 + * -1 a_6 + a_4 + a_7 a_0
+Concat 0x0 + a_4 + * -1 a_7 + * -1 a_6 + a_8 + * -1 a_5 + * -1 a_9 + a_0 + * -1 a_2 + a_3 * -1 a_1
+Concat 0x0 + a_0 + a_1 + a_4 + * -1 a_5 + a_6 + * -1 a_7 + a_2 + a_3 + * -1 a_9 * -1 a_8
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 + * -1 a_6 + a_7 + * -1 a_8 a_9
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + * -1 a_8 + a_9 + * -1 a_6 + * -1 a_4 + * -1 a_5 a_7
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 + * -1 a_7 + * -1 a_6 + a_8 * -1 a_9
+Concat 0x0 + a_8 + * -1 a_9 + a_1 + a_0 + * -1 a_2 + * -1 a_4 + * -1 a_3 + a_5 + * -1 a_7 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 + a_6 + a_7 + * -1 a_8 + * -1 a_9 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_1 + a_2 + a_4 + a_5 + * -1 a_6 + * -1 a_7 + * -1 a_8 a_9
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + a_5 + a_6 + a_7 + * -1 a_8 a_9
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + a_6 + * -1 a_7 + a_5 + a_8 a_9
+Concat 0x0 + a_0 + a_1 + * -1 a_9 + * -1 a_3 + a_5 + a_4 + * -1 a_6 + a_7 + a_8 * -1 a_2
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_4 + * -1 a_3 + a_5 + * -1 a_6 + a_7 + * -1 a_8 a_9
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_2 + * -1 a_4 + a_5 + * -1 a_6 + * -1 a_7 + * -1 a_8 a_9
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_7 + a_8 + * -1 a_6 + * -1 a_5 + * -1 a_4 a_9
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 + a_5 + a_6 + a_9 + a_7 * -1 a_8
+Concat 0x0 + a_0 + * -1 a_7 + a_8 + * -1 a_2 + * -1 a_4 + a_5 + * -1 a_3 + a_6 + a_9 * -1 a_1
+Concat 0x0 + a_1 + * -1 a_3 + a_4 + a_5 + * -1 a_2 + a_7 + a_6 + a_0 + * -1 a_9 * -1 a_8
+Concat 0x0 + a_9 + a_7 + a_8 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_8 + a_4 + * -1 a_6 + * -1 a_5 + a_7 + __xor__ + a_0 + a_2 + a_3 a_1 __rshift__ + a_0 + a_2 + a_3 a_1 31 * -1 __rshift__ + a_0 + a_2 + a_3 a_1 31
+Concat 0x0 + a_0 + a_3 + * -1 a_4 + a_2 + a_1 + * -1 a_5 + * -1 a_6 + a_7 + * -1 a_8 a_9
+Concat 0x0 + a_7 + a_4 + * -1 a_5 + a_1 + * -1 a_2 + a_0 + a_3 + * -1 a_6 + * -1 a_8 * -1 a_9
+Concat 0x0 + a_9 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + a_5 + * -1 a_6 + * -1 a_7 * -1 a_8
+Concat 0x0 + a_9 + a_8 + a_0 + * -1 a_2 + a_3 + a_4 + a_5 + * -1 a_7 + * -1 a_6 * -1 a_1
+Concat 0x0 + a_0 + a_4 + a_5 + a_6 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_7 + a_8 * -1 a_9
+Concat 0x0 + a_9 + a_8 + a_0 + * -1 a_4 + * -1 a_3 + a_5 + * -1 a_6 + a_7 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_1 + * -1 a_2 + a_3 + a_4 + a_5 + a_7 + a_6 + a_0 + * -1 a_8 a_9
+Concat 0x0 + a_9 + a_1 + a_2 + * -1 a_5 + * -1 a_3 + * -1 a_4 + a_6 + a_7 + * -1 a_8 a_0
+Concat 0x0 + a_9 + a_0 + * -1 a_1 + * -1 a_2 + a_8 + a_7 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_8 + * -1 a_3 + a_4 + * -1 a_5 + a_6 + a_7 a_9
+Concat 0x0 + a_8 + * -1 a_9 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 + a_6 * -1 a_7
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + a_1 + a_3 + a_2 + * -1 a_6 + * -1 a_7 + * -1 a_9 * -1 a_8
+Concat 0x0 + a_5 + a_0 + a_1 + a_3 + a_2 * -1 a_4
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_3 + * -1 a_4 + a_1 + a_2 + a_0 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + * -1 a_3 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_4 + * -1 a_5 + a_3 + a_2 a_1
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_5 + a_4 + a_1 + * -1 a_2 + a_3 a_0
+Concat 0x0 + a_4 + a_3 + * -1 a_5 + a_1 + a_0 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_4 + a_2 * -1 a_5
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + a_0 + * -1 a_4 * -1 a_3
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_0
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_1 + * -1 a_2 a_0
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_1 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_3 + a_4 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_4 + a_0 + a_1 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + * -1 a_2 a_3
+Concat 0x0 + a_4 + a_3 + a_0 + * -1 a_1 + a_2 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + a_3 + a_0 a_4
+Concat 0x0 + a_2 + a_0 + a_1 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_2 + a_0 + * -1 a_1 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_1 + a_2 + * -1 a_4 + * -1 a_3 a_0
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_5 + a_3 + a_4 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_4 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_2 + * -1 a_4 + * -1 a_5 + * -1 a_3 + a_0 a_1
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_4 + a_0 + a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_4 a_3
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_1 + a_2 + * -1 a_3 a_5
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + a_3 + * -1 __xor__ __rshift__ a_4 31 a_4 __rshift__ a_4 31
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_0 + a_2 + a_1 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + a_0 + a_3 a_4
+Concat 0x0 + a_5 + a_4 + a_0 + a_1 + * -1 a_3 * -1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_4 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_5 + a_3 + a_2 + * -1 a_4 + a_1 a_0
+Concat 0x0 + a_1 + a_2 + a_0 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_3 + * -1 a_4 + a_1 + a_0 + * -1 a_2 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_2 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_3 + * -1 a_4 a_2
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_3 + a_4 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_5 a_4
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 __xor__ __rshift__ a_3 31 a_3 + __rshift__ a_3 31 + a_4 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_4 + a_0 + a_1 + a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_2 + * -1 a_3 + a_4 + * -1 a_5 + a_0 a_1
+Concat 0x0 + a_4 + a_0 + a_1 + a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_3 + a_2 + * -1 a_4 + a_0 + a_1 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_2 + a_0 + a_1 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_3 + a_4 + a_5 + a_2 a_1
+Concat 0x0 + a_2 + * -1 a_3 + a_1 + a_0 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 a_4
+Concat 0x0 + __xor__ + a_3 * -1 a_4 __rshift__ + a_3 * -1 a_4 31 + * -1 __rshift__ + a_3 * -1 a_4 31 + a_1 + a_2 a_0
+Concat 0x0 + a_5 + a_1 + a_2 + * -1 a_4 + * -1 a_3 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_5 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + a_1 + a_2 a_0
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_1 + a_0 * -1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_4 + * -1 a_2 * -1 a_5
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + * -1 a_4 + a_1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_5 + a_1 + a_2 + a_0 + * -1 a_3 a_4
+Concat 0x0 + a_5 + a_3 + a_4 + a_1 + a_2 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + __xor__ __rshift__ a_3 31 a_3 + * -1 __rshift__ a_3 31 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_4 + a_5 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_3 + a_4 + a_5 + a_1 * -1 a_2
+Concat 0x0 + a_4 + a_3 + a_0 + * -1 a_1 + a_2 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_5 a_4
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_1 + * -1 a_2 + * -1 a_3 + a_0 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_5 + a_0 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_1
+Concat 0x0 + a_5 + a_2 + a_3 + a_4 + a_0 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + a_0 + a_1 * -1 a_5
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + a_3 + a_0 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_3 + a_4 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 __xor__ __rshift__ a_4 31 a_4 __rshift__ a_4 31
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_1 + a_0 + * -1 a_2 + * -1 a_4 * -1 a_3
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_4 + * -1 a_5 a_1
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + * -1 a_2 a_3
+Concat 0x0 + a_4 + a_3 + * -1 a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + __xor__ + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4 __rshift__ + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4 31 * -1 __rshift__ + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4 31
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_4 + a_1 a_0
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_2 + * -1 a_1 + a_3 a_4
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + * -1 a_4 + a_0 a_1
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + * -1 a_4 + a_5 a_1
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + a_3 + a_1 a_0
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_5 * -1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_1 + * -1 a_2 + * -1 a_3 a_0
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_3 + * -1 a_4 * -1 a_2
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_4 + a_2 * -1 a_3
+Concat 0x0 + a_0 + a_2 + * -1 __xor__ __rshift__ a_3 31 a_3 + __rshift__ a_3 31 + * -1 a_4 a_1
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_2 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_2 + a_3 + a_4 + * -1 a_5 a_1
+Concat 0x0 + a_5 + a_1 + * -1 a_3 + * -1 a_4 + * -1 a_2 a_0
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_4 + * -1 a_2 + * -1 a_3 a_5
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + a_0 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_2 + a_3 + * -1 a_1 * -1 a_4
+Concat 0x0 + a_5 + a_3 + a_0 + a_1 + a_2 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + __xor__ __rshift__ a_4 31 a_4 + * -1 __rshift__ a_4 31 + a_0 + a_1 + a_2 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_5 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + * -1 a_4 + a_5 a_2
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + * -1 a_5 + * -1 a_3 * -1 a_2
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_2 + a_4 + a_5 + a_3 + a_0 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + * -1 a_2 + a_3 a_5
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_5
+Concat 0x0 + a_5 + a_3 + a_2 + * -1 a_4 + a_0 a_1
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_5 + * -1 a_3 + * -1 a_2 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_5 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 __xor__ + a_4 + a_1 + * -1 a_2 a_3 __rshift__ + a_4 + a_1 + * -1 a_2 a_3 31 __rshift__ + a_4 + a_1 + * -1 a_2 a_3 31
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_4 + a_0 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_4 + * -1 a_5 * -1 a_1
+Concat 0x0 + a_4 + a_1 + * -1 a_2 + a_0 + a_3 * -1 a_5
+Concat 0x0 + a_5 + a_3 + a_4 + a_0 + a_1 a_2
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_4 + a_5 * -1 a_1
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 + a_0 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_5
+Concat 0x0 + a_1 + * -1 __xor__ __rshift__ a_2 31 a_2 + __rshift__ a_2 31 + a_0 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_5 + * -1 a_3 a_4
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_4 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_5 * -1 a_3
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_4 + a_3 + * -1 a_5 * -1 a_1
+Concat 0x0 + a_4 + a_0 + * -1 a_2 + * -1 a_1 + a_3 * -1 a_5
+Concat 0x0 + a_1 + a_2 + a_0 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + a_5 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_4 + a_3 + * -1 a_5 a_2
+Concat 0x0 + a_3 + * -1 a_4 + a_0 + * -1 __xor__ __rshift__ a_1 31 a_1 + __rshift__ a_1 31 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 * -1 a_1
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + a_1 + a_2 a_0
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + __xor__ __rshift__ a_3 31 a_3 + * -1 __rshift__ a_3 31 a_4
+Concat 0x0 + a_5 + a_2 + a_3 + a_1 + a_0 a_4
+Concat 0x0 + a_0 + __xor__ + a_3 a_2 __rshift__ + a_3 a_2 31 + * -1 __rshift__ + a_3 a_2 31 + * -1 a_4 a_1
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + a_2 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_2 + * -1 a_3 + a_4 + * -1 a_5 + a_0 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_2 + a_3 + a_4 + a_1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_5 + * -1 a_3 a_4
+Concat 0x0 + a_2 + * -1 a_3 + a_4 + a_5 + a_0 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_2 + a_3 + a_4 + * -1 a_5 a_1
+Concat 0x0 + a_5 + a_1 + a_2 + a_0 + * -1 a_4 * -1 a_3
+Concat 0x0 + a_3 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_4 a_3
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 a_1
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_4 + a_2 * -1 a_3
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + a_1 + a_3 a_2
+Concat 0x0 + a_0 + * -1 __xor__ + a_3 a_2 __rshift__ + a_3 a_2 31 + __rshift__ + a_3 a_2 31 + * -1 a_1 a_4
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_4 + a_5 + a_0 * -1 a_1
+Concat 0x0 + a_0 + a_4 + a_3 + a_1 + * -1 a_2 a_5
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_5 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + a_4 + a_5 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_3 + a_4 + a_5 + * -1 a_1 a_2
+Concat 0x0 + a_5 + a_4 + a_3 + a_1 + * -1 a_2 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_5 * -1 a_1
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 a_1
+Concat 0x0 + a_0 + a_1 + a_2 + a_5 + a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + a_2 + a_3 * -1 a_5
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + a_0 + a_1 a_2
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + * -1 a_4 + a_0 * -1 a_1
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_3 + * -1 a_2 a_4
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_4 + a_2 + a_3 + a_1 + a_0 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_5 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 + * -1 a_1 + a_2 + a_4 a_3
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + * -1 a_4 + * -1 a_5 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + a_3 + a_2 a_4
+Concat 0x0 + a_5 + a_4 + a_0 + a_1 + a_3 a_2
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_4 + a_5 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_2 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_4 + a_0 + a_1 + a_2 + a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_4 + a_2 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_3 + a_1 + a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_4 + a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_1 + a_2 + a_3 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + a_4 + a_2 + a_3 + a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_3 + a_4 + a_5 + * -1 a_1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_2 + a_3 + a_4 + a_5 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + * -1 a_5 + * -1 a_3 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_4 + a_3 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_2 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_2 + * -1 a_4 + * -1 a_5 + * -1 a_3 + a_0 a_1
+Concat 0x0 + a_5 + a_2 + a_0 + a_1 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_2 + a_3 + a_4 + * -1 a_5 + a_0 * -1 a_1
+Concat 0x0 + a_3 + * -1 a_4 + a_0 + * -1 a_1 + a_2 * -1 a_5
+Concat 0x0 + a_2 + * -1 a_3 + a_0 + * -1 a_1 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + * -1 a_2 + * -1 a_3 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_5 + * -1 a_4 + a_0 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + a_5 * -1 a_1
+Concat 0x0 + a_3 + a_0 + a_1 + a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 __xor__ + a_1 + * -1 a_2 * -1 a_3 __rshift__ + a_1 + * -1 a_2 * -1 a_3 31 + __rshift__ + a_1 + * -1 a_2 * -1 a_3 31 a_4
+Concat 0x0 + a_5 + a_2 + a_0 + * -1 a_1 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + * -1 a_5 + * -1 a_3 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_2 a_3
+Concat 0x0 + a_5 + a_0 + * -1 a_2 + * -1 a_1 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_4 + a_3 + * -1 a_5 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_4 + * -1 a_2 + a_3 a_5
+Concat 0x0 + __xor__ + a_4 + a_1 + * -1 a_2 * -1 a_3 __rshift__ + a_4 + a_1 + * -1 a_2 * -1 a_3 31 + * -1 __rshift__ + a_4 + a_1 + * -1 a_2 * -1 a_3 31 a_0
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_4 + a_0 a_1
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + a_3 + a_0 a_1
+Concat 0x0 + a_0 + a_3 + a_1 + a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_1 + a_2 + a_0 + a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + a_3 + a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_4 + a_2 + a_3 * -1 a_5
+Concat 0x0 + a_0 + a_3 + a_4 + a_2 + a_5 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_5 + a_0 + a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 + a_4 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_1 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_4 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_3 + * -1 a_4 + a_0 + * -1 a_1 + a_2 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + a_3 + a_2 a_4
+Concat 0x0 + a_0 + a_4 + a_2 + * -1 a_3 + a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_5 + * -1 a_3 a_4
+Concat 0x0 + a_3 + a_4 + a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + a_2 + a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_5 + a_4 + a_1 + * -1 a_2 + * -1 a_3 a_0
+Concat 0x0 + a_5 + a_4 + a_0 + a_1 + * -1 a_2 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_2 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_2 + a_1 + * -1 a_3 + a_0 + * -1 a_4 a_5
+Concat 0x0 + a_2 + * -1 a_4 + a_5 + * -1 a_3 + a_0 * -1 a_1
+Concat 0x0 + a_0 + * -1 __xor__ __rshift__ a_1 31 a_1 + __rshift__ a_1 31 + a_3 + a_2 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_4 + a_3 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_5 + * -1 a_3 + * -1 a_4 * -1 a_2
+Concat 0x0 + a_0 + a_2 + a_3 + * -1 a_4 + a_5 a_1
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_4 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_5
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_4 + * -1 a_5 a_1
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_2 + a_3 + * -1 a_1 a_5
+Concat 0x0 + a_0 + a_4 + a_2 + * -1 a_3 + * -1 a_5 a_1
+Concat 0x0 + a_5 + a_1 + a_2 + a_0 + a_3 a_4
+Concat 0x0 + a_3 + a_4 + a_5 + a_1 + * -1 a_2 a_0
+Concat 0x0 + a_0 + a_3 + a_4 + a_2 + a_1 a_5
+Concat 0x0 + a_4 + a_3 + a_2 + a_0 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_5 + * -1 a_4 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_3 + * -1 a_4 a_2
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + a_3 a_2
+Concat 0x0 + a_5 + a_3 + a_4 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 a_0
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + a_1 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_5 + a_2 + a_1 + * -1 a_3 + a_4 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 + a_1 + * -1 a_4 + * -1 a_2 a_3
+Concat 0x0 + a_2 + a_3 + a_4 + __xor__ __rshift__ a_1 31 a_1 + * -1 __rshift__ a_1 31 a_0
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_0 + a_1 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_4 + a_5 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 a_3
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_5 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_3 + a_1 + a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_2 + a_3 + a_4 + a_5 + a_0 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_1 + a_2 + a_0 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 + a_1 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 a_5
+Concat 0x0 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 + a_4 + a_1 + * -1 a_2 a_3
+Concat 0x0 + a_2 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + * -1 a_3 + a_5 * -1 a_2
+Concat 0x0 + a_5 + a_3 + a_4 + a_1 + a_2 a_0
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_1 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + __xor__ + a_0 + a_1 + * -1 a_3 + * -1 a_2 * -1 a_4 __rshift__ + a_0 + a_1 + * -1 a_3 + * -1 a_2 * -1 a_4 31 * -1 __rshift__ + a_0 + a_1 + * -1 a_3 + * -1 a_2 * -1 a_4 31
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + a_5 + * -1 a_2 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_5 + a_4 * -1 a_1
+Concat 0x0 + a_0 + a_2 + a_3 + * -1 a_4 + a_5 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_4 + a_2 + a_3 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + a_2 a_3
+Concat 0x0 + a_4 + a_3 + a_2 + __xor__ + a_0 * -1 a_1 __rshift__ + a_0 * -1 a_1 31 * -1 __rshift__ + a_0 * -1 a_1 31
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_4 + a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + a_5 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_3 + a_4 a_5
+Concat 0x0 + __xor__ __rshift__ a_3 31 a_3 + * -1 __rshift__ a_3 31 + a_1 + a_0 + * -1 a_2 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 * -1 a_1
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + a_5 + a_0 a_1
+Concat 0x0 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 + a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_1 + * -1 a_2 a_0
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_2 a_3
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_4 + a_2 a_5
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + a_5 + a_3 a_4
+Concat 0x0 + a_5 + a_3 + a_4 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_3 + a_4 + a_5 + * -1 a_1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_2 + * -1 a_3 + a_5 * -1 a_1
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_1 + a_2 + a_3 + * -1 a_4 a_0
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 a_3
+Concat 0x0 + a_5 + a_2 + a_3 + a_1 + a_0 a_4
+Concat 0x0 + a_0 + a_1 + * -1 __xor__ + a_3 a_2 __rshift__ + a_3 a_2 31 + __rshift__ + a_3 a_2 31 a_4
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_0 + a_3 + * -1 a_4 + * -1 a_5 + a_2 a_1
+Concat 0x0 + a_5 + a_1 + a_0 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_3 + a_4 + a_5 + a_1 + a_2 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_5 + a_4 + a_2 + a_3 + a_0 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_3 + a_4 + * -1 a_5 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_2
+Concat 0x0 + a_4 + a_1 + * -1 a_2 + a_3 + a_0 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_0 + a_1 + a_2 + a_5 + a_3 a_4
+Concat 0x0 + a_5 + a_0 + a_1 + a_2 + a_4 a_3
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_5 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_4 + a_3 + a_0 + * -1 a_1 + * -1 __xor__ __rshift__ a_2 31 a_2 __rshift__ a_2 31
+Concat 0x0 + a_3 + * -1 a_4 + a_0 + * -1 __xor__ + a_2 a_1 __rshift__ + a_2 a_1 31 __rshift__ + a_2 a_1 31
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_1 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_4 + * -1 a_5 a_1
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_5 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_4 + a_2 + a_1 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_4 + a_2 + * -1 a_3 + * -1 a_5 + a_0 a_1
+Concat 0x0 + a_0 + a_2 + a_1 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_4 + a_3 + * -1 a_5 + a_2 a_1
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + a_5 a_4
+Concat 0x0 + a_5 + a_2 + a_1 + * -1 a_3 + a_0 a_4
+Concat 0x0 + a_5 + a_3 + a_4 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_3 + a_2 + a_0 + * -1 a_1 + * -1 a_4 a_5
+Concat 0x0 + a_2 + * -1 a_3 + a_4 + * -1 a_5 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_4 + a_0 + a_1 + a_3 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_2 + * -1 a_1 + a_3 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_1 + a_2 + a_0 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_3 + a_2 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + a_3 + a_4 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_4 + a_3 + * -1 a_5 + a_0 + a_1 a_2
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_1 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + a_5 + a_3 a_4
+Concat 0x0 + a_0 + a_2 + * -1 a_4 + * -1 a_3 + a_5 a_1
+Concat 0x0 + a_1 + a_2 + a_0 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_4 + a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + * -1 a_4 + a_2 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 __xor__ __rshift__ a_4 31 a_4 + __rshift__ a_4 31 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_0 + * -1 __xor__ __rshift__ a_1 31 a_1 + __rshift__ a_1 31 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_4 + a_2 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_4 + * -1 a_2 a_5
+Concat 0x0 + a_1 + a_2 + a_3 + a_0 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + a_1 + * -1 a_3 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_1 + * -1 a_2 + * -1 a_3 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_4 + a_1 a_0
+Concat 0x0 + a_5 + a_0 + a_1 + a_2 + a_3 * -1 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_3 + a_2 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_2 + * -1 a_4 + a_5 + * -1 a_3 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_1 + a_2 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_2 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_2 + a_0 + a_1 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_2 + a_1 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_2 + * -1 a_1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_1 + a_2 + a_3 a_0
+Concat 0x0 + a_0 + a_4 + a_5 + a_3 + a_2 a_1
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_1 + a_0 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + a_5 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_2 + a_3 a_4
+Concat 0x0 + __xor__ + a_0 + a_1 a_2 __rshift__ + a_0 + a_1 a_2 31 + * -1 __rshift__ + a_0 + a_1 a_2 31 + a_3 * -1 a_4
+Concat 0x0 + a_0 + __xor__ __rshift__ a_1 31 a_1 + * -1 __rshift__ a_1 31 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + __xor__ + a_2 + a_0 * -1 a_1 __rshift__ + a_2 + a_0 * -1 a_1 31 + * -1 __rshift__ + a_2 + a_0 * -1 a_1 31 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_2 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + __xor__ + a_0 + a_2 + * -1 a_3 a_1 __rshift__ + a_0 + a_2 + * -1 a_3 a_1 31 + * -1 __rshift__ + a_0 + a_2 + * -1 a_3 a_1 31 a_4
+Concat 0x0 + a_5 + a_3 + a_4 + a_1 + * -1 a_2 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_3 + * -1 a_4 + a_2 + a_1 * -1 a_5
+Concat 0x0 + a_0 + a_4 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_5 + a_3 + a_4 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_3 + * -1 a_4 + a_2 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + a_5 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + __xor__ + a_3 a_2 __rshift__ + a_3 a_2 31 + * -1 __rshift__ + a_3 a_2 31 + a_0 + a_1 * -1 a_4
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_0 + * -1 a_1 * -1 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_1 + * -1 a_2 + * -1 a_3 + a_0 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_4 + a_1 + a_0 + * -1 a_2 a_3
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + a_0 + * -1 a_1 * -1 a_3
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_5 a_4
+Concat 0x0 + __xor__ + a_4 + a_1 + * -1 a_2 a_3 __rshift__ + a_4 + a_1 + * -1 a_2 a_3 31 + * -1 __rshift__ + a_4 + a_1 + * -1 a_2 a_3 31 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_2 + * -1 __xor__ __rshift__ a_3 31 a_3 + __rshift__ a_3 31 + * -1 a_1 * -1 a_4
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_4 + a_1 a_0
+Concat 0x0 + a_2 + a_4 + a_3 + * -1 a_5 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_1 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_1 + * -1 a_2 + * -1 a_3 + a_0 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_4 + a_0 + a_1 + a_2 a_3
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_3 + a_2 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_4 + a_3 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_3 + * -1 a_1 + a_2 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_4 + * -1 a_5 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 __xor__ __rshift__ a_1 31 a_1 + __rshift__ a_1 31 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + a_0 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + a_2 + a_1 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_2 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + * -1 a_4 + a_0 * -1 a_1
+Concat 0x0 + a_5 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_4 + * -1 a_2 a_3
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_4 + a_1 a_0
+Concat 0x0 + a_0 + a_1 + * -1 a_5 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_2 + a_3 + a_4 + * -1 a_5 + a_0 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 __xor__ __rshift__ a_1 31 a_1 + __rshift__ a_1 31 + * -1 a_3 + * -1 a_2 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_5 + a_3 + a_2 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_5 * -1 a_1
+Concat 0x0 + a_2 + * -1 a_3 + a_1 + a_0 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_4 + a_0 + a_1 + * -1 a_2 a_3
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 + a_5 * -1 a_1
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_4 + a_3 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_1 + * -1 a_2 + a_3 a_0
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + a_5 + a_4 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_5 + a_4 + a_1 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_1 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_4 + a_5 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_5 + a_3 + a_4 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + a_4 + a_5 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 __xor__ __rshift__ a_3 31 a_3 + __rshift__ a_3 31 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + * -1 a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + a_3 + a_4 + a_2 + a_5 a_1
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_4 + a_0 * -1 a_1
+Concat 0x0 + a_5 + a_2 + a_3 + a_4 + a_0 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_1 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_0 + a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_2 + a_3 + * -1 a_1 a_5
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_1 + a_0 * -1 a_2
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_2 + * -1 a_3 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_4 + a_3 + * -1 a_5 a_2
+Concat 0x0 + a_0 + a_1 + a_2 + a_5 + a_3 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 a_4
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_2 + a_3 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_4 + a_1 * -1 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_2 + * -1 __xor__ __rshift__ a_1 31 a_1 + __rshift__ a_1 31 * -1 a_4
+Concat 0x0 + a_0 + a_2 + a_1 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_1 + a_2 + a_0 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_2 + a_1 + * -1 a_3 + * -1 a_4 a_0
+Concat 0x0 + a_0 + a_1 + a_3 + a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + a_5 a_4
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 * -1 a_4
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + a_2 + * -1 __xor__ __rshift__ a_3 31 a_3 __rshift__ a_3 31
+Concat 0x0 + a_2 + a_3 + a_4 + * -1 a_5 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 * -1 a_4
+Concat 0x0 + a_2 + a_4 + a_5 + a_3 + a_0 a_1
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + a_2 + a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_5 + a_4 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_4 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_1 * -1 a_4
+Concat 0x0 + a_4 + a_3 + * -1 a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + a_0 + a_1 a_2
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + a_2 + a_3 * -1 a_4
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + a_0 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_1 + a_2 + a_0 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_4 + a_2 + * -1 a_3 + a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_4 + a_3 + a_1 + a_2 + a_0 * -1 a_5
+Concat 0x0 + a_0 + a_3 + a_4 + a_5 + a_1 * -1 a_2
+Concat 0x0 + a_0 + a_1 + a_2 + a_4 + a_3 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_5 a_4
+Concat 0x0 + a_5 + a_2 + a_0 + * -1 a_1 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_0 + a_1 * -1 a_4
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + a_0 + a_3 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_2 + a_3 + a_4 * -1 a_1
+Concat 0x0 + __xor__ + a_0 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_4 __rshift__ + a_0 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_4 31 * -1 __rshift__ + a_0 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_4 31
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_3 + a_2 + a_0 + a_1 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_1 + a_0 + * -1 a_2 a_3
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + a_2 a_3
+Concat 0x0 + a_3 + a_0 + * -1 a_1 + a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + a_3 + a_2 a_4
+Concat 0x0 + a_0 + a_3 + a_1 + * -1 a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + * -1 a_4 + a_1 a_0
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + a_1 + a_2 a_0
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + a_2 + a_3 * -1 a_5
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + * -1 a_5 + a_0 * -1 a_1
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_5 + a_0 + a_1 + a_2 + * -1 a_4 * -1 a_3
+Concat 0x0 + a_2 + * -1 a_3 + a_1 + a_0 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_3 + a_2 + * -1 a_4 + * -1 a_5 + a_0 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + __xor__ __rshift__ a_3 31 a_3 + * -1 __rshift__ a_3 31 * -1 a_4
+Concat 0x0 + a_2 + a_4 + * -1 a_5 + a_3 + a_0 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_5 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_2 + a_3 + a_4 + a_1 a_5
+Concat 0x0 + a_5 + a_3 + a_4 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_4 + * -1 a_5 + a_1 + a_2 + a_3 a_0
+Concat 0x0 + a_0 + a_2 + a_1 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_4 + a_2 + a_3 + __xor__ __rshift__ a_1 31 a_1 + * -1 __rshift__ a_1 31 a_0
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_3 + a_4 * -1 a_2
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_0 + a_1 a_2
+Concat 0x0 + __xor__ + a_0 + * -1 __xor__ + a_2 a_1 __rshift__ + a_2 a_1 31 + __rshift__ + a_2 a_1 31 * -1 a_3 __rshift__ + a_0 + * -1 __xor__ + a_2 a_1 __rshift__ + a_2 a_1 31 + __rshift__ + a_2 a_1 31 * -1 a_3 31 * -1 __rshift__ + a_0 + * -1 __xor__ + a_2 a_1 __rshift__ + a_2 a_1 31 + __rshift__ + a_2 a_1 31 * -1 a_3 31
+Concat 0x0 + a_5 + a_1 + a_2 + a_3 + * -1 a_4 a_0
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_1 + a_5 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + a_1 + a_2 * -1 a_3
+Concat 0x0 + a_5 + a_1 + a_0 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + * -1 a_3 + a_1 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_4 + a_5 + a_3 * -1 a_1
+Concat 0x0 + a_2 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + a_3 + a_0 a_1
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + a_2 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_2 + a_3 + a_5 + a_4 a_1
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + a_0 + a_1 * -1 a_5
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + * -1 a_3 + a_0 a_4
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 + a_5 * -1 a_1
+Concat 0x0 + a_5 + a_0 + * -1 a_2 + * -1 a_1 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_5 + a_3 * -1 a_4
+Concat 0x0 + a_2 + * -1 a_3 + a_1 + a_0 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_4 + a_0 * -1 a_1
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + * -1 a_4 + a_5 a_2
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + * -1 a_4 + a_0 a_1
+Concat 0x0 + a_4 + a_3 + a_0 + a_1 + a_2 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 __xor__ + a_4 + a_2 * -1 a_3 __rshift__ + a_4 + a_2 * -1 a_3 31 __rshift__ + a_4 + a_2 * -1 a_3 31
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + a_0 + a_1 * -1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_5 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_4 + a_3 + a_1 + a_2 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_1 + * -1 a_2 + * -1 a_3 a_0
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_2 + a_1 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_4 + a_5 * -1 a_1
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_2 + a_1 + * -1 a_3 + a_0 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + __xor__ __rshift__ a_4 31 a_4 * -1 __rshift__ a_4 31
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_3 + * -1 a_2 * -1 a_4
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_5 + a_2 + a_1 + * -1 a_3 + a_0 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_4 + a_0 + * -1 a_2 + * -1 a_1 + a_3 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_5 + * -1 a_3 + * -1 a_2 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_1 + a_2 + a_3 + * -1 a_4 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_5 + a_2 + a_3 a_4
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_1 + a_0 a_4
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_2
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_5 + a_4 + a_0 + a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_5 a_4
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_3 * -1 a_2
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + __xor__ + a_1 + a_0 + * -1 a_2 + * -1 a_3 a_4 __rshift__ + a_1 + a_0 + * -1 a_2 + * -1 a_3 a_4 31 * -1 __rshift__ + a_1 + a_0 + * -1 a_2 + * -1 a_3 a_4 31
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_3 + * -1 a_4 + a_1 + * -1 a_2 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + * -1 a_2 + * -1 a_3 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + a_0 + * -1 a_4 * -1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_4 + a_2 + a_1 + * -1 a_3 a_0
+Concat 0x0 + a_0 + * -1 a_4 + a_5 + * -1 a_3 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_0 + a_1 + a_3 + * -1 a_4 + a_2 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_5
+Concat 0x0 + a_4 + a_3 + a_0 + a_1 + a_2 * -1 a_5
+Concat 0x0 + a_0 + a_3 + * -1 a_4 + * -1 a_5 + a_1 * -1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_4 + * -1 a_2 * -1 a_5
+Concat 0x0 + a_4 + a_2 + * -1 a_3 + a_0 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + a_4 + * -1 a_5 + a_3 + a_2 a_1
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + a_2 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_3 + * -1 a_4 + a_2 + a_1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_4 + a_2 + * -1 a_3 + * -1 a_5 + a_0 a_1
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_5 + a_4 + a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + a_3 + a_2 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_4 + * -1 a_5 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_4 + a_3 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_2
+Concat 0x0 + a_5 + a_0 + a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_4 + * -1 a_2 a_5
+Concat 0x0 + a_5 + a_0 + a_2 + a_3 + a_1 * -1 a_4
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + a_4 * -1 a_5
+Concat 0x0 + a_3 + a_4 + a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 + * -1 a_3 + * -1 a_1 + * -1 a_2 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 * -1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 a_3
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + * -1 a_4 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_1 + a_2 + a_4 * -1 a_5
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + * -1 __xor__ __rshift__ a_2 31 a_2 + __rshift__ a_2 31 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_4 + * -1 a_5 + a_3 a_2
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_2 + a_0 + a_1 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_4 + * -1 a_2 + a_3 a_5
+Concat 0x0 + a_2 + * -1 a_3 + a_1 + a_0 + * -1 __xor__ __rshift__ a_4 31 a_4 __rshift__ a_4 31
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + a_0 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_5 + a_4 + a_1 + * -1 a_2 + * -1 a_3 a_0
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_4 + a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_3 + a_4 + * -1 a_1 + * -1 a_2 a_5
+Concat 0x0 + a_2 + * -1 a_3 + a_4 + * -1 a_5 + a_0 a_1
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + a_2 + a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_4 + a_2 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_4 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + * -1 a_4 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + a_2 + * -1 a_3 + a_1 * -1 a_4
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + a_2 a_3
+Concat 0x0 + a_0 + a_1 + a_2 + a_5 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + __xor__ __rshift__ a_2 31 a_2 + * -1 __rshift__ a_2 31 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_2 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_2 + a_0 + a_1 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_4 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_3 + a_4 + * -1 a_5 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_5 + a_3 + a_1 + * -1 a_2 + a_0 * -1 a_4
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + * -1 a_5 + a_0 a_1
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_5 + a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + __xor__ + a_0 + * -1 a_1 + * -1 a_2 + a_3 a_4 __rshift__ + a_0 + * -1 a_1 + * -1 a_2 + a_3 a_4 31 * -1 __rshift__ + a_0 + * -1 a_1 + * -1 a_2 + a_3 a_4 31
+Concat 0x0 + a_0 + a_3 + a_1 + a_2 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_4 + * -1 a_2 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_4 + a_1 + * -1 a_2 + * -1 a_3 a_0
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 a_3
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + * -1 a_3 + a_0 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_0 + a_3 + * -1 a_4 + * -1 a_5 + a_2 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_5 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + __xor__ + a_0 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_1 __rshift__ + a_0 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_1 31 * -1 __rshift__ + a_0 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_1 31
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_1 + a_0 * -1 a_2
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + a_0 + * -1 a_4 * -1 a_3
+Concat 0x0 + a_1 + a_2 + a_0 + * -1 a_4 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_5 + a_1 + a_2 + a_3 + a_4 a_0
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_4 + a_3 + a_2 + a_0 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_1 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_2 + a_1 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_4 + * -1 a_5 + a_3 * -1 a_1
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_4 + a_3 + a_2 + a_0 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_5 + a_0 + a_1 + a_2 + a_3 a_4
+Concat 0x0 + a_5 + a_4 + a_2 + a_1 + * -1 a_3 a_0
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_5 + a_3 + a_4 + a_0 + a_1 a_2
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 __xor__ + a_3 * -1 a_4 __rshift__ + a_3 * -1 a_4 31 __rshift__ + a_3 * -1 a_4 31
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_3 + a_4 + a_5 + * -1 a_1 a_2
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + a_1 + a_2 a_3
+Concat 0x0 + a_4 + a_2 + a_3 + a_0 + a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_2 + a_3 + a_4 + * -1 a_5 + a_0 a_1
+Concat 0x0 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 + a_1 + a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_5 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_1 + a_2 + * -1 a_3 a_5
+Concat 0x0 + a_2 + a_4 + * -1 a_5 + a_3 + a_0 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_4 + a_3 * -1 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_4 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_1 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_1 + a_0 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_5
+Concat 0x0 + a_3 + a_2 + * -1 a_4 + a_0 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_2 + a_1 + * -1 a_3 + a_0 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 __xor__ + a_4 + a_2 * -1 a_3 __rshift__ + a_4 + a_2 * -1 a_3 31 __rshift__ + a_4 + a_2 * -1 a_3 31
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_2 + a_3 + a_5 * -1 a_1
+Concat 0x0 + a_3 + * -1 a_4 + a_1 + * -1 a_2 + a_0 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + a_5 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_4 + * -1 a_5 + a_1 + * -1 a_2 + a_0 a_3
+Concat 0x0 + a_5 + a_1 + a_2 + a_0 + a_3 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_4 + * -1 a_3 + * -1 a_1 a_2
+Concat 0x0 + a_3 + * -1 a_4 + a_0 + * -1 a_1 + * -1 a_2 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_5 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_2 + * -1 a_3 + a_1 + a_0 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_4 + a_3 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_5 + a_0 + a_2 + a_3 + a_1 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + __xor__ + a_0 + a_1 + * -1 a_2 * -1 a_3 __rshift__ + a_0 + a_1 + * -1 a_2 * -1 a_3 31 + * -1 __rshift__ + a_0 + a_1 + * -1 a_2 * -1 a_3 31 * -1 a_4
+Concat 0x0 + a_5 + a_3 + a_0 + * -1 a_1 + a_2 * -1 a_4
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_4 + a_5 a_1
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_5 + a_4 + a_2 + a_3 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + a_0 + a_4 a_3
+Concat 0x0 + a_4 + * -1 a_5 + a_3 + a_2 + a_0 * -1 a_1
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + * -1 a_3 + a_4 + a_5 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_5 + a_3 + a_4 + a_1 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_4 + a_2 + a_1 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + a_0 + a_1 * -1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + * -1 a_2 a_3
+Concat 0x0 + a_0 + * -1 __xor__ + a_4 + a_2 + * -1 a_3 a_1 __rshift__ + a_4 + a_2 + * -1 a_3 a_1 31 __rshift__ + a_4 + a_2 + * -1 a_3 a_1 31
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_0 + a_3 + a_4 + a_2 + a_1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_5 * -1 a_1
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_4 + a_3 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_5 + * -1 a_3 + * -1 a_2 a_4
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + a_5 + a_0 * -1 a_1
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 __xor__ __rshift__ a_2 31 a_2 + __rshift__ a_2 31 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_4 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 * -1 a_1
+Concat 0x0 + a_4 + a_3 + * -1 a_5 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_5 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_4 + * -1 a_2 + a_3 * -1 a_5
+Concat 0x0 + a_0 + a_4 + a_5 + a_3 + a_2 a_1
+Concat 0x0 + a_5 + a_1 + a_2 + a_3 + a_4 a_0
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_0 + a_2 + a_3 + * -1 a_5 + * -1 a_4 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_3 + * -1 a_4 + a_0 + * -1 a_1 + a_2 * -1 a_5
+Concat 0x0 + a_4 + a_2 + a_0 + a_1 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_2 + * -1 a_3 + a_4 + __xor__ __rshift__ a_1 31 a_1 + * -1 __rshift__ a_1 31 a_0
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + * -1 a_4 + a_1 a_5
+Concat 0x0 + a_4 + a_3 + a_1 + a_2 + a_0 * -1 a_5
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + a_0 + a_4 a_3
+Concat 0x0 + a_3 + * -1 a_4 + a_1 + a_0 + * -1 a_2 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_4 a_3
+Concat 0x0 + a_0 + a_4 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_3 + a_4 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_4 + * -1 a_5 a_3
+Concat 0x0 + a_5 + a_0 + a_2 + a_1 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 __xor__ __rshift__ a_1 31 a_1 + __rshift__ a_1 31 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + a_4 * -1 a_5
+Concat 0x0 + a_3 + * -1 a_4 + a_1 + * -1 a_2 + a_0 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_0 + a_3 + a_4 + a_5 + a_1 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + * -1 a_4 + a_5 a_2
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_4 + a_3 + a_1 + * -1 a_2 a_5
+Concat 0x0 + a_4 + a_2 + * -1 a_3 + a_0 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_5 + a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + * -1 a_5 + * -1 a_3 * -1 a_2
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 a_4
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_4 + a_5 a_3
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + a_3 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_5 + * -1 a_4 + * -1 a_2 + a_3 * -1 a_1
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + a_1 + * -1 a_2 a_0
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_5 + a_3 * -1 a_4
+Concat 0x0 + a_5 + a_4 + a_0 + a_1 + * -1 a_2 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_4 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_1 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_5 + a_0 + a_1 + a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + a_1 + a_0 * -1 a_2
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 a_4
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_4 + a_2 + a_3 + a_0 + a_1 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_2 + a_3 + a_4 + * -1 a_5 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + * -1 a_2 + * -1 a_3 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + a_3 + a_1 a_0
+Concat 0x0 + a_5 + a_3 + a_1 + a_2 + * -1 a_4 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + * -1 a_4 + * -1 a_5 a_2
+Concat 0x0 + a_2 + * -1 a_3 + a_1 + a_0 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + a_5 + * -1 a_2 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_3 + a_4 a_2
+Concat 0x0 + a_0 + a_2 + a_1 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_5 + a_0 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_6 + a_0 + a_1 + a_2 + * -1 a_4 + a_5 * -1 a_3
+Concat 0x0 + a_6 + a_3 + * -1 a_4 + a_5 + a_2 + a_1 a_0
+Concat 0x0 + a_6 + a_3 + * -1 a_4 + * -1 a_5 + a_0 + a_1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_5 + a_2 + * -1 a_3 + * -1 a_4 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + a_4 + * -1 a_2 + a_5 * -1 a_6
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + a_6 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + a_4 + * -1 a_5 + a_1 a_6
+Concat 0x0 + a_0 + * -1 a_5 + * -1 a_4 + * -1 a_2 + a_3 + * -1 a_1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_6 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + a_4 + a_5 + a_6 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 + * -1 a_4 a_6
+Concat 0x0 + a_4 + a_5 + * -1 a_6 + a_0 + a_1 + * -1 a_2 a_3
+Concat 0x0 + a_6 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_6 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + a_5 a_6
+Concat 0x0 + a_6 + a_4 + a_0 + a_1 + a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_6 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_4 + a_3 + * -1 a_5 a_6
+Concat 0x0 + __xor__ + a_5 + a_1 + a_2 + a_3 a_4 __rshift__ + a_5 + a_1 + a_2 + a_3 a_4 31 + * -1 __rshift__ + a_5 + a_1 + a_2 + a_3 a_4 31 a_0
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + a_5 + a_4 * -1 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_6 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_4 + a_5 + * -1 a_6 a_2
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_2 * -1 a_6
+Concat 0x0 + a_4 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_5 + a_4 + * -1 a_6 + a_0 + * -1 a_1 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + a_3 + a_1 + a_0 * -1 a_6
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + * -1 a_5 + * -1 a_6 + a_0 a_1
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + a_4 + a_5 a_6
+Concat 0x0 + a_0 + a_5 + a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_6
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_6 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_6 + a_2 + a_1 + * -1 a_3 + a_0 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_0 + * -1 __xor__ + a_5 + a_1 + * -1 a_2 + * -1 a_4 * -1 a_3 __rshift__ + a_5 + a_1 + * -1 a_2 + * -1 a_4 * -1 a_3 31 __rshift__ + a_5 + a_1 + * -1 a_2 + * -1 a_4 * -1 a_3 31
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + * -1 a_4 + a_5 + * -1 a_6 a_1
+Concat 0x0 + a_6 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + a_4 a_5
+Concat 0x0 + __xor__ + a_0 * -1 a_1 __rshift__ + a_0 * -1 a_1 31 + * -1 __rshift__ + a_0 * -1 a_1 31 + a_5 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_6 + a_0 + * -1 a_2 + a_4 + a_5 + a_3 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_4 + a_2 + * -1 a_3 + * -1 a_5 a_6
+Concat 0x0 + a_0 + a_1 + a_3 + a_4 + a_2 + a_5 * -1 a_6
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_1 + * -1 a_2 + a_3 + a_0 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_1 + a_2 + a_4 + a_5 a_6
+Concat 0x0 + a_6 + a_1 + * -1 a_2 + a_3 + a_4 + a_5 a_0
+Concat 0x0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_0 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + * -1 a_4 + a_5 + a_2 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_4 + * -1 a_5 + * -1 a_6 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_0 + a_1 + a_3 + * -1 a_4 + * -1 a_5 + a_2 * -1 a_6
+Concat 0x0 + a_6 + a_2 + a_3 + a_4 + a_0 + * -1 a_1 a_5
+Concat 0x0 + a_2 + a_4 + * -1 a_5 + __xor__ __rshift__ a_3 31 a_3 + * -1 __rshift__ a_3 31 + a_0 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_5 + a_4 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + a_4 + * -1 a_5 + * -1 a_2 * -1 a_6
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_0 + a_4 + * -1 a_5 + a_6 + a_3 + a_2 a_1
+Concat 0x0 + a_0 + a_4 + * -1 a_5 + a_2 + * -1 a_3 + a_1 * -1 a_6
+Concat 0x0 + a_5 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 + * -1 a_5 a_6
+Concat 0x0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_0 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_4 + a_5 + a_6 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 __xor__ + a_1 + a_2 + __xor__ + a_4 a_3 __rshift__ + a_4 a_3 31 * -1 __rshift__ + a_4 a_3 31 __rshift__ + a_1 + a_2 + __xor__ + a_4 a_3 __rshift__ + a_4 a_3 31 * -1 __rshift__ + a_4 a_3 31 31 __rshift__ + a_1 + a_2 + __xor__ + a_4 a_3 __rshift__ + a_4 a_3 31 * -1 __rshift__ + a_4 a_3 31 31
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + a_5 + __xor__ + a_1 + * -1 a_2 + a_3 * -1 a_4 __rshift__ + a_1 + * -1 a_2 + a_3 * -1 a_4 31 * -1 __rshift__ + a_1 + * -1 a_2 + a_3 * -1 a_4 31
+Concat 0x0 + a_2 + a_3 + a_1 + a_0 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_6 + a_2 + a_3 + a_4 + a_5 + a_0 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_5 + a_4 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_5 + * -1 a_3 + a_4 + a_6 * -1 a_2
+Concat 0x0 + a_6 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_1 + a_2 + a_0 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_5 + a_1 + * -1 __xor__ + a_3 a_2 __rshift__ + a_3 a_2 31 + __rshift__ + a_3 a_2 31 + a_4 a_0
+Concat 0x0 + a_0 + a_1 + a_4 + a_2 + a_3 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_6 + a_5 + a_1 + a_2 + a_0 + * -1 a_3 a_4
+Concat 0x0 + a_0 + a_1 + * -1 a_6 + * -1 a_5 + * -1 a_3 + * -1 a_4 * -1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + __xor__ __rshift__ a_4 31 a_4 + * -1 __rshift__ a_4 31 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_5 + * -1 a_4 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + * -1 a_4 + a_2 + a_5 * -1 a_6
+Concat 0x0 + a_6 + a_5 + a_3 + a_4 + a_2 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_5 + a_0 + * -1 a_2 + a_3 + a_4 + * -1 a_1 * -1 a_6
+Concat 0x0 + a_6 + a_5 + a_2 + a_3 + a_4 + a_0 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_6 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_6 + a_0 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_4 + a_5 + a_6 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_6 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 a_0
+Concat 0x0 + a_4 + * -1 a_5 + a_2 + * -1 a_3 + * -1 a_6 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_5 + a_4 * -1 a_6
+Concat 0x0 + a_0 + a_5 + a_3 + * -1 a_4 + * -1 a_6 + a_2 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 + a_5 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_1 + a_2 + a_0 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_6 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + * -1 a_5 + * -1 a_4 * -1 a_6
+Concat 0x0 + a_6 + a_2 + a_3 + a_4 + * -1 a_5 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_6 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_6 + a_3 + * -1 a_4 + a_5 + a_1 + a_2 a_0
+Concat 0x0 + a_6 + a_0 + a_1 + a_3 + a_2 + a_4 * -1 a_5
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_2 + a_4 + a_5 + * -1 a_6 * -1 a_1
+Concat 0x0 + a_2 + * -1 a_4 + a_5 + * -1 a_3 + * -1 a_6 + a_0 a_1
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_2 + a_3 + a_1 + a_0 + * -1 a_6 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_6 + a_5 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_3 + * -1 a_4 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + * -1 a_6 + a_0 + a_1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_5 + * -1 a_4 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_2 + a_3 + a_4 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_3 + a_2 + * -1 a_6 + * -1 a_4 a_5
+Concat 0x0 + a_2 + * -1 a_3 + a_1 + a_0 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_1 + a_2 + a_0 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_4 + a_3 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 + a_6 a_1
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 + a_6 + a_0 a_1
+Concat 0x0 + a_6 + a_5 + a_1 + * -1 a_3 + * -1 a_2 + a_4 a_0
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 + a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_5 + * -1 a_3 + a_4 a_6
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_0 + * -1 a_1 + a_2 * -1 a_6
+Concat 0x0 + a_0 + a_3 + a_2 + * -1 a_4 + a_5 + a_1 a_6
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + a_5 + a_6 + a_0 * -1 a_1
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + * -1 a_6 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 + a_5 a_6
+Concat 0x0 + a_6 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 a_4
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_2 + * -1 a_1 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + a_5 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_2 + a_4 + * -1 a_5 + a_3 + * -1 a_6 + a_0 * -1 a_1
+Concat 0x0 + a_5 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + * -1 a_4 * -1 a_6
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_6 + * -1 a_4 + a_5 * -1 a_3
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_6
+Concat 0x0 + a_6 + a_4 + a_5 + a_0 + a_1 + a_2 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + a_4 + a_5 + a_6 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 + a_5 a_6
+Concat 0x0 + a_5 + * -1 a_6 + a_2 + a_0 + a_1 + * -1 a_3 a_4
+Concat 0x0 + a_5 + a_3 + a_2 + * -1 a_4 + * -1 a_6 + a_0 a_1
+Concat 0x0 + a_6 + a_5 + a_4 + a_2 + a_0 + a_1 * -1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 __xor__ + a_5 a_4 __rshift__ + a_5 a_4 31 __rshift__ + a_5 a_4 31
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_3 + a_1 + * -1 a_2 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + * -1 a_6 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + a_0 + * -1 a_1 + a_2 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + * -1 a_6 + a_1 + * -1 a_2 + a_3 + a_4 a_0
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + * -1 a_6 + a_0 + * -1 a_1 * -1 a_2
+Concat 0x0 + a_6 + a_4 + a_2 + * -1 a_3 + a_1 + a_0 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_5 + * -1 a_1 + a_2 * -1 a_6
+Concat 0x0 + a_4 + a_5 + * -1 a_6 + a_0 + * -1 a_1 + * -1 a_2 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 __xor__ + a_2 + a_3 + * -1 a_4 a_5 __rshift__ + a_2 + a_3 + * -1 a_4 a_5 31 __rshift__ + a_2 + a_3 + * -1 a_4 a_5 31
+Concat 0x0 + a_6 + a_4 + * -1 a_5 + a_0 + a_1 + a_2 a_3
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_1 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_6 + a_2 + a_3 + * -1 a_4 + a_5 + a_1 a_0
+Concat 0x0 + a_0 + a_2 + a_1 + * -1 a_3 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + a_5 * -1 a_1
+Concat 0x0 + a_6 + a_0 + * -1 a_4 + * -1 a_1 + * -1 a_2 + * -1 a_3 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_6 + a_4 + a_3 + * -1 a_5 + a_2 + a_1 a_0
+Concat 0x0 + a_6 + a_0 + * -1 a_2 + * -1 a_1 + a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_6 + a_2 + a_3 + a_5 a_4
+Concat 0x0 + a_6 + a_1 + * -1 a_2 + a_0 + a_5 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_5 + * -1 a_6 + a_0 + * -1 a_1 + a_2 + a_3 * -1 a_4
+Concat 0x0 + a_6 + a_5 + a_1 + a_2 + a_3 + a_4 a_0
+Concat 0x0 + a_6 + a_5 + a_1 + * -1 a_2 + a_3 + a_4 a_0
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_2 + a_3 + * -1 a_4 + * -1 a_5 + * -1 a_6 a_1
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + a_4 + a_3 a_5
+Concat 0x0 + a_6 + a_4 + a_2 + * -1 a_3 + * -1 a_5 + a_1 a_0
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_3 + * -1 a_1 + a_2 + * -1 a_5 a_6
+Concat 0x0 + a_6 + a_3 + a_2 + * -1 a_4 + a_0 + * -1 a_1 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_6 + * -1 a_2 + a_4 + a_5 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_4 + a_5 + * -1 a_2 + a_3 * -1 a_6
+Concat 0x0 + a_5 + a_1 + a_2 + __xor__ __rshift__ a_3 31 a_3 + * -1 __rshift__ a_3 31 + a_0 a_4
+Concat 0x0 + a_6 + a_2 + * -1 a_3 + * -1 a_4 + a_1 + a_5 a_0
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_1 + a_0 + a_4 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 + a_5 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_3 + * -1 a_4 + * -1 a_5 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_5 + * -1 a_4 * -1 a_6
+Concat 0x0 + a_6 + a_1 + a_2 + a_4 + a_3 + a_0 a_5
+Concat 0x0 + a_5 + * -1 a_6 + a_2 + * -1 a_3 + a_4 + a_0 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_6 + a_0 + a_1 + * -1 a_2 + a_4 + a_5 a_3
+Concat 0x0 + a_5 + * -1 a_6 + a_2 + a_3 + a_4 + a_1 a_0
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 * -1 a_6
+Concat 0x0 + a_1 + * -1 a_2 + a_3 + a_0 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + a_5 + a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + a_4 + a_5 + * -1 a_2 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_5 + a_2 + a_3 + a_4 + * -1 a_6 + a_0 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + a_5 + a_4 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_5 + a_4 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_4 + * -1 a_1 + * -1 a_5 a_6
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + * -1 a_6 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_5 + a_3 + a_4 a_6
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + * -1 a_3 + a_4 + a_5 a_6
+Concat 0x0 + a_6 + a_1 + a_2 + a_3 + * -1 a_4 + * -1 a_5 a_0
+Concat 0x0 + a_6 + a_0 + a_1 + a_2 + * -1 a_4 + * -1 a_5 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + * -1 a_3 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_6 + a_2 + a_3 + a_4 + * -1 a_5 + a_1 a_0
+Concat 0x0 + a_1 + a_2 + a_0 + * -1 a_3 + a_5 + a_4 * -1 a_6
+Concat 0x0 + a_1 + * -1 a_2 + * -1 a_3 + a_0 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_6 + a_5 + a_1 + a_2 + a_3 * -1 a_4
+Concat 0x0 + a_4 + * -1 a_5 + a_1 + * -1 a_2 + a_3 + a_0 * -1 a_6
+Concat 0x0 + a_2 + * -1 a_3 + a_4 + * -1 a_5 + * -1 a_6 + a_0 * -1 a_1
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_3 + a_2 + * -1 a_4 a_5
+Concat 0x0 + a_6 + a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 + a_5 a_0
+Concat 0x0 + a_2 + * -1 a_4 + a_5 + * -1 a_3 + * -1 a_6 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_6 + a_2 + * -1 a_3 + a_0 + * -1 a_1 + * -1 a_4 a_5
+Concat 0x0 + a_6 + a_5 + a_2 + * -1 a_3 + a_4 + a_0 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_6 + * -1 a_4 + a_5 + * -1 a_3 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 + * -1 a_6 + * -1 a_4 a_5
+Concat 0x0 + a_0 + a_5 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_6 a_1
+Concat 0x0 + a_4 + * -1 a_5 + * -1 a_6 + a_0 + a_1 + a_2 a_3
+Concat 0x0 + a_6 + a_4 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_5 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_2 + a_3 + a_1 + * -1 a_6 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_6 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + a_6 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_2 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 + a_6 * -1 a_1
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_5 + a_4 * -1 a_6
+Concat 0x0 + a_5 + a_4 + a_0 + * -1 a_2 + * -1 a_1 + a_3 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_5 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + a_4 + a_5 + * -1 a_2 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_5 + * -1 a_6 + * -1 a_3 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_5 + a_6 a_4
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + a_5 + * -1 a_6 * -1 a_1
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_6 + a_4 + a_3 + * -1 a_5 + a_1 * -1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_5 a_6
+Concat 0x0 + a_4 + a_3 + a_1 + a_0 + * -1 a_2 + * -1 a_5 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_5 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + a_2 + a_3 + * -1 a_4 + * -1 a_5 + * -1 a_6 a_1
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_4 + * -1 a_3 a_5
+Concat 0x0 + a_4 + * -1 a_5 + a_6 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + * -1 a_4 + * -1 a_5 + * -1 a_2 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_6 + * -1 a_4 a_5
+Concat 0x0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_0 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_4 + a_0 + a_1 + a_2 + * -1 a_3 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_4 + a_3 + * -1 a_5 + a_0 + a_1 + a_2 * -1 a_6
+Concat 0x0 + a_6 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_2 a_3
+Concat 0x0 + a_5 + a_4 + * -1 a_6 + a_1 + * -1 a_2 + a_3 a_0
+Concat 0x0 + a_5 + * -1 a_6 + a_0 + * -1 a_1 + a_2 + a_4 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_6 + a_3 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + * -1 a_4 + a_5 + a_2 a_6
+Concat 0x0 + a_0 + a_3 + a_4 + a_6 + a_5 + a_2 a_1
+Concat 0x0 + a_6 + a_0 + a_1 + a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_4 + a_2 + a_6 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_4 + a_5 + a_3 + a_2 * -1 a_6
+Concat 0x0 + a_4 + * -1 a_5 + * -1 a_6 + a_1 + a_2 + a_0 a_3
+Concat 0x0 + a_0 + a_1 + a_3 + * -1 a_4 + a_2 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_6 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + * -1 a_2 a_3
+Concat 0x0 + a_0 + __xor__ + a_3 a_2 __rshift__ + a_3 a_2 31 + * -1 __rshift__ + a_3 a_2 31 + a_1 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_1 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + a_3 + * -1 a_4 + a_5 + a_1 + * -1 a_2 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_4 + * -1 a_5 + a_6 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_6 + a_3 + a_2 + * -1 a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + a_6 + a_4 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_6 + a_5 + a_3 + * -1 a_4 + a_2 + a_0 a_1
+Concat 0x0 + a_5 + * -1 a_6 + a_2 + * -1 a_3 + * -1 a_4 + a_0 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_4 + * -1 a_1 + a_2 + a_3 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_5 + * -1 a_2 + a_3 + * -1 a_4 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_5 + * -1 a_6 + a_2 + * -1 a_3 + * -1 a_4 + a_0 * -1 a_1
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 a_5
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_6 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 __xor__ + a_2 + * -1 a_4 + * -1 a_5 * -1 a_3 __rshift__ + a_2 + * -1 a_4 + * -1 a_5 * -1 a_3 31 __rshift__ + a_2 + * -1 a_4 + * -1 a_5 * -1 a_3 31
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_4 + * -1 a_5 + * -1 a_6 + a_2 + * -1 a_3 + a_1 a_0
+Concat 0x0 + a_3 + a_4 + * -1 a_5 + a_6 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + a_4 + * -1 a_5 + a_6 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_1 + a_2 + * -1 a_3 + a_5 * -1 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_4 + a_3 + * -1 a_5 + * -1 a_6 + a_1 + * -1 a_2 a_0
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 + a_6 + a_0 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 __xor__ + a_2 + a_3 + * -1 a_4 * -1 a_5 __rshift__ + a_2 + a_3 + * -1 a_4 * -1 a_5 31 __rshift__ + a_2 + a_3 + * -1 a_4 * -1 a_5 31
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_2 + * -1 a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_0 + * -1 a_2 + a_4 + * -1 a_5 + a_3 + a_6 * -1 a_1
+Concat 0x0 + a_4 + * -1 a_5 + a_6 + a_0 + * -1 a_1 + a_2 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_6 + a_4 a_5
+Concat 0x0 + a_3 + * -1 a_4 + a_2 + a_1 + a_0 + * -1 a_5 a_6
+Concat 0x0 + a_0 + a_3 + a_4 + a_2 + a_1 + * -1 a_5 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + a_6 + a_4 * -1 a_5
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + * -1 a_6 + a_1 + * -1 a_2 a_0
+Concat 0x0 + a_0 + a_2 + a_3 + * -1 a_5 + * -1 a_4 + a_1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_2 + * -1 a_3 + * -1 a_4 + a_5 + * -1 a_6 a_1
+Concat 0x0 + a_0 + __xor__ __rshift__ a_4 31 a_4 + * -1 __rshift__ a_4 31 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_5 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + a_0 * -1 a_6
+Concat 0x0 + a_5 + * -1 a_6 + a_1 + * -1 a_2 + * -1 a_3 + a_0 a_4
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_2 + * -1 a_1 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_6 + a_1 + a_2 + a_3 + * -1 a_4 + a_5 a_0
+Concat 0x0 + a_0 + a_3 + * -1 a_4 + a_5 + * -1 a_6 + a_2 a_1
+Concat 0x0 + a_3 + * -1 a_4 + * -1 a_5 + * -1 a_6 + a_0 + a_1 a_2
+Concat 0x0 + a_5 + a_2 + * -1 a_3 + a_4 + a_1 + a_0 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_6 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 __xor__ + a_3 + a_4 * -1 a_5 __rshift__ + a_3 + a_4 * -1 a_5 31 __rshift__ + a_3 + a_4 * -1 a_5 31
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 + a_6 + a_0 * -1 a_1
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_6 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_2 + a_5 + * -1 a_6 + a_4 + a_3 + a_0 * -1 a_1
+Concat 0x0 + a_0 + a_1 + * -1 a_6 + * -1 a_5 + * -1 a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_5 + a_4 + a_1 + * -1 a_2 + * -1 a_3 * -1 a_6
+Concat 0x0 + a_0 + a_2 + * -1 a_4 + * -1 a_5 + * -1 a_6 + * -1 a_3 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + __xor__ + a_1 + * -1 a_2 a_3 __rshift__ + a_1 + * -1 a_2 a_3 31 + * -1 __rshift__ + a_1 + * -1 a_2 a_3 31 + * -1 a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_4 + a_6 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_3 + a_4 + * -1 a_2 + a_6 a_5
+Concat 0x0 + a_1 + * -1 a_2 + a_0 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_5 + * -1 a_2 + * -1 a_1 + a_3 + * -1 a_4 a_6
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_1 + a_2 + * -1 a_3 + a_5 a_6
+Concat 0x0 + a_6 + a_2 + a_0 + a_1 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_5 + * -1 a_6 + a_0 + * -1 a_1 + a_2 + a_3 a_4
+Concat 0x0 + a_5 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 * -1 a_6
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_1 + a_2 + * -1 a_3 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_2 + a_3 + * -1 a_1 + * -1 a_4 + a_6 a_5
+Concat 0x0 + a_6 + a_1 + * -1 a_2 + a_3 + a_4 + a_0 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_5 + * -1 a_4 * -1 a_6
+Concat 0x0 + a_6 + a_4 + a_2 + * -1 a_3 + * -1 a_5 + a_1 a_0
+Concat 0x0 + a_6 + a_3 + a_2 + a_0 + * -1 a_1 + a_4 a_5
+Concat 0x0 + a_0 + a_2 + a_1 + * -1 a_3 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_4 + * -1 a_5 + a_6 + a_3 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_1 + a_2 + * -1 a_3 + a_5 * -1 a_6
+Concat 0x0 + a_6 + a_5 + a_1 + * -1 a_2 + a_3 + * -1 a_4 a_0
+Concat 0x0 + a_0 + * -1 a_4 + a_5 + * -1 a_2 + a_3 + * -1 a_1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 + a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_6 + a_4 + a_5 a_3
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 a_5
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_5 + * -1 a_4 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_3 + a_4 + * -1 a_2 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_4 + * -1 a_5 + a_3 + a_6 a_2
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 + a_5 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_5 + * -1 a_4 + * -1 a_2 + * -1 a_1 a_3
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_1 + a_3 + * -1 a_4 + a_2 + * -1 a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + * -1 a_3 + __xor__ __rshift__ a_5 31 a_5 * -1 __rshift__ a_5 31
+Concat 0x0 + a_6 + a_5 + a_1 + * -1 a_2 + a_3 + a_4 a_0
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_6 + a_4 a_5
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_4 + a_5 * -1 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 __xor__ + a_5 a_4 __rshift__ + a_5 a_4 31 __rshift__ + a_5 a_4 31
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_2 + a_3 + * -1 a_4 + a_5 + * -1 a_6 + a_0 a_1
+Concat 0x0 + a_5 + * -1 a_6 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_6 + a_5 + a_2 + * -1 a_3 + * -1 a_4 + a_1 a_0
+Concat 0x0 + a_5 + * -1 a_6 + a_0 + * -1 a_1 + a_2 + a_3 * -1 a_4
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_6 + a_1 + * -1 a_2 + a_0 + a_3 + * -1 a_5 * -1 a_4
+Concat 0x0 + a_4 + a_2 + a_3 + a_0 + a_1 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_5 + a_3 + * -1 a_4 + * -1 a_6 + a_0 + * -1 a_1 a_2
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_4 + a_5 + * -1 a_3 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_3 + * -1 a_4 + a_2 + * -1 a_5 + a_6 + a_0 * -1 a_1
+Concat 0x0 + a_5 + a_3 + a_4 + a_1 + a_2 + a_0 * -1 a_6
+Concat 0x0 + a_6 + a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 a_0
+Concat 0x0 + a_5 + a_4 + * -1 a_6 + a_0 + * -1 a_1 + a_2 * -1 a_3
+Concat 0x0 + a_2 + * -1 a_3 + a_4 + a_5 + a_0 + * -1 a_1 * -1 a_6
+Concat 0x0 + a_0 + a_1 + a_2 + a_3 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + a_5 * -1 a_6
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_4 + * -1 a_3 + a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_5 + __xor__ __rshift__ a_0 31 a_0 + * -1 __rshift__ a_0 31 + * -1 a_1 + * -1 a_3 + * -1 a_2 a_4
+Concat 0x0 + a_0 + a_3 + * -1 a_4 + * -1 a_5 + a_2 + a_1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_6 + * -1 a_4 + * -1 a_5 + * -1 a_2 * -1 a_3
+Concat 0x0 + a_6 + a_0 + * -1 a_2 + * -1 a_3 + * -1 a_5 + * -1 a_4 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + a_2 + * -1 a_3 + a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_4 + a_3 + * -1 a_5 a_6
+Concat 0x0 + a_0 + a_1 + a_2 + a_4 + a_3 + * -1 a_5 a_6
+Concat 0x0 + a_5 + * -1 a_6 + a_0 + * -1 a_3 + * -1 a_1 + * -1 a_2 a_4
+Concat 0x0 + a_3 + * -1 a_4 + a_6 + a_5 + a_1 + * -1 a_2 a_0
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + * -1 a_4 + a_5 * -1 a_6
+Concat 0x0 + a_6 + a_4 + a_5 + a_0 + * -1 a_2 + a_3 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_6 + a_5 + a_3 a_4
+Concat 0x0 + a_1 + a_0 + * -1 a_2 + a_3 + * -1 a_4 + a_5 a_6
+Concat 0x0 + a_6 + a_5 + a_0 + a_1 + * -1 a_3 + * -1 a_2 a_4
+Concat 0x0 + a_4 + a_0 + * -1 a_1 + a_2 + a_3 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_6 + a_0 + a_1 + * -1 a_3 + * -1 a_2 + a_4 * -1 a_5
+Concat 0x0 + a_5 + * -1 a_6 + a_1 + * -1 a_2 + * -1 a_3 + a_4 a_0
+Concat 0x0 + a_0 + a_1 + a_2 + a_5 + a_3 + * -1 a_4 * -1 a_6
+Concat 0x0 + a_2 + a_4 + a_3 + * -1 a_5 + a_0 + a_1 * -1 a_6
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_3 + * -1 a_4 + * -1 a_5 * -1 a_6
+Concat 0x0 + a_6 + a_0 + a_3 + a_4 + a_2 + a_1 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + a_4 + a_3 + a_5 a_6
+Concat 0x0 + a_3 + * -1 a_4 + a_6 + a_5 + a_1 + * -1 a_2 a_0
+Concat 0x0 + a_4 + * -1 a_5 + a_0 + a_1 + a_2 + * -1 a_3 * -1 a_6
+Concat 0x0 + a_0 + * -1 a_3 + * -1 a_4 + * -1 a_5 + a_6 + * -1 a_2 * -1 a_1
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + * -1 a_3 + a_4 + a_5 a_6
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + * -1 a_2 + a_5 + a_3 * -1 a_4
+Concat 0x0 + a_1 + * -1 a_2 + * -1 a_3 + * -1 a_4 + a_0 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_6 + a_0 + * -1 a_1 + a_3 + a_2 + * -1 a_4 a_5
+Concat 0x0 + a_6 + a_1 + a_2 + a_3 + * -1 a_4 + * -1 a_5 a_0
+Concat 0x0 + a_5 + a_1 + a_2 + * -1 a_4 + * -1 a_3 + a_0 * -1 a_6
+Concat 0x0 + a_0 + a_3 + * -1 a_5 + * -1 a_6 + * -1 a_4 + a_2 a_1
+Concat 0x0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 + a_0 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + a_4 + * -1 a_5 + * -1 a_6 a_3
+Concat 0x0 + a_0 + * -1 a_3 + a_4 + a_5 + * -1 a_1 + * -1 a_2 a_6
+Concat 0x0 + a_0 + * -1 a_4 + * -1 a_3 + a_5 + * -1 a_2 + * -1 a_1 * -1 a_6
+Concat 0x0 + a_2 + * -1 a_3 + * -1 a_4 + a_5 + * -1 a_6 + a_0 a_1
+Concat 0x0 + a_6 + a_4 + a_0 + * -1 a_1 + a_2 + * -1 a_3 * -1 a_5
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_5 + * -1 a_4 + a_6 + * -1 a_2 a_3
+Concat 0x0 + a_0 + * -1 a_1 + * -1 a_2 + a_3 + a_4 + * -1 a_5 a_6
+Concat 0x0 + a_0 + a_1 + * -1 a_2 + * -1 a_3 + a_4 + a_5 a_6
+Concat 0x0 + a_0 + * -1 a_1 + a_3 + a_4 + a_2 + * -1 a_6 * -1 a_5
+Concat 0x0 + a_0 + a_1 + a_2 + * -1 a_6 + * -1 a_5 + * -1 a_3 * -1 a_4
+Concat 0x0 + a_3 + * -1 a_4 + a_5 + a_6 + a_0 + * -1 a_1 a_2

@@ -62,7 +62,7 @@ def gen_loop(math_file_01, sym_file_01, math_file_02, sym_file_02, ops, num_var,
     # Create a generator. Refer to expression/ubitree.py for parameters
     generator = UbiTreeGenerator(max_ops=ops, num_leaves=ops*5, max_int=10, int_only=True)
 
-    for i in range(int(ops * ops / 2)):
+    for i in range(100 * int(ops * ops / 2)):
         # Convert the stack into expression.components
         prefix_stack = generator.generate_ubitree_stack(num_var, [1,0])
         expr = prefix_stack_to_expression(prefix_stack)
@@ -91,7 +91,8 @@ def gen_loop(math_file_01, sym_file_01, math_file_02, sym_file_02, ops, num_var,
             fd.write("\n")
 
         with open(sym_file_01, "a") as fd:
-            fd.write(' '.join([elem for elem in sym_seq]))
+            # just ignore concat and 0x0 tokens
+            fd.write(' '.join([elem for elem in sym_seq if elem not in ["Concat", "0x0"]]))
             fd.write("\n")
 
         with open(math_file_02, "a") as fd:
@@ -99,7 +100,8 @@ def gen_loop(math_file_01, sym_file_01, math_file_02, sym_file_02, ops, num_var,
             fd.write("\n")
 
         with open(sym_file_02, "a") as fd:
-            fd.write(' '.join([elem for elem in sym_pre]))
+            # just ignore concat and 0x0 tokens
+            fd.write(' '.join([elem for elem in sym_pre if elem not in ["Concat", "0x0"]]))
             fd.write("\n")
 
 
@@ -110,12 +112,12 @@ def main():
     t_dir = sys.argv[1]
     wid = int(sys.argv[2])
 
-    math_file_01 = "%s/data_01/math.%02d" % (t_dir, wid)
-    sym_file_01  = "%s/data_01/sym.%02d"  % (t_dir, wid)
-    math_file_02 = "%s/data_02/math.%02d" % (t_dir, wid)
-    sym_file_02  = "%s/data_02/sym.%02d"  % (t_dir, wid)
+    math_file_01 = "%s/data_infix/math.%02d" % (t_dir, wid)
+    sym_file_01  = "%s/data_infix/sym.%02d"  % (t_dir, wid)
+    math_file_02 = "%s/data_prefix/math.%02d" % (t_dir, wid)
+    sym_file_02  = "%s/data_prefix/sym.%02d"  % (t_dir, wid)
 
-    for i in range(5,30):
+    for i in range(19,30):
         gen_loop(math_file_01, sym_file_01, math_file_02, sym_file_02,i, i+20, wid)
 
 

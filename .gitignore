@@ -128,3 +128,35 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# slurm output
+*.out
+*.err
+*.tar
+*~
+\#*
+
+# model checkpoints, copies of data, etc
+experiments/*/checkpoints
+experiments/*/data
+experiments/*/data-bin
+experiments/*/tensorboard
+experiments/debug*
+experiments_assembly/*/checkpoints
+experiments_assembly/*/data
+experiments_assembly/*/data-bin
+experiments_assembly/*/tensorboard
+experiments_assembly/debug*
+experiments_assembly/data
+
+# outdated job scripts
+slurm_template.job
+run-exp.sh
+
+# script output
+*.npy
+*.csv
+
+# datasets
+large_data/
+experiments/data

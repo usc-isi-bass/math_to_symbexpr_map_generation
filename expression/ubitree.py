@@ -34,7 +34,7 @@ BINARY_OPERATORS = [("AddOp", "+", (None, None)),
 #######################################
 class UbiTreeGenerator():
     def __init__(self, max_ops, num_leaves, max_int, int_only=False, use_bit_op=False):
-        unas = UNARY_OPERATORS + UNARY_FUNCTIONS
+        unas = UNARY_OPERATORS # + UNARY_FUNCTIONS disallow absolute value function
         if use_bit_op:
             bins = BINARY_OPERATORS + BINARY_BIT_OPERATORS + BINARY_FUNCTIONS
         else:
