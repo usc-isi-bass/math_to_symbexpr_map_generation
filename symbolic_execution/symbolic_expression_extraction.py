@@ -13,6 +13,7 @@ from angr.sim_options import LAZY_SOLVES,\
     SIMPLIFY_CONSTRAINTS
 import claripy
 import re
+import archinfo
 from collections.abc import Iterable
 from collections import deque
 import logging
@@ -208,7 +209,15 @@ class SymbolicExpressionExtractor:
 
         # Create a new symbolic calling convention based on the original target function
         # With correct types of arguments and return type
-        sym_cc = self.proj.factory.cc_from_arg_kinds(fp_args=is_fp_args, ret_fp=ret_fp)
+        sym_cc = self.proj.factory.cc()
+        prot = sym_cc.guess_prototype(func_symvar_args)
+        if sym_cc.ARCH == archinfo.arch_amd64.ArchAMD64:
+            if ret_fp:
+                prot.returnty = angr.sim_type.SimTypeDouble()
+            else:
+                prot.returnty = angr.sim_type.SimTypeInt()
+        else:
+            prot.returnty = angr.sim_type.SimTypeInt()
 
         if simplified:
             start_state = self.proj.factory.call_state(func_addr, *func_symvar_args, cc=sym_cc)
@@ -218,7 +227,7 @@ class SymbolicExpressionExtractor:
         simgr = self.proj.factory.simulation_manager(start_state)
         simgr.run()
 
-        ret_reg_name = sym_cc.return_val.reg_name
+        ret_reg_name = sym_cc.return_val(ty=prot.returnty).reg_name
 
         if len(simgr.deadended) > 1:
             ret_states = simgr.deadended
@@ -252,12 +261,14 @@ class SymbolicExpressionExtractor:
                     x_claripy = x_claripy[double_length-1:0]
                 x_fp = x_claripy.raw_to_fp()
                 return op(x_fp)
-        una_cc = self.proj.factory.cc_from_arg_kinds((True,), ret_fp=True)
+        cc = self.proj.factory.cc()
+        una_prot = cc.guess_prototype([claripy.ast.fp.FPS('fp_arg', claripy.fp.FSORT_DOUBLE)])
+        una_prot.returnty = angr.sim_type.SimTypeDouble()
         for func_name, symbol_name, (arg, ret) in UNARY_FUNCTIONS:
             func = self.cfg.functions.function(name=symbol_name)
             if func is not None:
                 una_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x: double_length)
-                self.proj.hook_symbol(func.addr, UnaFuncSymProc(cc=una_cc, op=una_func_op))
+                self.proj.hook_symbol(func.addr, UnaFuncSymProc(prototype=una_prot, op=una_func_op))
         class BinFuncSymProc(angr.SimProcedure):
             def run(self, x, y, op=None):
                 x_claripy = x.to_claripy()
@@ -270,12 +281,13 @@ class SymbolicExpressionExtractor:
 
                 y_fp = y_claripy.raw_to_fp()
                 return op(x_fp, y_fp)
-        bin_cc = self.proj.factory.cc_from_arg_kinds((True,True), ret_fp=True)
+        bin_prot = cc.guess_prototype([claripy.ast.fp.FPS('fp_arg', claripy.fp.FSORT_DOUBLE)] * 2)
+        bin_prot.returnty = angr.sim_type.SimTypeDouble()
         for func_name, symbol_name, (arg, ret) in BINARY_FUNCTIONS:
             func = self.cfg.functions.function(name=symbol_name)
             if func is not None:
                 bin_func_op = claripy.operations.op(func_name, (claripy.ast.fp.FP,claripy.ast.fp.FP), claripy.ast.fp.FP, do_coerce=False, calc_length=lambda x, y: double_length)
-                self.proj.hook_symbol(func.addr, BinFuncSymProc(cc=bin_cc, op=bin_func_op))
+                self.proj.hook_symbol(func.addr, BinFuncSymProc(prototype=bin_prot, op=bin_func_op))
 
 
     def _hook_func_callsites(self, short_circuit_calls):
@@ -561,8 +573,10 @@ class ExtractedSymExpr:
         elif op in SYM_BINFUNCS_d:
             children = [self._symex_to_infix_tree(expr.args[0]), self._symex_to_infix_tree(expr.args[1])]
             return InfixTree(op=SYM_BINFUNCS_d[op], children=children)
+        """
         else: 
             print(op)
+        """
 
         children = []
         ast_queue = deque([iter(expr.args)])
