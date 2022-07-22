@@ -11,4 +11,4 @@ source /project/jonmay_231/felkner/env_general/bin/activate
 module load cuda
 
 CUDA_VISIBLE_DEVICES=0,1 
-fairseq-train data-bin/ --arch transformer --encoder-embed-dim 40 --encoder-ffn-embed-dim 160 --decoder-embed-dim 40 --decoder-ffn-embed-dim 160 --encoder-layers 2 --decoder-layers 2 --optimizer adam --adam-betas '(0.9, 0.98)' --lr .05 --lr-scheduler inverse_sqrt --warmup-updates 8000 --dropout 0.1 --weight-decay 0.0001 --criterion cross_entropy --max-tokens 4096 --tensorboard-logdir tensorboard --patience 10
+fairseq-train data-bin/ --arch transformer --encoder-embed-dim 40 --encoder-ffn-embed-dim 160 --decoder-embed-dim 40 --decoder-ffn-embed-dim 160 --encoder-layers 2 --decoder-layers 2 --optimizer adam --adam-betas '(0.9, 0.98)' --lr .05 --lr-scheduler inverse_sqrt --warmup-updates 8000 --dropout 0.1 --weight-decay 0.0001 --criterion cross_entropy --max-tokens 4096 --tensorboard-logdir tensorboard --patience 100
