@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#SBATCH --time=48:00:00
+#SBATCH --partition=isi,shared
+#SBATCH --gres=gpu:p100:2
+#SBATCH --cpus-per-task=2
+#SBATCH --mem-per-cpu=20GB
+#SBATCH --output="run.out"
+
+source /project/jonmay_231/felkner/env_general/bin/activate
+module load cuda
+
+CUDA_VISIBLE_DEVICES=0,1 
+fairseq-train data-bin/ --arch transformer --encoder-embed-dim 40 --encoder-ffn-embed-dim 160 --decoder-embed-dim 40 --decoder-ffn-embed-dim 160 --encoder-layers 2 --decoder-layers 2 --optimizer adam --adam-betas '(0.9, 0.98)' --lr .05 --lr-scheduler inverse_sqrt --warmup-updates 8000 --dropout 0.0 --weight-decay 0.0001 --criterion cross_entropy --max-tokens 4096 --tensorboard-logdir tensorboard --patience 1000
